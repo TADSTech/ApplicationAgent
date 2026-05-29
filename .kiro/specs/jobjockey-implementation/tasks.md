@@ -20,6 +20,7 @@
 - [x] 1.3.3 Set up logging configuration
 
 ## Phase 2: Agent Reasoning Logic & API Integration
+*(Detailed work breakdown and developer scopes available in [backend_tasks.md](./backend_tasks.md))*
 
 ### Task 2.1: Multi-Agent Orchestrator
 - [ ] 2.1.1 Create base agent class with state management
@@ -52,6 +53,7 @@
 - [ ] 2.5.4 Implement engagement tracking
 
 ## Phase 3: UI Component Library & Frontend Wiring
+*(Detailed work breakdown and developer scopes available in [frontend_tasks.md](./frontend_tasks.md))*
 
 ### Task 3.1: UI Component Library
 - [ ] 3.1.1 Create reusable UI components
@@ -78,6 +80,7 @@
 - [ ] 3.4.4 Create next steps section
 
 ## Phase 4: Cloud Run Deployment & "Magic Moment" Polish
+*(Detailed cloud setup tasks available in [cloud_setup_tasks.md](./cloud_setup_tasks.md))*
 
 ### Task 4.1: Backend Deployment
 - [ ] 4.1.1 Create Cloud Run deployment configuration
