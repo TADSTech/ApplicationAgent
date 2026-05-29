@@ -271,4 +271,12 @@ To guarantee consistency across all developers and agents, the linter is configu
 
 You can verify that the hook is active or install it by writing to `.git/hooks/pre-push`.
 
+---
+
+## 7. Phase Completion Protocol
+
+To maintain complete workflow traceability:
+- **Tick tasks.md**: Mark all completed items with `[x]` under `.kiro/specs/jobjockey-implementation/tasks.md` immediately upon completing a phase or milestone.
+- **Git Push**: Commit and push changes directly to the remote tracking branch after a phase successfully finishes and passes the linter.
+
 Stay aligned, Agent. Let's build a resilient job bridge!
