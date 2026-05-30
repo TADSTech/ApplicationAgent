@@ -2,32 +2,18 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Body, Query
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
-try:
-    from models.job import Job
-    from agents.orchestrator import MultiAgentOrchestrator
-    from agents.job_agent import JobAgent
-    from agents.resume_agent import ResumeAgent
-    from agents.contract_agent import ContractAgent
-    from agents.linkedin_agent import LinkedinAgent
-    from api.dependencies import verify_firebase_token
-    from core.logging import logger
-    from services.currency_converter import currency_converter_service
-    from services.portfolio_showcase import portfolio_showcase_service
-    from services.demo_job_service import demo_job_service
-    from services.profile_builder import profile_builder_service
-except ImportError:
-    from backend.models.job import Job
-    from backend.agents.orchestrator import MultiAgentOrchestrator
-    from backend.agents.job_agent import JobAgent
-    from backend.agents.resume_agent import ResumeAgent
-    from backend.agents.contract_agent import ContractAgent
-    from backend.agents.linkedin_agent import LinkedinAgent
-    from backend.api.dependencies import verify_firebase_token
-    from backend.core.logging import logger
-    from backend.services.currency_converter import currency_converter_service
-    from backend.services.portfolio_showcase import portfolio_showcase_service
-    from backend.services.demo_job_service import demo_job_service
-    from backend.services.profile_builder import profile_builder_service
+from ..models.job import Job
+from ..agents.orchestrator import MultiAgentOrchestrator
+from ..agents.job_agent import JobAgent
+from ..agents.resume_agent import ResumeAgent
+from ..agents.contract_agent import ContractAgent
+from ..agents.linkedin_agent import LinkedinAgent
+from .dependencies import verify_firebase_token
+from ..core.logging import logger
+from ..services.currency_converter import currency_converter_service
+from ..services.portfolio_showcase import portfolio_showcase_service
+from ..services.demo_job_service import demo_job_service
+from ..services.profile_builder import profile_builder_service
 
 router = APIRouter()
 
@@ -134,10 +120,7 @@ async def get_agent_states(session_id: str):
     """
     Get states of all agents for a given session.
     """
-    try:
-        from services.firebase import firebase_service
-    except ImportError:
-        from backend.services.firebase import firebase_service
+    from ..services.firebase import firebase_service
     return firebase_service.get_agent_states(session_id)
 
 @router.post("/jobs/search")

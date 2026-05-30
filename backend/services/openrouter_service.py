@@ -4,12 +4,8 @@
 from typing import Optional, Dict, Any
 from openrouter import OpenRouter
 import os
-try:
-    from core.config import settings
-    from core.logging import logger
-except ImportError:
-    from backend.core.config import settings
-    from backend.core.logging import logger
+from ..core.config import settings
+from ..core.logging import logger
 
 
 class OpenRouterService:

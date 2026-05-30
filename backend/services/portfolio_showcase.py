@@ -2,12 +2,8 @@
 # backend/services/portfolio_showcase.py
 import httpx
 from typing import List, Dict, Any, Optional
-try:
-    from core.logging import logger
-    from core.config import settings
-except ImportError:
-    from backend.core.logging import logger
-    from backend.core.config import settings
+from ..core.logging import logger
+from ..core.config import settings
 
 class PortfolioShowcaseService:
     def __init__(self):

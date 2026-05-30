@@ -4,10 +4,7 @@
 import json
 import os
 from typing import List, Dict, Any, Optional
-try:
-    from ..core.logging import logger
-except ImportError:
-    from backend.core.logging import logger
+from ..core.logging import logger
 
 class DemoJobService:
     def __init__(self):

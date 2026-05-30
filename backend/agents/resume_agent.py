@@ -2,8 +2,8 @@
 from typing import Dict, Any
 from pydantic import BaseModel, Field
 from .base import BaseAgent
-from services.gemini import gemini_service
-from core.logging import logger
+from ..services.gemini import gemini_service
+from ..core.logging import logger
 
 class ResumeTailoringOutput(BaseModel):
     adapted_resume: str = Field(description="The tailored resume in markdown format")
