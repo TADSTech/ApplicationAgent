@@ -1,6 +1,6 @@
 # backend/core/config.py
 import os
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
 class Settings(BaseSettings):
@@ -17,8 +17,9 @@ class Settings(BaseSettings):
     LINKEDIN_CLIENT_ID: Optional[str] = os.getenv("LINKEDIN_CLIENT_ID", None)
     LINKEDIN_CLIENT_SECRET: Optional[str] = os.getenv("LINKEDIN_CLIENT_SECRET", None)
 
-    class Config:
-        env_file = ".env"
+    model_config = SettingsConfigDict(
+        env_file = ".env",
         case_sensitive = True
+    )
 
 settings = Settings()

@@ -1,7 +1,7 @@
 # backend/agents/base.py
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from pydantic import BaseModel
 from backend.core.logging import logger
 from backend.services.firebase import firebase_service
@@ -25,9 +25,8 @@ class BaseAgent(ABC):
             agent_type=agent_type,
             status="queued",
             progress=0.0,
-            started_at=datetime.utcnow()
+            started_at=datetime.now(timezone.utc)
         )
-        self._sync_state()
 
     @abstractmethod
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
@@ -37,10 +36,10 @@ class BaseAgent(ABC):
         """
         pass
 
-    def update_progress(self, progress: float, status: str = "running"):
+    async def update_progress(self, progress: float, status: str = "running"):
         self.state.progress = progress
         self.state.status = status
-        self._sync_state()
+        await self._sync_state()
         logger.info(
             f"Agent {self.agent_type} progress updated",
             extra={
@@ -50,7 +49,7 @@ class BaseAgent(ABC):
             }
         )
 
-    def _sync_state(self):
+    async def _sync_state(self):
         """
         Syncs current agent state to Firestore.
         Rule 4.3 compliant: Always save intermediate state to Firestore.

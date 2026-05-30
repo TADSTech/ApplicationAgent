@@ -83,7 +83,7 @@
 *(Detailed cloud setup tasks available in [cloud_setup_tasks.md](./cloud_setup_tasks.md))*
 
 ### Task 4.1: Backend Deployment
-- [ ] 4.1.1 Create Cloud Run deployment configuration
+- [x] 4.1.1 Create Cloud Run deployment configuration
 - [ ] 4.1.2 Set up container registry
 - [ ] 4.1.3 Configure environment variables
 - [ ] 4.1.4 Deploy to Cloud Run
@@ -115,10 +115,10 @@
 - [ ] 5.1.4 Achieve >80% code coverage
 
 ### Task 5.2: Integration Tests
-- [ ] 5.2.1 Test agent orchestration
-- [ ] 5.2.2 Test API integrations
-- [ ] 5.2.3 Test end-to-end workflows
-- [ ] 5.2.4 Test error handling
+- [x] 5.2.1 Test agent orchestration
+- [x] 5.2.2 Test API integrations
+- [x] 5.2.3 Test end-to-end workflows
+- [x] 5.2.4 Test error handling
 
 ### Task 5.3: Performance Testing
 - [ ] 5.3.1 Test job search performance
