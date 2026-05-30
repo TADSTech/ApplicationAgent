@@ -1,0 +1,3002 @@
+[
+  {
+    "id": "job-001",
+    "title": "Product Designer",
+    "company": "Railway",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 156864,
+    "description": "Product Designer at Railway working on infrastructure products. Join a Series A company building the future of infrastructure.",
+    "requirements": [
+      "Product Design",
+      "User Flows",
+      "Prototyping",
+      "Collaboration"
+    ],
+    "url": "https://railway.com/careers/product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-002",
+    "title": "Principal Designer",
+    "company": "Airtable",
+    "location": "Vancouver, Canada",
+    "remote": true,
+    "salary_usd": 302440,
+    "description": "Principal Designer at Airtable working on database products. Join a Series D company building the future of database.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://airtable.com/careers/principal-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-003",
+    "title": "UI Designer",
+    "company": "Airtable",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 124959,
+    "description": "UI Designer at Airtable working on database products. Join a Series D company building the future of database.",
+    "requirements": [
+      "UI Design",
+      "Visual Design",
+      "Figma",
+      "Responsive Design"
+    ],
+    "url": "https://airtable.com/careers/ui-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-004",
+    "title": "Interaction Designer",
+    "company": "Spline",
+    "location": "Boston, MA",
+    "remote": true,
+    "salary_usd": 151552,
+    "description": "Interaction Designer at Spline working on 3d design products. Join a Seed company building the future of 3d design.",
+    "requirements": [
+      "Animation",
+      "Micro-interactions",
+      "Prototyping",
+      "Motion Design"
+    ],
+    "url": "https://spline.com/careers/interaction-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-005",
+    "title": "Staff Product Designer",
+    "company": "Silvera",
+    "location": "Barcelona, Spain",
+    "remote": true,
+    "salary_usd": 253841,
+    "description": "Staff Product Designer at Silvera working on payments products. Join a Series B company building the future of payments.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://silvera.com/careers/staff-product-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-006",
+    "title": "Frontend Designer",
+    "company": "Clerk",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 112096,
+    "description": "Frontend Designer at Clerk working on auth products. Join a Series A company building the future of auth.",
+    "requirements": [
+      "HTML/CSS",
+      "JavaScript",
+      "React",
+      "Design Implementation"
+    ],
+    "url": "https://clerk.com/careers/frontend-designer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-007",
+    "title": "UI Designer",
+    "company": "Coda",
+    "location": "Austin, TX",
+    "remote": false,
+    "salary_usd": 113887,
+    "description": "UI Designer at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "UI Design",
+      "Visual Design",
+      "Figma",
+      "Responsive Design"
+    ],
+    "url": "https://coda.com/careers/ui-designer",
+    "timezone": "CST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-008",
+    "title": "Visual Designer",
+    "company": "Neon",
+    "location": "New York, NY",
+    "remote": false,
+    "salary_usd": 148981,
+    "description": "Visual Designer at Neon working on database products. Join a Series A company building the future of database.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://neon.com/careers/visual-designer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-009",
+    "title": "Visual Designer",
+    "company": "Resend",
+    "location": "Lisbon, Portugal",
+    "remote": false,
+    "salary_usd": 155475,
+    "description": "Visual Designer at Resend working on email products. Join a Seed company building the future of email.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://resend.com/careers/visual-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-010",
+    "title": "Visual Designer",
+    "company": "June",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 131256,
+    "description": "Visual Designer at June working on analytics products. Join a Seed company building the future of analytics.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://june.com/careers/visual-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-011",
+    "title": "Visual Designer",
+    "company": "Mixpanel",
+    "location": "Lisbon, Portugal",
+    "remote": false,
+    "salary_usd": 145634,
+    "description": "Visual Designer at Mixpanel working on analytics products. Join a Series C company building the future of analytics.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://mixpanel.com/careers/visual-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-012",
+    "title": "Senior UX Researcher",
+    "company": "Optimizely",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 165111,
+    "description": "Senior UX Researcher at Optimizely working on experimentation products. Join a Series E company building the future of experimentation.",
+    "requirements": [
+      "Research Strategy",
+      "Mixed Methods",
+      "Stakeholder Management",
+      "Synthesis"
+    ],
+    "url": "https://optimizely.com/careers/senior-ux-researcher",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series E",
+    "equity": false
+  },
+  {
+    "id": "job-013",
+    "title": "Senior UI/UX Designer",
+    "company": "Webflow",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 156961,
+    "description": "Senior UI/UX Designer at Webflow working on web design products. Join a Series C company building the future of web design.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://webflow.com/careers/senior-ui/ux-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-014",
+    "title": "Principal Designer",
+    "company": "Hotjar",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 227707,
+    "description": "Principal Designer at Hotjar working on analytics products. Join a Series B company building the future of analytics.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://hotjar.com/careers/principal-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-015",
+    "title": "UX Researcher",
+    "company": "LaunchDarkly",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 169397,
+    "description": "UX Researcher at LaunchDarkly working on feature flags products. Join a Series D company building the future of feature flags.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://launchdarkly.com/careers/ux-researcher",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-016",
+    "title": "Design Systems Engineer",
+    "company": "Abstract",
+    "location": "Vancouver, Canada",
+    "remote": true,
+    "salary_usd": 140038,
+    "description": "Design Systems Engineer at Abstract working on version control products. Join a Series B company building the future of version control.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://abstract.com/careers/design-systems-engineer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-017",
+    "title": "Brand Designer",
+    "company": "Amplitude",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 128998,
+    "description": "Brand Designer at Amplitude working on analytics products. Join a Public company building the future of analytics.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://amplitude.com/careers/brand-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-018",
+    "title": "Staff Product Designer",
+    "company": "Notion",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 272014,
+    "description": "Staff Product Designer at Notion working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://notion.com/careers/staff-product-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-019",
+    "title": "Senior Product Designer",
+    "company": "Rive",
+    "location": "Toronto, Canada",
+    "remote": false,
+    "salary_usd": 167946,
+    "description": "Senior Product Designer at Rive working on animation products. Join a Series A company building the future of animation.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://rive.com/careers/senior-product-designer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-020",
+    "title": "Staff Product Designer",
+    "company": "Shopify",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 213877,
+    "description": "Staff Product Designer at Shopify working on e-commerce products. Join a Public company building the future of e-commerce.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://shopify.com/careers/staff-product-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-021",
+    "title": "Design Engineer",
+    "company": "Hotjar",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 202119,
+    "description": "Design Engineer at Hotjar working on analytics products. Join a Series B company building the future of analytics.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://hotjar.com/careers/design-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-022",
+    "title": "UX Researcher",
+    "company": "Retool",
+    "location": "Berlin, Germany",
+    "remote": true,
+    "salary_usd": 155564,
+    "description": "UX Researcher at Retool working on internal tools products. Join a Series B company building the future of internal tools.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://retool.com/careers/ux-researcher",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-023",
+    "title": "Design Lead",
+    "company": "Zeplin",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 229547,
+    "description": "Design Lead at Zeplin working on design handoff products. Join a Series B company building the future of design handoff.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://zeplin.com/careers/design-lead",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-024",
+    "title": "Visual Designer",
+    "company": "Fly.io",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 116136,
+    "description": "Visual Designer at Fly.io working on infrastructure products. Join a Series B company building the future of infrastructure.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://flyio.com/careers/visual-designer",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-025",
+    "title": "Design Systems Engineer",
+    "company": "Linear",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 178508,
+    "description": "Design Systems Engineer at Linear working on productivity products. Join a Series B company building the future of productivity.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://linear.com/careers/design-systems-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-026",
+    "title": "Head of Design",
+    "company": "Linear",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 240757,
+    "description": "Head of Design at Linear working on productivity products. Join a Series B company building the future of productivity.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://linear.com/careers/head-of-design",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-027",
+    "title": "VP of Design",
+    "company": "NeoLedger",
+    "location": "Los Angeles, CA",
+    "remote": true,
+    "salary_usd": 395195,
+    "description": "VP of Design at NeoLedger working on fintech products. Join a Series B company building the future of fintech.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://neoledger.com/careers/vp-of-design",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-028",
+    "title": "Staff Product Designer",
+    "company": "Webflow",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 273144,
+    "description": "Staff Product Designer at Webflow working on web design products. Join a Series C company building the future of web design.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://webflow.com/careers/staff-product-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-029",
+    "title": "Design Lead",
+    "company": "VWO",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 176480,
+    "description": "Design Lead at VWO working on a/b testing products. Join a Series C company building the future of a/b testing.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://vwo.com/careers/design-lead",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-030",
+    "title": "Principal Designer",
+    "company": "Heap",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 315624,
+    "description": "Principal Designer at Heap working on analytics products. Join a Series C company building the future of analytics.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://heap.com/careers/principal-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-031",
+    "title": "VP of Design",
+    "company": "Coda",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 336581,
+    "description": "VP of Design at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://coda.com/careers/vp-of-design",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-032",
+    "title": "Product Design Manager",
+    "company": "Convex",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 152701,
+    "description": "Product Design Manager at Convex working on backend products. Join a Series A company building the future of backend.",
+    "requirements": [
+      "Leadership",
+      "Strategy",
+      "Team Management",
+      "Stakeholder Management"
+    ],
+    "url": "https://convex.com/careers/product-design-manager",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-033",
+    "title": "Head of Design",
+    "company": "Coda",
+    "location": "Austin, TX",
+    "remote": false,
+    "salary_usd": 226429,
+    "description": "Head of Design at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://coda.com/careers/head-of-design",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-034",
+    "title": "Design Lead",
+    "company": "Miro",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 216443,
+    "description": "Design Lead at Miro working on collaboration products. Join a Series C company building the future of collaboration.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://miro.com/careers/design-lead",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-035",
+    "title": "Senior UX Researcher",
+    "company": "Vercel",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 193613,
+    "description": "Senior UX Researcher at Vercel working on infrastructure products. Join a Series C company building the future of infrastructure.",
+    "requirements": [
+      "Research Strategy",
+      "Mixed Methods",
+      "Stakeholder Management",
+      "Synthesis"
+    ],
+    "url": "https://vercel.com/careers/senior-ux-researcher",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-036",
+    "title": "VP of Design",
+    "company": "Hotjar",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 254768,
+    "description": "VP of Design at Hotjar working on analytics products. Join a Series B company building the future of analytics.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://hotjar.com/careers/vp-of-design",
+    "timezone": "CST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-037",
+    "title": "Senior UI/UX Designer",
+    "company": "Heap",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 167857,
+    "description": "Senior UI/UX Designer at Heap working on analytics products. Join a Series C company building the future of analytics.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://heap.com/careers/senior-ui/ux-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-038",
+    "title": "Staff Product Designer",
+    "company": "VWO",
+    "location": "Vancouver, Canada",
+    "remote": true,
+    "salary_usd": 260295,
+    "description": "Staff Product Designer at VWO working on a/b testing products. Join a Series C company building the future of a/b testing.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://vwo.com/careers/staff-product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-039",
+    "title": "Senior UX Researcher",
+    "company": "Stripe",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 203031,
+    "description": "Senior UX Researcher at Stripe working on payments products. Join a Public company building the future of payments.",
+    "requirements": [
+      "Research Strategy",
+      "Mixed Methods",
+      "Stakeholder Management",
+      "Synthesis"
+    ],
+    "url": "https://stripe.com/careers/senior-ux-researcher",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-040",
+    "title": "UX Researcher",
+    "company": "Planetscale",
+    "location": "Amsterdam, Netherlands",
+    "remote": true,
+    "salary_usd": 142217,
+    "description": "UX Researcher at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://planetscale.com/careers/ux-researcher",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-041",
+    "title": "Product Design Manager",
+    "company": "Rive",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 155042,
+    "description": "Product Design Manager at Rive working on animation products. Join a Series A company building the future of animation.",
+    "requirements": [
+      "Leadership",
+      "Strategy",
+      "Team Management",
+      "Stakeholder Management"
+    ],
+    "url": "https://rive.com/careers/product-design-manager",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-042",
+    "title": "Senior Product Designer",
+    "company": "Resend",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 212701,
+    "description": "Senior Product Designer at Resend working on email products. Join a Seed company building the future of email.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://resend.com/careers/senior-product-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-043",
+    "title": "Visual Designer",
+    "company": "Quantix",
+    "location": "London, UK",
+    "remote": true,
+    "salary_usd": 138317,
+    "description": "Visual Designer at Quantix working on trading products. Join a Series A company building the future of trading.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://quantix.com/careers/visual-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-044",
+    "title": "Creative Technologist",
+    "company": "Maze",
+    "location": "Barcelona, Spain",
+    "remote": true,
+    "salary_usd": 165154,
+    "description": "Creative Technologist at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://maze.com/careers/creative-technologist",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-045",
+    "title": "Visual Designer",
+    "company": "Statsig",
+    "location": "New York, NY",
+    "remote": false,
+    "salary_usd": 144138,
+    "description": "Visual Designer at Statsig working on experimentation products. Join a Series B company building the future of experimentation.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://statsig.com/careers/visual-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-046",
+    "title": "UX Researcher",
+    "company": "June",
+    "location": "San Francisco, CA",
+    "remote": false,
+    "salary_usd": 125317,
+    "description": "UX Researcher at June working on analytics products. Join a Seed company building the future of analytics.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://june.com/careers/ux-researcher",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-047",
+    "title": "Interaction Designer",
+    "company": "Pendo",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 139129,
+    "description": "Interaction Designer at Pendo working on product analytics products. Join a Series D company building the future of product analytics.",
+    "requirements": [
+      "Animation",
+      "Micro-interactions",
+      "Prototyping",
+      "Motion Design"
+    ],
+    "url": "https://pendo.com/careers/interaction-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-048",
+    "title": "Senior Product Designer",
+    "company": "Maze",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 152298,
+    "description": "Senior Product Designer at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://maze.com/careers/senior-product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-049",
+    "title": "Design Engineer",
+    "company": "Shopify",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 139667,
+    "description": "Design Engineer at Shopify working on e-commerce products. Join a Public company building the future of e-commerce.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://shopify.com/careers/design-engineer",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-050",
+    "title": "Head of Design",
+    "company": "Vercel",
+    "location": "Los Angeles, CA",
+    "remote": false,
+    "salary_usd": 321660,
+    "description": "Head of Design at Vercel working on infrastructure products. Join a Series C company building the future of infrastructure.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://vercel.com/careers/head-of-design",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-051",
+    "title": "Senior UI/UX Designer",
+    "company": "Clerk",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 184286,
+    "description": "Senior UI/UX Designer at Clerk working on auth products. Join a Series A company building the future of auth.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://clerk.com/careers/senior-ui/ux-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-052",
+    "title": "UX Researcher",
+    "company": "Retool",
+    "location": "Vancouver, Canada",
+    "remote": true,
+    "salary_usd": 132304,
+    "description": "UX Researcher at Retool working on internal tools products. Join a Series B company building the future of internal tools.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://retool.com/careers/ux-researcher",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-053",
+    "title": "VP of Design",
+    "company": "Resend",
+    "location": "London, UK",
+    "remote": true,
+    "salary_usd": 376096,
+    "description": "VP of Design at Resend working on email products. Join a Seed company building the future of email.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://resend.com/careers/vp-of-design",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-054",
+    "title": "Design Systems Engineer",
+    "company": "Miro",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 153659,
+    "description": "Design Systems Engineer at Miro working on collaboration products. Join a Series C company building the future of collaboration.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://miro.com/careers/design-systems-engineer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-055",
+    "title": "Design Engineer",
+    "company": "Segment",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 183339,
+    "description": "Design Engineer at Segment working on cdp products. Join a Acquired company building the future of cdp.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://segment.com/careers/design-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-056",
+    "title": "Visual Designer",
+    "company": "Planetscale",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 112701,
+    "description": "Visual Designer at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://planetscale.com/careers/visual-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-057",
+    "title": "Design Engineer",
+    "company": "Stripe",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 137916,
+    "description": "Design Engineer at Stripe working on payments products. Join a Public company building the future of payments.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://stripe.com/careers/design-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-058",
+    "title": "UX Researcher",
+    "company": "Maze",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 121076,
+    "description": "UX Researcher at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://maze.com/careers/ux-researcher",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-059",
+    "title": "Head of Design",
+    "company": "Gamma",
+    "location": "Amsterdam, Netherlands",
+    "remote": true,
+    "salary_usd": 236261,
+    "description": "Head of Design at Gamma working on presentations products. Join a Series A company building the future of presentations.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://gamma.com/careers/head-of-design",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-060",
+    "title": "Visual Designer",
+    "company": "Gamma",
+    "location": "Barcelona, Spain",
+    "remote": true,
+    "salary_usd": 159215,
+    "description": "Visual Designer at Gamma working on presentations products. Join a Series A company building the future of presentations.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://gamma.com/careers/visual-designer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-061",
+    "title": "Brand Designer",
+    "company": "Maze",
+    "location": "Amsterdam, Netherlands",
+    "remote": true,
+    "salary_usd": 106954,
+    "description": "Brand Designer at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://maze.com/careers/brand-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-062",
+    "title": "Staff Product Designer",
+    "company": "Abstract",
+    "location": "New York, NY",
+    "remote": false,
+    "salary_usd": 262661,
+    "description": "Staff Product Designer at Abstract working on version control products. Join a Series B company building the future of version control.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://abstract.com/careers/staff-product-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-063",
+    "title": "Design Systems Engineer",
+    "company": "VWO",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 145791,
+    "description": "Design Systems Engineer at VWO working on a/b testing products. Join a Series C company building the future of a/b testing.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://vwo.com/careers/design-systems-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-064",
+    "title": "Design Systems Engineer",
+    "company": "Linear",
+    "location": "Chicago, IL",
+    "remote": true,
+    "salary_usd": 194880,
+    "description": "Design Systems Engineer at Linear working on productivity products. Join a Series B company building the future of productivity.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://linear.com/careers/design-systems-engineer",
+    "timezone": "CST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-065",
+    "title": "Senior Product Designer",
+    "company": "Notion",
+    "location": "London, UK",
+    "remote": true,
+    "salary_usd": 189333,
+    "description": "Senior Product Designer at Notion working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://notion.com/careers/senior-product-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-066",
+    "title": "Staff Product Designer",
+    "company": "Split",
+    "location": "Barcelona, Spain",
+    "remote": true,
+    "salary_usd": 250572,
+    "description": "Staff Product Designer at Split working on experimentation products. Join a Series C company building the future of experimentation.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://split.com/careers/staff-product-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-067",
+    "title": "UX Researcher",
+    "company": "Koala",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 125940,
+    "description": "UX Researcher at Koala working on analytics products. Join a Seed company building the future of analytics.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://koala.com/careers/ux-researcher",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-068",
+    "title": "Brand Designer",
+    "company": "Figma",
+    "location": "Lisbon, Portugal",
+    "remote": true,
+    "salary_usd": 118466,
+    "description": "Brand Designer at Figma working on design tools products. Join a Acquired company building the future of design tools.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://figma.com/careers/brand-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-069",
+    "title": "Creative Technologist",
+    "company": "Koala",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 159262,
+    "description": "Creative Technologist at Koala working on analytics products. Join a Seed company building the future of analytics.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://koala.com/careers/creative-technologist",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-070",
+    "title": "Head of Design",
+    "company": "Coda",
+    "location": "Barcelona, Spain",
+    "remote": false,
+    "salary_usd": 200844,
+    "description": "Head of Design at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://coda.com/careers/head-of-design",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-071",
+    "title": "UI Designer",
+    "company": "Axiom Data",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 123685,
+    "description": "UI Designer at Axiom Data working on data analytics products. Join a Series C company building the future of data analytics.",
+    "requirements": [
+      "UI Design",
+      "Visual Design",
+      "Figma",
+      "Responsive Design"
+    ],
+    "url": "https://axiomdata.com/careers/ui-designer",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-072",
+    "title": "Product Designer",
+    "company": "Split",
+    "location": "Los Angeles, CA",
+    "remote": true,
+    "salary_usd": 131233,
+    "description": "Product Designer at Split working on experimentation products. Join a Series C company building the future of experimentation.",
+    "requirements": [
+      "Product Design",
+      "User Flows",
+      "Prototyping",
+      "Collaboration"
+    ],
+    "url": "https://split.com/careers/product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-073",
+    "title": "Brand Designer",
+    "company": "Linear",
+    "location": "Los Angeles, CA",
+    "remote": true,
+    "salary_usd": 144781,
+    "description": "Brand Designer at Linear working on productivity products. Join a Series B company building the future of productivity.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://linear.com/careers/brand-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-074",
+    "title": "Design Systems Engineer",
+    "company": "Spline",
+    "location": "Barcelona, Spain",
+    "remote": true,
+    "salary_usd": 171890,
+    "description": "Design Systems Engineer at Spline working on 3d design products. Join a Seed company building the future of 3d design.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://spline.com/careers/design-systems-engineer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-075",
+    "title": "Senior UX Researcher",
+    "company": "Framer",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 173720,
+    "description": "Senior UX Researcher at Framer working on design tools products. Join a Series A company building the future of design tools.",
+    "requirements": [
+      "Research Strategy",
+      "Mixed Methods",
+      "Stakeholder Management",
+      "Synthesis"
+    ],
+    "url": "https://framer.com/careers/senior-ux-researcher",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-076",
+    "title": "Principal Designer",
+    "company": "Planetscale",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 230794,
+    "description": "Principal Designer at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://planetscale.com/careers/principal-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-077",
+    "title": "Design Lead",
+    "company": "Statsig",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 189149,
+    "description": "Design Lead at Statsig working on experimentation products. Join a Series B company building the future of experimentation.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://statsig.com/careers/design-lead",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-078",
+    "title": "Design Lead",
+    "company": "Vercel",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 215149,
+    "description": "Design Lead at Vercel working on infrastructure products. Join a Series C company building the future of infrastructure.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://vercel.com/careers/design-lead",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-079",
+    "title": "Head of Design",
+    "company": "Maze",
+    "location": "Vancouver, Canada",
+    "remote": false,
+    "salary_usd": 248838,
+    "description": "Head of Design at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://maze.com/careers/head-of-design",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-080",
+    "title": "Brand Designer",
+    "company": "PostHog",
+    "location": "London, UK",
+    "remote": true,
+    "salary_usd": 124543,
+    "description": "Brand Designer at PostHog working on product analytics products. Join a Series B company building the future of product analytics.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://posthog.com/careers/brand-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-081",
+    "title": "Senior UI/UX Designer",
+    "company": "Segment",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 141704,
+    "description": "Senior UI/UX Designer at Segment working on cdp products. Join a Acquired company building the future of cdp.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://segment.com/careers/senior-ui/ux-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-082",
+    "title": "VP of Design",
+    "company": "Neon",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 281544,
+    "description": "VP of Design at Neon working on database products. Join a Series A company building the future of database.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://neon.com/careers/vp-of-design",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-083",
+    "title": "Principal Designer",
+    "company": "Airtable",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 298571,
+    "description": "Principal Designer at Airtable working on database products. Join a Series D company building the future of database.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://airtable.com/careers/principal-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-084",
+    "title": "Design Engineer",
+    "company": "Mixpanel",
+    "location": "Berlin, Germany",
+    "remote": true,
+    "salary_usd": 147900,
+    "description": "Design Engineer at Mixpanel working on analytics products. Join a Series C company building the future of analytics.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://mixpanel.com/careers/design-engineer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-085",
+    "title": "Senior UX Researcher",
+    "company": "Retool",
+    "location": "Chicago, IL",
+    "remote": true,
+    "salary_usd": 194427,
+    "description": "Senior UX Researcher at Retool working on internal tools products. Join a Series B company building the future of internal tools.",
+    "requirements": [
+      "Research Strategy",
+      "Mixed Methods",
+      "Stakeholder Management",
+      "Synthesis"
+    ],
+    "url": "https://retool.com/careers/senior-ux-researcher",
+    "timezone": "CST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-086",
+    "title": "Senior UI/UX Designer",
+    "company": "Gamma",
+    "location": "Los Angeles, CA",
+    "remote": false,
+    "salary_usd": 140736,
+    "description": "Senior UI/UX Designer at Gamma working on presentations products. Join a Series A company building the future of presentations.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://gamma.com/careers/senior-ui/ux-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-087",
+    "title": "UI Designer",
+    "company": "Inngest",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 96820,
+    "description": "UI Designer at Inngest working on workflows products. Join a Seed company building the future of workflows.",
+    "requirements": [
+      "UI Design",
+      "Visual Design",
+      "Figma",
+      "Responsive Design"
+    ],
+    "url": "https://inngest.com/careers/ui-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-088",
+    "title": "Design Systems Engineer",
+    "company": "Quantix",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 192243,
+    "description": "Design Systems Engineer at Quantix working on trading products. Join a Series A company building the future of trading.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://quantix.com/careers/design-systems-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-089",
+    "title": "Brand Designer",
+    "company": "Coda",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 129172,
+    "description": "Brand Designer at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://coda.com/careers/brand-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-090",
+    "title": "Senior Product Designer",
+    "company": "LaunchDarkly",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 164817,
+    "description": "Senior Product Designer at LaunchDarkly working on feature flags products. Join a Series D company building the future of feature flags.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://launchdarkly.com/careers/senior-product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-091",
+    "title": "Staff Product Designer",
+    "company": "LaunchDarkly",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 231649,
+    "description": "Staff Product Designer at LaunchDarkly working on feature flags products. Join a Series D company building the future of feature flags.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://launchdarkly.com/careers/staff-product-designer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-092",
+    "title": "Lead UX Designer",
+    "company": "Framer",
+    "location": "Boston, MA",
+    "remote": true,
+    "salary_usd": 181052,
+    "description": "Lead UX Designer at Framer working on design tools products. Join a Series A company building the future of design tools.",
+    "requirements": [
+      "UX Research",
+      "Interaction Design",
+      "Usability Testing",
+      "Wireframing"
+    ],
+    "url": "https://framer.com/careers/lead-ux-designer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-093",
+    "title": "Head of Design",
+    "company": "Amplitude",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 313236,
+    "description": "Head of Design at Amplitude working on analytics products. Join a Public company building the future of analytics.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://amplitude.com/careers/head-of-design",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-094",
+    "title": "Interaction Designer",
+    "company": "Neon",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 117667,
+    "description": "Interaction Designer at Neon working on database products. Join a Series A company building the future of database.",
+    "requirements": [
+      "Animation",
+      "Micro-interactions",
+      "Prototyping",
+      "Motion Design"
+    ],
+    "url": "https://neon.com/careers/interaction-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-095",
+    "title": "UI Designer",
+    "company": "Optimizely",
+    "location": "Amsterdam, Netherlands",
+    "remote": false,
+    "salary_usd": 115796,
+    "description": "UI Designer at Optimizely working on experimentation products. Join a Series E company building the future of experimentation.",
+    "requirements": [
+      "UI Design",
+      "Visual Design",
+      "Figma",
+      "Responsive Design"
+    ],
+    "url": "https://optimizely.com/careers/ui-designer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series E",
+    "equity": false
+  },
+  {
+    "id": "job-096",
+    "title": "Creative Technologist",
+    "company": "NeoLedger",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 181937,
+    "description": "Creative Technologist at NeoLedger working on fintech products. Join a Series B company building the future of fintech.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://neoledger.com/careers/creative-technologist",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-097",
+    "title": "Design Lead",
+    "company": "Hotjar",
+    "location": "Boston, MA",
+    "remote": false,
+    "salary_usd": 170211,
+    "description": "Design Lead at Hotjar working on analytics products. Join a Series B company building the future of analytics.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://hotjar.com/careers/design-lead",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-098",
+    "title": "Senior UI/UX Designer",
+    "company": "Split",
+    "location": "Amsterdam, Netherlands",
+    "remote": true,
+    "salary_usd": 170082,
+    "description": "Senior UI/UX Designer at Split working on experimentation products. Join a Series C company building the future of experimentation.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://split.com/careers/senior-ui/ux-designer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-099",
+    "title": "Creative Technologist",
+    "company": "Inngest",
+    "location": "Austin, TX",
+    "remote": false,
+    "salary_usd": 151508,
+    "description": "Creative Technologist at Inngest working on workflows products. Join a Seed company building the future of workflows.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://inngest.com/careers/creative-technologist",
+    "timezone": "CST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-100",
+    "title": "Product Design Manager",
+    "company": "Webflow",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 204125,
+    "description": "Product Design Manager at Webflow working on web design products. Join a Series C company building the future of web design.",
+    "requirements": [
+      "Leadership",
+      "Strategy",
+      "Team Management",
+      "Stakeholder Management"
+    ],
+    "url": "https://webflow.com/careers/product-design-manager",
+    "timezone": "CST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-101",
+    "title": "Design Engineer",
+    "company": "VWO",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 184643,
+    "description": "Design Engineer at VWO working on a/b testing products. Join a Series C company building the future of a/b testing.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://vwo.com/careers/design-engineer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-102",
+    "title": "Product Designer",
+    "company": "Webflow",
+    "location": "Berlin, Germany",
+    "remote": true,
+    "salary_usd": 162871,
+    "description": "Product Designer at Webflow working on web design products. Join a Series C company building the future of web design.",
+    "requirements": [
+      "Product Design",
+      "User Flows",
+      "Prototyping",
+      "Collaboration"
+    ],
+    "url": "https://webflow.com/careers/product-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-103",
+    "title": "Principal Designer",
+    "company": "Inngest",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 305389,
+    "description": "Principal Designer at Inngest working on workflows products. Join a Seed company building the future of workflows.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://inngest.com/careers/principal-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-104",
+    "title": "Visual Designer",
+    "company": "Figma",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 114744,
+    "description": "Visual Designer at Figma working on design tools products. Join a Acquired company building the future of design tools.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://figma.com/careers/visual-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-105",
+    "title": "VP of Design",
+    "company": "Heap",
+    "location": "Los Angeles, CA",
+    "remote": true,
+    "salary_usd": 389707,
+    "description": "VP of Design at Heap working on analytics products. Join a Series C company building the future of analytics.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://heap.com/careers/vp-of-design",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-106",
+    "title": "Principal Designer",
+    "company": "Notion",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 260875,
+    "description": "Principal Designer at Notion working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://notion.com/careers/principal-designer",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-107",
+    "title": "Frontend Designer",
+    "company": "Convex",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 149287,
+    "description": "Frontend Designer at Convex working on backend products. Join a Series A company building the future of backend.",
+    "requirements": [
+      "HTML/CSS",
+      "JavaScript",
+      "React",
+      "Design Implementation"
+    ],
+    "url": "https://convex.com/careers/frontend-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-108",
+    "title": "Lead UX Designer",
+    "company": "Neon",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 172196,
+    "description": "Lead UX Designer at Neon working on database products. Join a Series A company building the future of database.",
+    "requirements": [
+      "UX Research",
+      "Interaction Design",
+      "Usability Testing",
+      "Wireframing"
+    ],
+    "url": "https://neon.com/careers/lead-ux-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-109",
+    "title": "Design Systems Engineer",
+    "company": "Maze",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 152738,
+    "description": "Design Systems Engineer at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://maze.com/careers/design-systems-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-110",
+    "title": "Design Engineer",
+    "company": "Linear",
+    "location": "Chicago, IL",
+    "remote": true,
+    "salary_usd": 188794,
+    "description": "Design Engineer at Linear working on productivity products. Join a Series B company building the future of productivity.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://linear.com/careers/design-engineer",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-111",
+    "title": "Interaction Designer",
+    "company": "Neon",
+    "location": "Austin, TX",
+    "remote": false,
+    "salary_usd": 146725,
+    "description": "Interaction Designer at Neon working on database products. Join a Series A company building the future of database.",
+    "requirements": [
+      "Animation",
+      "Micro-interactions",
+      "Prototyping",
+      "Motion Design"
+    ],
+    "url": "https://neon.com/careers/interaction-designer",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-112",
+    "title": "Senior UI/UX Designer",
+    "company": "Zeplin",
+    "location": "Barcelona, Spain",
+    "remote": true,
+    "salary_usd": 134793,
+    "description": "Senior UI/UX Designer at Zeplin working on design handoff products. Join a Series B company building the future of design handoff.",
+    "requirements": [
+      "UI/UX Design",
+      "Prototyping",
+      "User Testing",
+      "Design Systems"
+    ],
+    "url": "https://zeplin.com/careers/senior-ui/ux-designer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-113",
+    "title": "Senior Product Designer",
+    "company": "Amplitude",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 194415,
+    "description": "Senior Product Designer at Amplitude working on analytics products. Join a Public company building the future of analytics.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://amplitude.com/careers/senior-product-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Public",
+    "equity": false
+  },
+  {
+    "id": "job-114",
+    "title": "Brand Designer",
+    "company": "Airtable",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 154112,
+    "description": "Brand Designer at Airtable working on database products. Join a Series D company building the future of database.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://airtable.com/careers/brand-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-115",
+    "title": "Product Designer",
+    "company": "Split",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 125369,
+    "description": "Product Designer at Split working on experimentation products. Join a Series C company building the future of experimentation.",
+    "requirements": [
+      "Product Design",
+      "User Flows",
+      "Prototyping",
+      "Collaboration"
+    ],
+    "url": "https://split.com/careers/product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-116",
+    "title": "Brand Designer",
+    "company": "Fly.io",
+    "location": "Chicago, IL",
+    "remote": false,
+    "salary_usd": 144035,
+    "description": "Brand Designer at Fly.io working on infrastructure products. Join a Series B company building the future of infrastructure.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://flyio.com/careers/brand-designer",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-117",
+    "title": "Head of Design",
+    "company": "Pendo",
+    "location": "Austin, TX",
+    "remote": true,
+    "salary_usd": 278673,
+    "description": "Head of Design at Pendo working on product analytics products. Join a Series D company building the future of product analytics.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://pendo.com/careers/head-of-design",
+    "timezone": "CST",
+    "visa_sponsorship": true,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-118",
+    "title": "Principal Designer",
+    "company": "Airtable",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 225333,
+    "description": "Principal Designer at Airtable working on database products. Join a Series D company building the future of database.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://airtable.com/careers/principal-designer",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-119",
+    "title": "UI Designer",
+    "company": "Vercel",
+    "location": "London, UK",
+    "remote": false,
+    "salary_usd": 118739,
+    "description": "UI Designer at Vercel working on infrastructure products. Join a Series C company building the future of infrastructure.",
+    "requirements": [
+      "UI Design",
+      "Visual Design",
+      "Figma",
+      "Responsive Design"
+    ],
+    "url": "https://vercel.com/careers/ui-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-120",
+    "title": "Design Engineer",
+    "company": "Planetscale",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 177773,
+    "description": "Design Engineer at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://planetscale.com/careers/design-engineer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-121",
+    "title": "Creative Technologist",
+    "company": "Segment",
+    "location": "Boston, MA",
+    "remote": false,
+    "salary_usd": 145374,
+    "description": "Creative Technologist at Segment working on cdp products. Join a Acquired company building the future of cdp.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://segment.com/careers/creative-technologist",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-122",
+    "title": "Principal Designer",
+    "company": "Silvera",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 274573,
+    "description": "Principal Designer at Silvera working on payments products. Join a Series B company building the future of payments.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://silvera.com/careers/principal-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-123",
+    "title": "Creative Technologist",
+    "company": "Planetscale",
+    "location": "Toronto, Canada",
+    "remote": true,
+    "salary_usd": 190134,
+    "description": "Creative Technologist at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://planetscale.com/careers/creative-technologist",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-124",
+    "title": "Principal Designer",
+    "company": "Notion",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 214271,
+    "description": "Principal Designer at Notion working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://notion.com/careers/principal-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-125",
+    "title": "Design Systems Engineer",
+    "company": "Webflow",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 198887,
+    "description": "Design Systems Engineer at Webflow working on web design products. Join a Series C company building the future of web design.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Tokens",
+      "Component Libraries"
+    ],
+    "url": "https://webflow.com/careers/design-systems-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-126",
+    "title": "Design Engineer",
+    "company": "Fly.io",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 209070,
+    "description": "Design Engineer at Fly.io working on infrastructure products. Join a Series B company building the future of infrastructure.",
+    "requirements": [
+      "React",
+      "TypeScript",
+      "Design Systems",
+      "Animation"
+    ],
+    "url": "https://flyio.com/careers/design-engineer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-127",
+    "title": "Staff Product Designer",
+    "company": "Pendo",
+    "location": "Seattle, WA",
+    "remote": false,
+    "salary_usd": 188283,
+    "description": "Staff Product Designer at Pendo working on product analytics products. Join a Series D company building the future of product analytics.",
+    "requirements": [
+      "Product Strategy",
+      "Design Leadership",
+      "Mentorship",
+      "Vision"
+    ],
+    "url": "https://pendo.com/careers/staff-product-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series D",
+    "equity": false
+  },
+  {
+    "id": "job-128",
+    "title": "Principal Designer",
+    "company": "Segment",
+    "location": "Denver, CO",
+    "remote": true,
+    "salary_usd": 304182,
+    "description": "Principal Designer at Segment working on cdp products. Join a Acquired company building the future of cdp.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://segment.com/careers/principal-designer",
+    "timezone": "MST",
+    "visa_sponsorship": true,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-129",
+    "title": "Senior UX Researcher",
+    "company": "Optimizely",
+    "location": "Denver, CO",
+    "remote": true,
+    "salary_usd": 205813,
+    "description": "Senior UX Researcher at Optimizely working on experimentation products. Join a Series E company building the future of experimentation.",
+    "requirements": [
+      "Research Strategy",
+      "Mixed Methods",
+      "Stakeholder Management",
+      "Synthesis"
+    ],
+    "url": "https://optimizely.com/careers/senior-ux-researcher",
+    "timezone": "MST",
+    "visa_sponsorship": true,
+    "company_stage": "Series E",
+    "equity": false
+  },
+  {
+    "id": "job-130",
+    "title": "Visual Designer",
+    "company": "PostHog",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 106014,
+    "description": "Visual Designer at PostHog working on product analytics products. Join a Series B company building the future of product analytics.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://posthog.com/careers/visual-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-131",
+    "title": "Interaction Designer",
+    "company": "Loom",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 168635,
+    "description": "Interaction Designer at Loom working on video products. Join a Acquired company building the future of video.",
+    "requirements": [
+      "Animation",
+      "Micro-interactions",
+      "Prototyping",
+      "Motion Design"
+    ],
+    "url": "https://loom.com/careers/interaction-designer",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Acquired",
+    "equity": false
+  },
+  {
+    "id": "job-132",
+    "title": "Product Design Manager",
+    "company": "Split",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 156957,
+    "description": "Product Design Manager at Split working on experimentation products. Join a Series C company building the future of experimentation.",
+    "requirements": [
+      "Leadership",
+      "Strategy",
+      "Team Management",
+      "Stakeholder Management"
+    ],
+    "url": "https://split.com/careers/product-design-manager",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-133",
+    "title": "Design Lead",
+    "company": "Coda",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 256075,
+    "description": "Design Lead at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://coda.com/careers/design-lead",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-134",
+    "title": "Brand Designer",
+    "company": "Railway",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary_usd": 129943,
+    "description": "Brand Designer at Railway working on infrastructure products. Join a Series A company building the future of infrastructure.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://railway.com/careers/brand-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-135",
+    "title": "UX Researcher",
+    "company": "Neon",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 123269,
+    "description": "UX Researcher at Neon working on database products. Join a Series A company building the future of database.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://neon.com/careers/ux-researcher",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-136",
+    "title": "Principal Designer",
+    "company": "Planetscale",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 298935,
+    "description": "Principal Designer at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://planetscale.com/careers/principal-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-137",
+    "title": "Design Lead",
+    "company": "Rive",
+    "location": "Denver, CO",
+    "remote": true,
+    "salary_usd": 250331,
+    "description": "Design Lead at Rive working on animation products. Join a Series A company building the future of animation.",
+    "requirements": [
+      "Design Leadership",
+      "Team Management",
+      "Strategy",
+      "Mentorship"
+    ],
+    "url": "https://rive.com/careers/design-lead",
+    "timezone": "MST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-138",
+    "title": "VP of Design",
+    "company": "Pitch",
+    "location": "Dublin, Ireland",
+    "remote": false,
+    "salary_usd": 396181,
+    "description": "VP of Design at Pitch working on presentations products. Join a Series B company building the future of presentations.",
+    "requirements": [
+      "Executive Leadership",
+      "Strategy",
+      "Org Building",
+      "Vision"
+    ],
+    "url": "https://pitch.com/careers/vp-of-design",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-139",
+    "title": "Visual Designer",
+    "company": "Inngest",
+    "location": "Paris, France",
+    "remote": true,
+    "salary_usd": 115750,
+    "description": "Visual Designer at Inngest working on workflows products. Join a Seed company building the future of workflows.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://inngest.com/careers/visual-designer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-140",
+    "title": "Visual Designer",
+    "company": "Coda",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 134759,
+    "description": "Visual Designer at Coda working on productivity products. Join a Series C company building the future of productivity.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://coda.com/careers/visual-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-141",
+    "title": "Head of Design",
+    "company": "Rudderstack",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 313975,
+    "description": "Head of Design at Rudderstack working on cdp products. Join a Series B company building the future of cdp.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Hiring",
+      "Vision"
+    ],
+    "url": "https://rudderstack.com/careers/head-of-design",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-142",
+    "title": "UX Researcher",
+    "company": "Koala",
+    "location": "Paris, France",
+    "remote": false,
+    "salary_usd": 125230,
+    "description": "UX Researcher at Koala working on analytics products. Join a Seed company building the future of analytics.",
+    "requirements": [
+      "Qualitative Research",
+      "Quantitative Analysis",
+      "User Interviews",
+      "Surveys"
+    ],
+    "url": "https://koala.com/careers/ux-researcher",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-143",
+    "title": "Creative Technologist",
+    "company": "Webflow",
+    "location": "Toronto, Canada",
+    "remote": false,
+    "salary_usd": 129603,
+    "description": "Creative Technologist at Webflow working on web design products. Join a Series C company building the future of web design.",
+    "requirements": [
+      "Creative Coding",
+      "WebGL",
+      "Three.js",
+      "Prototyping"
+    ],
+    "url": "https://webflow.com/careers/creative-technologist",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-144",
+    "title": "Brand Designer",
+    "company": "Maze",
+    "location": "London, UK",
+    "remote": true,
+    "salary_usd": 160506,
+    "description": "Brand Designer at Maze working on user testing products. Join a Series B company building the future of user testing.",
+    "requirements": [
+      "Brand Strategy",
+      "Visual Identity",
+      "Marketing Design",
+      "Illustration"
+    ],
+    "url": "https://maze.com/careers/brand-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-145",
+    "title": "Principal Designer",
+    "company": "Axiom Data",
+    "location": "Amsterdam, Netherlands",
+    "remote": true,
+    "salary_usd": 284433,
+    "description": "Principal Designer at Axiom Data working on data analytics products. Join a Series C company building the future of data analytics.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://axiomdata.com/careers/principal-designer",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-146",
+    "title": "Principal Designer",
+    "company": "Framer",
+    "location": "Vancouver, Canada",
+    "remote": true,
+    "salary_usd": 282360,
+    "description": "Principal Designer at Framer working on design tools products. Join a Series A company building the future of design tools.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://framer.com/careers/principal-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true
+  },
+  {
+    "id": "job-147",
+    "title": "Product Design Manager",
+    "company": "VWO",
+    "location": "Remote (Europe)",
+    "remote": true,
+    "salary_usd": 205745,
+    "description": "Product Design Manager at VWO working on a/b testing products. Join a Series C company building the future of a/b testing.",
+    "requirements": [
+      "Leadership",
+      "Strategy",
+      "Team Management",
+      "Stakeholder Management"
+    ],
+    "url": "https://vwo.com/careers/product-design-manager",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  },
+  {
+    "id": "job-148",
+    "title": "Principal Designer",
+    "company": "Inngest",
+    "location": "Vancouver, Canada",
+    "remote": true,
+    "salary_usd": 315245,
+    "description": "Principal Designer at Inngest working on workflows products. Join a Seed company building the future of workflows.",
+    "requirements": [
+      "Design Strategy",
+      "Leadership",
+      "Innovation",
+      "Cross-functional"
+    ],
+    "url": "https://inngest.com/careers/principal-designer",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true
+  },
+  {
+    "id": "job-149",
+    "title": "Visual Designer",
+    "company": "Planetscale",
+    "location": "London, UK",
+    "remote": false,
+    "salary_usd": 145273,
+    "description": "Visual Designer at Planetscale working on database products. Join a Series B company building the future of database.",
+    "requirements": [
+      "Visual Design",
+      "Branding",
+      "Illustration",
+      "Typography"
+    ],
+    "url": "https://planetscale.com/careers/visual-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true
+  },
+  {
+    "id": "job-150",
+    "title": "Senior Product Designer",
+    "company": "Vercel",
+    "location": "Dublin, Ireland",
+    "remote": true,
+    "salary_usd": 192899,
+    "description": "Senior Product Designer at Vercel working on infrastructure products. Join a Series C company building the future of infrastructure.",
+    "requirements": [
+      "Figma",
+      "Prototyping",
+      "User Research",
+      "Design Systems"
+    ],
+    "url": "https://vercel.com/careers/senior-product-designer",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true
+  }
+]

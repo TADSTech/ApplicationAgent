@@ -96,6 +96,9 @@ export const apiClient = {
   async login(firebaseToken: string): Promise<{ token: string; user: any }> {
     return request('/auth/login', {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${firebaseToken}`
+      },
       body: JSON.stringify({ firebase_token: firebaseToken }),
     });
   },

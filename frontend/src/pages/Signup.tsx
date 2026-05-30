@@ -9,10 +9,10 @@ import { TerminalLine } from '../types';
 import { useAuth } from '../context/AuthContext';
 
 const TERMINAL_LINES: TerminalLine[] = [
-  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Analyzing 452 candidates for \'Staff Engineer\'', messageClassName: 'text-[#00FFCC]/90' },
-  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Filter applied: Human-in-the-loop validation required.', messageClassName: 'text-[#15B097]' },
-  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: '3 High-intent matches found.', messageClassName: 'text-[#00FF4D]' },
-  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Fetching LinkedIn signal data...', messageClassName: 'text-[#00FFCC]/60' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Searching global remote opportunities...', messageClassName: 'text-[#00FFCC]/90' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Applying West African Time (WAT) compatibility filter...', messageClassName: 'text-[#15B097]' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Matches found for Business Operations, Sales & Tech.', messageClassName: 'text-[#00FF4D]' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Preparing resume adaptations...', messageClassName: 'text-[#00FFCC]/60' },
   { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Awaiting account creation...', messageClassName: 'text-[#7F7F7F]' },
   { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Initializing agent pipeline...', messageClassName: 'text-[#00FFCC]/90' },
 ];
@@ -40,68 +40,57 @@ export const Signup: React.FC = () => {
       <Header />
 
       <div className="flex flex-1 h-full">
-        {/* Left Pane: Deep Space SRE Console */}
-        <div className="hidden lg:flex w-[55%] bg-[#07111E] relative overflow-hidden flex-col justify-center px-16">
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
-            {[...Array(50)].map((_, i) => (
-              <div 
-                key={i}
-                className="absolute bg-white rounded-full"
-                style={{
-                  width: Math.random() * 2 + 'px',
-                  height: Math.random() * 2 + 'px',
-                  top: Math.random() * 100 + '%',
-                  left: Math.random() * 100 + '%',
-                  opacity: Math.random()
-                }}
-              />
-            ))}
-          </div>
+        {/* Left Pane: Clean & Friendly Visual Interface */}
+        <div className="hidden lg:flex w-[55%] bg-gradient-to-tr from-[#F4EFEA] via-[#EAE3DC] to-[#E2D9CF] relative overflow-hidden flex-col justify-center px-16 border-r border-[#E4E2DD]">
+          {/* Subtle grid lines for a clean layout structure */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
           <div className="relative z-10 max-w-xl">
-            <h1 className="text-white text-5xl font-bold leading-tight tracking-tight mb-6 font-space-mono">
-              AI Recruiter <br />
+            <span className="text-xs font-bold tracking-widest text-[#B58A63] uppercase bg-[#FAF6F0] px-3 py-1 rounded-full border border-[#E4E2DD]">Introducing JobJockey</span>
+            <h1 className="text-[#1A1A1A] text-5xl font-extrabold leading-tight tracking-tight mt-6 mb-6 font-dm-sans">
+              Global Careers <br />
               <span className="text-[#FF4D00]">On Autopilot.</span>
             </h1>
-            <p className="text-[#7F7F7F] text-lg mb-12 max-w-md leading-relaxed">
-              Let your dedicated agents source, screen, and schedule top-tier talent while you focus on the final decision.
+            <p className="text-[#5C5A56] text-lg mb-12 max-w-md leading-relaxed">
+              Let your dedicated agents find remote work, optimize your CV, and secure your contracts while you focus on landing the offer.
             </p>
 
-            {/* Simulated Terminal Window */}
-            <div className="bg-[#030810]/80 border border-[#FF4D00]/30 rounded-xl p-5 font-space-mono text-xs w-[450px] shadow-2xl backdrop-blur-sm mt-8">
-              <div className="flex justify-between items-center mb-6">
-                <div className="flex space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FF1500]/80"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FFEA00]/80"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#00FF4D]/80"></div>
+            {/* Clean, Non-Techy Floating Agent Status Cards */}
+            <div className="space-y-4 max-w-md">
+              <div className="bg-white/80 backdrop-blur-md border border-[#E4E2DD] p-5 rounded-[20px] shadow-sm flex items-center justify-between transform hover:-translate-y-0.5 transition-all duration-300">
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#EAE3DC] flex items-center justify-center text-[#B58A63] font-bold">1</div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#1A1A1A]">Job Scout Agent</h3>
+                    <p className="text-xs text-[#7F7F7F]">Scanning WAT-compatible remote opportunities</p>
+                  </div>
                 </div>
-                <div className="text-[10px] text-[#FF4D00]/40 uppercase tracking-widest font-bold">
-                  JJ_AGENT_LOGS_V2.0
-                </div>
+                <span className="text-xs font-semibold text-[#27AE60] bg-[#E8F8F0] px-3 py-1 rounded-full border border-[#27AE60]/20">14 matches</span>
               </div>
-              
-              <div className="space-y-2 min-h-[144px]">
-                {TERMINAL_LINES.map((line, idx) => {
-                  if (idx > lineIndex) return null;
-                  const isCurrentLine = idx === lineIndex;
-                  const chars = isCurrentLine ? charIndex : fullText(idx).length;
-                  const showCursor = isCurrentLine && !finished;
-                  return (
-                    <TypedLine key={idx} line={line} visibleChars={chars} showCursor={showCursor} />
-                  );
-                })}
-                {finished && (
-                  <span className="inline-block w-2 h-4 bg-[#00FF88] animate-pulse mt-1" />
-                )}
+
+              <div className="bg-white/80 backdrop-blur-md border border-[#E4E2DD] p-5 rounded-[20px] shadow-sm flex items-center justify-between transform hover:-translate-y-0.5 transition-all duration-300">
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#EAE3DC] flex items-center justify-center text-[#B58A63] font-bold">2</div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#1A1A1A]">Resume Tailor Agent</h3>
+                    <p className="text-xs text-[#7F7F7F]">Optimizing resume for global ATS filters</p>
+                  </div>
+                </div>
+                <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">96% score</span>
+              </div>
+
+              <div className="bg-white/80 backdrop-blur-md border border-[#E4E2DD] p-5 rounded-[20px] shadow-sm flex items-center justify-between transform hover:-translate-y-0.5 transition-all duration-300">
+                <div className="flex items-center space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-[#EAE3DC] flex items-center justify-center text-[#B58A63] font-bold">3</div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#1A1A1A]">Contract Legal Advisor</h3>
+                    <p className="text-xs text-[#7F7F7F]">Scanning relocation & tax obligations</p>
+                  </div>
+                </div>
+                <span className="text-xs font-semibold text-[#B58A63] bg-[#FAF6F0] px-3 py-1 rounded-full border border-[#B58A63]/20">Active</span>
               </div>
             </div>
           </div>
-          
-          <footer className="absolute bottom-0 left-0 right-0 p-8 flex justify-center">
-            <div className="flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F]/40">
-              <span>© 2024 JobJockey AI. Human-in-the-loop executive search.</span>
-            </div>
-          </footer>
         </div>
 
         {/* Right Pane: Google Sign-up Card */}

@@ -19,8 +19,8 @@ class FirebaseService:
     def _initialize_firebase(cls):
         try:
             if not firebase_admin._apps:
-                if settings.FIREBASE_CREDENTIALS_PATH:
-                    cred = credentials.Certificate(settings.FIREBASE_CREDENTIALS_PATH)
+                if settings.resolved_credentials_path:
+                    cred = credentials.Certificate(settings.resolved_credentials_path)
                     firebase_admin.initialize_app(cred, {
                         'projectId': settings.FIRESTORE_PROJECT_ID,
                     })
@@ -40,8 +40,17 @@ class FirebaseService:
         return self._db
 
     def update_agent_state(self, session_id: str, agent_type: str, state: Dict[str, Any]):
+        # Keep an in-memory cache of agent states to support local/offline mode
+        try:
+            from backend.core.state import active_sessions
+            if session_id not in active_sessions:
+                active_sessions[session_id] = {}
+            active_sessions[session_id][agent_type] = state
+        except Exception as e:
+            logger.error(f"Error updating in-memory agent state: {str(e)}")
+
         if not self._db:
-            logger.warning("Firestore DB not initialized. Skipping state update.")
+            logger.warning("Firestore DB not initialized. Skipping Firestore state update.")
             return
 
         try:
@@ -50,5 +59,39 @@ class FirebaseService:
             logger.debug(f"Agent {agent_type} state updated in Firestore for session {session_id}")
         except Exception as e:
             logger.error(f"Error updating agent state in Firestore: {str(e)}")
+
+    def get_agent_states(self, session_id: str) -> list[Dict[str, Any]]:
+        # Fetch from in-memory cache first
+        from backend.core.state import active_sessions
+        in_memory_states = active_sessions.get(session_id, {})
+        
+        # Merge with Firestore if database is available
+        if self._db:
+            try:
+                agents_ref = self._db.collection("sessions").document(session_id).collection("agents")
+                docs = agents_ref.stream()
+                for doc in docs:
+                    agent_type = doc.id
+                    if agent_type not in in_memory_states:
+                        in_memory_states[agent_type] = doc.to_dict()
+            except Exception as e:
+                logger.error(f"Error fetching agent states from Firestore: {str(e)}")
+                
+        states_list = list(in_memory_states.values())
+        
+        # Map snake_case database keys to camelCase frontend keys
+        for state in states_list:
+            if "session_id" in state:
+                state["sessionId"] = state["session_id"]
+            if "agent_type" in state:
+                state["agentType"] = state["agent_type"]
+            if "started_at" in state:
+                val = state["started_at"]
+                state["startedAt"] = val.isoformat() if hasattr(val, "isoformat") else val
+            if "completed_at" in state:
+                val = state["completed_at"]
+                state["completedAt"] = val.isoformat() if hasattr(val, "isoformat") else val
+                
+        return states_list
 
 firebase_service = FirebaseService()

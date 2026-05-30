@@ -1,11 +1,12 @@
 # backend/agents/job_agent.py
 from typing import Dict, Any, List
 from datetime import datetime, timezone
+import asyncio
 from .base import BaseAgent
 from ..utils.currency import format_salary_display, FALLBACK_RATE
 from ..services.currency_converter import currency_converter_service
 from ..utils.timezones import calculate_wat_overlap
-from ..services.firecrawl import FirecrawlService
+from ..services.demo_job_service import demo_job_service
 from ..core.config import settings
 from ..core.logging import logger
 from ..models.job import Job
@@ -13,13 +14,16 @@ from ..models.job import Job
 class JobAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("job", session_id)
-        self.firecrawl = FirecrawlService(api_key=settings.FIRECRAWL_API_KEY)
         self.currency_converter_service = currency_converter_service
+        self.demo_mode = getattr(settings, 'DEMO_MODE', True)
+        self.demo_delay = getattr(settings, 'DEMO_JOB_DELAY', 20)
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Retrieves listings, checks WAT timezone alignment, and formats salaries.
         Adheres to Rule 3.2.1 and Nigeria-specific Rule 5.
+        
+        In demo mode, simulates realistic search with 20-second delay.
         """
         keywords = context.get("keywords", "Software Engineer")
         location = context.get("location", "Remote")
@@ -29,15 +33,54 @@ class JobAgent(BaseAgent):
             extra={
                 "session_id": self.session_id,
                 "agent_type": self.agent_type,
-                "payload": {"keywords": keywords, "location": location}
+                "payload": {"keywords": keywords, "location": location, "demo_mode": self.demo_mode}
             }
         )
         self.update_progress(10.0)
         
         try:
-            # Scrape live jobs via Firecrawl
-            raw_jobs = await self.firecrawl.scrape_jobs(keywords, location)
-            self.update_progress(40.0)
+            if self.demo_mode:
+                # Simulate realistic job search with delays
+                logger.info(
+                    "Scanning job boards (demo mode)",
+                    extra={"session_id": self.session_id, "agent_type": self.agent_type}
+                )
+                await asyncio.sleep(self.demo_delay / 4)  # 5 seconds
+                self.update_progress(25.0)
+                
+                logger.info(
+                    "Processing and filtering results",
+                    extra={"session_id": self.session_id, "agent_type": self.agent_type}
+                )
+                await asyncio.sleep(self.demo_delay / 4)  # 5 seconds
+                self.update_progress(50.0)
+                
+                logger.info(
+                    "Checking WAT timezone compatibility",
+                    extra={"session_id": self.session_id, "agent_type": self.agent_type}
+                )
+                await asyncio.sleep(self.demo_delay / 4)  # 5 seconds
+                self.update_progress(75.0)
+                
+                logger.info(
+                    "Ranking by match score",
+                    extra={"session_id": self.session_id, "agent_type": self.agent_type}
+                )
+                await asyncio.sleep(self.demo_delay / 4)  # 5 seconds
+                self.update_progress(90.0)
+                
+                # Load from demo dataset
+                raw_jobs = demo_job_service.get_matching_jobs(
+                    keywords=keywords,
+                    location=location if location.lower() != 'remote' else None,
+                    limit=150
+                )
+            else:
+                # Live scraping (future implementation)
+                from ..services.firecrawl import FirecrawlService
+                firecrawl = FirecrawlService(api_key=settings.FIRECRAWL_API_KEY)
+                raw_jobs = await firecrawl.scrape_jobs(keywords, location)
+                self.update_progress(40.0)
             
             if not raw_jobs:
                 logger.warning(

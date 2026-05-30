@@ -84,35 +84,41 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setError(null);
     try {
       if (!auth || !googleProvider) {
-        throw new Error("Firebase Auth is not initialized or invalid API key configuration");
+        throw new Error("Firebase Auth is not initialized. Check your VITE_FIREBASE_API_KEY in .env");
       }
       const result = await signInWithPopup(auth, googleProvider);
       const idToken = await result.user.getIdToken();
       
-      // Send token to backend to authenticate and get our backend session token
+      // Use the Firebase ID token as bearer token for all backend requests
+      setAuthToken(idToken);
+      
+      // Verify with backend — sends the token in Authorization header
       const res = await apiClient.login(idToken);
-      setAuthToken(res.token);
       
       setUser({
         name: result.user.displayName || result.user.email?.split('@')[0] || 'Google User',
         email: result.user.email || '',
-        uid: res.user?.id || result.user.uid
+        uid: res.user?.uid || result.user.uid
       });
-    } catch (err) {
+    } catch (err: any) {
       console.error("Google sign-in error:", err);
-      // Fallback for development/testing if Firebase is not fully configured or bypass requested
-      const mockToken = "mock-firebase-jwt";
-      try {
-        const res = await apiClient.login(mockToken);
-        setAuthToken(res.token);
-        setUser({ name: 'Google User (Demo)', email: 'google.user@gmail.com', uid: 'user-123' });
-      } catch (backendErr) {
-        handleApiError(err);
+      
+      // Only fall back to mock if Firebase is genuinely not configured (not for real auth errors)
+      if (err?.message?.includes("not initialized") || err?.code === 'auth/configuration-not-found') {
+        console.warn("Firebase not configured. Using offline mock for development.");
+        setAuthToken("mock-backend-token");
+        setUser({ name: 'Dev User (Offline)', email: 'nigerian.dev@gmail.com', uid: 'user-123' });
+      } else {
+        // Real auth error — surface it to the user
+        const msg = err?.message || 'Google sign-in failed. Please try again.';
+        setError(msg);
+        throw err;
       }
     } finally {
       setLoading(false);
     }
   }, []);
+
 
   const logout = useCallback(async () => {
     setLoading(true);

@@ -76,6 +76,14 @@ async def login(auth_data: Dict[str, Any] = Depends(verify_firebase_token)):
 async def logout():
     return {"message": "Logged out successfully"}
 
+@router.get("/agents/states")
+async def get_agent_states(session_id: str):
+    """
+    Get states of all agents for a given session.
+    """
+    from backend.services.firebase import firebase_service
+    return firebase_service.get_agent_states(session_id)
+
 @router.post("/jobs/search")
 async def start_job_search(request: JobSearchRequest):
     orchestrator = MultiAgentOrchestrator(request.session_id)
