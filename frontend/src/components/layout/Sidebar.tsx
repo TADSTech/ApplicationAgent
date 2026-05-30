@@ -8,26 +8,31 @@ import {
   Settings as SettingsIcon, 
   UploadCloud, 
   HelpCircle, 
-  Moon, 
-  Sun,
-  Bell, 
   MoreHorizontal,
   Columns
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { useTheme } from '../../context/ThemeContext';
 import Logo from './Logo';
 
 interface SidebarProps {
   mode: 'auto' | 'manual';
   onModeChange: (mode: 'auto' | 'manual') => void;
   onUpdateResume?: () => void;
+  hasResume?: boolean;
+  resumeName?: string;
+  atsScore?: number;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateResume }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ 
+  mode, 
+  onModeChange, 
+  onUpdateResume, 
+  hasResume = false,
+  resumeName,
+  atsScore
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [animated, setAnimated] = useState(false);
 
@@ -39,8 +44,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateRe
   // Navigation items mapping
   const menuItems = [
     { name: 'Find Jobs', path: '/dashboard', icon: Search },
-    { name: 'My Applications', path: '/applications', icon: FileText },
-    { name: 'Saved Jobs', path: '/saved', icon: Bookmark },
     { name: 'Settings', path: '/settings', icon: SettingsIcon },
   ];
 
@@ -48,7 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateRe
   const radius = 24;
   const strokeWidth = 4;
   const circumference = 2 * Math.PI * radius;
-  const score = 92;
+  const score = atsScore || 0;
   const strokeDashoffset = circumference - (score / 100) * circumference;
 
   // Circle properties for ATS Score SVG (collapsed state)
@@ -156,76 +159,108 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateRe
 
         {/* ATS Score Card */}
         {!isCollapsed ? (
-          <div className="border border-[#E4E2DD] bg-[#FFFFFF] rounded-2xl p-5 flex flex-col items-center text-center shadow-sm w-full">
-            {/* Circular Progress Bar */}
-            <div className="relative flex items-center justify-center mb-3">
-              <svg className="w-16 h-16 transform -rotate-90">
-                {/* Background Track */}
-                <circle
-                  cx="32"
-                  cy="32"
-                  r={radius}
-                  className="stroke-[#F5F3EE]"
-                  strokeWidth={strokeWidth}
-                  fill="transparent"
-                />
-                {/* Foreground Track */}
-                <circle
-                  cx="32"
-                  cy="32"
-                  r={radius}
-                  className="stroke-[#FF4D00] transition-all duration-1000 ease-out"
-                  strokeWidth={strokeWidth}
-                  strokeDasharray={circumference}
-                  strokeDashoffset={currentOffset}
-                  strokeLinecap="round"
-                  fill="transparent"
-                />
-              </svg>
-              <span className={`absolute font-space-mono text-lg font-bold text-[#0A0A0A] transition-opacity duration-700 delay-300 ${animated ? 'opacity-100' : 'opacity-0'}`}>
-                {score}
-              </span>
-            </div>
+          <div 
+            className={cn(
+              "border border-[#E4E2DD] bg-[#FFFFFF] rounded-2xl p-5 flex flex-col items-center text-center shadow-sm w-full",
+              !hasResume && "cursor-pointer hover:border-[#FF4D00]/50"
+            )}
+            onClick={!hasResume ? onUpdateResume : undefined}
+          >
+            {hasResume ? (
+              <>
+                {/* Circular Progress Bar */}
+                <div className="relative flex items-center justify-center mb-3">
+                  <svg className="w-16 h-16 transform -rotate-90">
+                    {/* Background Track */}
+                    <circle
+                      cx="32"
+                      cy="32"
+                      r={radius}
+                      className="stroke-[#F5F3EE]"
+                      strokeWidth={strokeWidth}
+                      fill="transparent"
+                    />
+                    {/* Foreground Track */}
+                    <circle
+                      cx="32"
+                      cy="32"
+                      r={radius}
+                      className="stroke-[#FF4D00] transition-all duration-1000 ease-out"
+                      strokeWidth={strokeWidth}
+                      strokeDasharray={circumference}
+                      strokeDashoffset={currentOffset}
+                      strokeLinecap="round"
+                      fill="transparent"
+                    />
+                  </svg>
+                  <span className={`absolute font-space-mono text-lg font-bold text-[#0A0A0A] transition-opacity duration-700 delay-300 ${animated ? 'opacity-100' : 'opacity-0'}`}>
+                    {score}
+                  </span>
+                </div>
 
-            <h4 className="font-dm-sans text-sm font-semibold text-[#0A0A0A] mb-0.5">
-              ATS Score
-            </h4>
-            <span className="font-dm-sans text-[11px] text-[#7F7F7F] truncate w-full px-2">
-              Resume_Final_v2.pdf
-            </span>
+                <h4 className="font-dm-sans text-sm font-semibold text-[#0A0A0A] mb-0.5">
+                  ATS Score
+                </h4>
+                <span className="font-dm-sans text-[11px] text-[#7F7F7F] truncate w-full px-2">
+                  {resumeName || 'Resume uploaded'}
+                </span>
+              </>
+            ) : (
+              <>
+                <div className="w-16 h-16 rounded-full bg-[#F5F3EE] flex items-center justify-center mb-3">
+                  <UploadCloud className="w-8 h-8 text-[#7F7F7F]" />
+                </div>
+                <h4 className="font-dm-sans text-sm font-semibold text-[#0A0A0A] mb-0.5">
+                  Upload Resume
+                </h4>
+                <span className="font-dm-sans text-[11px] text-[#7F7F7F]">
+                  Get your ATS score and tailored suggestions
+                </span>
+              </>
+            )}
           </div>
         ) : (
-          <div 
-            className="relative flex items-center justify-center py-2" 
-            title="ATS Score: 92% (Resume_Final_v2.pdf)"
-          >
-            <svg className="w-12 h-12 transform -rotate-90">
-              {/* Background Track */}
-              <circle
-                cx="24"
-                cy="24"
-                r={radiusCollapsed}
-                className="stroke-[#F5F3EE]"
-                strokeWidth={strokeWidthCollapsed}
-                fill="transparent"
-              />
-                {/* Foreground Track */}
+          hasResume ? (
+            <div 
+              className="relative flex items-center justify-center py-2" 
+              title={`ATS Score: ${score}% (${resumeName || 'Resume'})`}
+            >
+              <svg className="w-12 h-12 transform -rotate-90">
+                {/* Background Track */}
                 <circle
                   cx="24"
                   cy="24"
                   r={radiusCollapsed}
-                  className="stroke-[#FF4D00] transition-all duration-1000 ease-out"
+                  className="stroke-[#F5F3EE]"
                   strokeWidth={strokeWidthCollapsed}
-                  strokeDasharray={circumferenceCollapsed}
-                  strokeDashoffset={currentOffsetCollapsed}
-                  strokeLinecap="round"
                   fill="transparent"
                 />
-              </svg>
-              <span className={`absolute font-space-mono text-xs font-bold text-[#0A0A0A] transition-opacity duration-700 delay-300 ${animated ? 'opacity-100' : 'opacity-0'}`}>
-                {score}
-              </span>
-          </div>
+                  {/* Foreground Track */}
+                  <circle
+                    cx="24"
+                    cy="24"
+                    r={radiusCollapsed}
+                    className="stroke-[#FF4D00] transition-all duration-1000 ease-out"
+                    strokeWidth={strokeWidthCollapsed}
+                    strokeDasharray={circumferenceCollapsed}
+                    strokeDashoffset={currentOffsetCollapsed}
+                    strokeLinecap="round"
+                    fill="transparent"
+                  />
+                </svg>
+                <span className={`absolute font-space-mono text-xs font-bold text-[#0A0A0A] transition-opacity duration-700 delay-300 ${animated ? 'opacity-100' : 'opacity-0'}`}>
+                  {score}
+                </span>
+            </div>
+          ) : (
+            <button 
+              onClick={onUpdateResume}
+              className="w-10 h-10 rounded-full bg-[#F5F3EE] flex items-center justify-center hover:bg-[#E4E2DD] transition-colors"
+              title="Upload Resume"
+            >
+              <UploadCloud className="w-5 h-5 text-[#7F7F7F]" />
+            </button>
+          )
         )}
 
         {/* Navigation Menu */}
@@ -305,25 +340,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateRe
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]">
               <HelpCircle className="w-5 h-5" />
             </button>
-            <button
-              onClick={toggleTheme}
-              className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]"
-              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="More">
+              <MoreHorizontal className="w-5 h-5" />
             </button>
           </div>
         ) : (
           <div className="flex flex-col space-y-3.5 items-center text-[#7F7F7F] w-full">
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="Help">
               <HelpCircle className="w-5 h-5" />
-            </button>
-            <button
-              onClick={toggleTheme}
-              className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]"
-              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="More">
               <MoreHorizontal className="w-5 h-5" />

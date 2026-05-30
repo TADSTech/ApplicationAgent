@@ -1,5 +1,5 @@
 # backend/api/routes.py
-from fastapi import APIRouter, Depends, HTTPException, status, Body
+from fastapi import APIRouter, Depends, HTTPException, status, Body, Query
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
 from backend.models.job import Job
@@ -12,8 +12,42 @@ from backend.api.dependencies import verify_firebase_token
 from backend.core.logging import logger
 from backend.services.currency_converter import currency_converter_service
 from backend.services.portfolio_showcase import portfolio_showcase_service
+from backend.services.demo_job_service import demo_job_service
 
 router = APIRouter()
+
+@router.get("/jobs")
+async def get_demo_jobs(
+    keywords: Optional[str] = None,
+    location: Optional[str] = None,
+    remote_only: bool = False,
+    visa_required: bool = False,
+    min_salary: Optional[int] = None,
+    max_salary: Optional[int] = None,
+    limit: int = 20
+):
+    """
+    Get demo jobs with optional filtering.
+    """
+    try:
+        jobs = demo_job_service.get_matching_jobs(
+            keywords=keywords,
+            location=location,
+            remote_only=remote_only,
+            visa_required=visa_required,
+            min_salary=min_salary,
+            max_salary=max_salary,
+            limit=limit
+        )
+        
+        return {
+            "count": len(jobs),
+            "jobs": jobs
+        }
+    except Exception as e:
+        logger.error(f"Error getting demo jobs: {str(e)}", 
+                    extra={"agent_type": "api", "error": str(e)})
+        raise HTTPException(status_code=500, detail="Failed to fetch jobs")
 
 @router.get("/exchange-rate")
 async def get_exchange_rate():
