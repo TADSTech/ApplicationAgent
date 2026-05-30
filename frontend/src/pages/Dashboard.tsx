@@ -3,8 +3,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { cn } from '../lib/utils';
+import { useAgents } from '../hooks/useAgents';
+import { apiClient } from '../services/api';
 import Sidebar from '../components/layout/Sidebar';
 import JobCard from '../components/jobs/JobCard';
+import AgentStatusPanel from '../components/agents/AgentStatusPanel';
+import { Card, CardContent } from '../components/ui/Card';
 import { Job } from '../types';
 import { Avatar } from '../components/ui/Avatar';
 import { DropdownMenu } from '../components/ui/DropdownMenu';
@@ -28,6 +32,10 @@ import {
   Building2,
   Briefcase,
   Plane,
+  Sparkles,
+  ArrowRight,
+  Bot,
+  Loader2,
 } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
@@ -41,6 +49,11 @@ export const Dashboard: React.FC = () => {
   const [prompt, setPrompt] = useState<string>(
     'Find me a senior product designer role at a fintech startup with a focus on high-fidelity prototyping and design systems...'
   );
+  const [searching, setSearching] = useState(false);
+
+  // Agent tracking (3.4.3)
+  const currentSession = 'session-' + (user?.email || 'default');
+  const { agentStates, isLoading: agentsLoading } = useAgents(currentSession);
 
   // Avatar dropdown menu
   const [menuOpen, setMenuOpen] = useState(false);
@@ -208,9 +221,18 @@ export const Dashboard: React.FC = () => {
     alert(`[Manual Mode] Redirecting to external application form for ${job.title} at ${job.company}:\n${job.url}`);
   };
 
-  const handleSendPrompt = (e: React.FormEvent) => {
+  const handleSendPrompt = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Searching roles for: "${prompt}"`);
+    if (!prompt.trim()) return;
+    setSearching(true);
+    try {
+      await apiClient.startJobSearch(currentSession, prompt, 'Remote');
+      navigate('/auto');
+    } catch {
+      alert(`Search failed for: "${prompt}". Ensure the backend is running.`);
+    } finally {
+      setSearching(false);
+    }
   };
 
   return (
@@ -297,9 +319,10 @@ export const Dashboard: React.FC = () => {
               {/* Submit / Send action */}
               <button 
                 type="submit"
-                className="bg-[#FF4D00] hover:bg-[#FF4D00]/95 text-white p-3 rounded-full flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                disabled={searching}
+                className="bg-[#FF4D00] hover:bg-[#FF4D00]/95 text-white p-3 rounded-full flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send className="w-4 h-4 fill-white" />
+                {searching ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4 fill-white" />}
               </button>
             </div>
           </form>
@@ -384,6 +407,68 @@ export const Dashboard: React.FC = () => {
                 />
               ))}
             </div>
+
+          {/* Agent Status Section (3.4.3) */}
+          <div className="pt-8">
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="text-sm font-bold uppercase tracking-widest text-[#7F7F7F] flex items-center space-x-2">
+                <Bot className="w-4 h-4" />
+                <span>Active Agents</span>
+              </h3>
+              <button
+                onClick={() => navigate('/auto')}
+                className="text-xs font-semibold text-[#FF4D00] hover:text-[#FF4D00]/80 transition-colors flex items-center space-x-1 cursor-pointer"
+              >
+                <span>View Full Console</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
+            </div>
+            {agentsLoading ? (
+              <div className="flex items-center space-x-2 text-xs text-[#7F7F7F] py-4">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Loading agent states...</span>
+              </div>
+            ) : (
+              <AgentStatusPanel agentStates={agentStates} />
+            )}
+          </div>
+
+          {/* Next Steps Section (3.4.4) */}
+          <div className="pt-4">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-[#7F7F7F] mb-4 flex items-center space-x-2">
+              <Sparkles className="w-4 h-4" />
+              <span>Next Steps</span>
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="border-[#E4E2DD] rounded-2xl hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/auto')}>
+                <CardContent className="p-5 flex flex-col space-y-2">
+                  <div className="w-9 h-9 rounded-full bg-[#FFF0EA] flex items-center justify-center">
+                    <Bot className="w-4 h-4 text-[#FF4D00]" />
+                  </div>
+                  <h4 className="font-bold text-sm text-[#0A0A0A]">Start Auto Mode</h4>
+                  <p className="text-xs text-[#7F7F7F] leading-relaxed">Let agents search, tailor, and apply on your behalf.</p>
+                </CardContent>
+              </Card>
+              <Card className="border-[#E4E2DD] rounded-2xl hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/swipe')}>
+                <CardContent className="p-5 flex flex-col space-y-2">
+                  <div className="w-9 h-9 rounded-full bg-[#E2F9EE] flex items-center justify-center">
+                    <Sparkles className="w-4 h-4 text-[#15B097]" />
+                  </div>
+                  <h4 className="font-bold text-sm text-[#0A0A0A]">Try Swipe Mode</h4>
+                  <p className="text-xs text-[#7F7F7F] leading-relaxed">Quickly curate opportunities with swipe gestures.</p>
+                </CardContent>
+              </Card>
+              <Card className="border-[#E4E2DD] rounded-2xl hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/settings')}>
+                <CardContent className="p-5 flex flex-col space-y-2">
+                  <div className="w-9 h-9 rounded-full bg-[#F5F3EE] flex items-center justify-center">
+                    <FileText className="w-4 h-4 text-[#444444]" />
+                  </div>
+                  <h4 className="font-bold text-sm text-[#0A0A0A]">Configure Settings</h4>
+                  <p className="text-xs text-[#7F7F7F] leading-relaxed">Set salary targets, timezone, and search sources.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
           </div>
       </main>
       )}

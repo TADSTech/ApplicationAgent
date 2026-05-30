@@ -9,11 +9,13 @@ import {
   UploadCloud, 
   HelpCircle, 
   Moon, 
+  Sun,
   Bell, 
   MoreHorizontal,
   Columns
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useTheme } from '../../context/ThemeContext';
 import Logo from './Logo';
 
 interface SidebarProps {
@@ -25,6 +27,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateResume }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [animated, setAnimated] = useState(false);
 
@@ -302,11 +305,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateRe
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]">
               <HelpCircle className="w-5 h-5" />
             </button>
-            <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]">
-              <Moon className="w-5 h-5" />
-            </button>
-            <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]">
-              <MoreHorizontal className="w-5 h-5" />
+            <button
+              onClick={toggleTheme}
+              className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
           </div>
         ) : (
@@ -314,8 +318,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateRe
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="Help">
               <HelpCircle className="w-5 h-5" />
             </button>
-            <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="Toggle Theme">
-              <Moon className="w-5 h-5" />
+            <button
+              onClick={toggleTheme}
+              className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="More">
               <MoreHorizontal className="w-5 h-5" />

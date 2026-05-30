@@ -64,11 +64,10 @@ export function useAgents(sessionId: string) {
     return () => clearInterval(interval);
   }, [sessionId, fetchAgentStates]);
 
-  const triggerAgent = async (agentType: string) => {
+  const triggerAgent = async (agentType: string, keywords: string = 'Software Engineer') => {
     setIsLoading(true);
     try {
-      // Logic to trigger a specific agent via API
-      await apiClient.startJobSearch(sessionId); // Example
+      await apiClient.startJobSearch(sessionId, keywords || 'Software Engineer', 'Remote');
       await fetchAgentStates();
     } catch (err) {
       console.error('Failed to trigger agent', err);

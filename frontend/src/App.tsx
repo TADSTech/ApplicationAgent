@@ -1,4 +1,5 @@
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './pages/Welcome';
 import Signup from './pages/Signup';
@@ -14,6 +15,7 @@ import SavedJobs from './pages/SavedJobs';
 
 function App() {
   return (
+    <ThemeProvider>
     <AuthProvider>
     <Router>
       <Routes>
@@ -31,6 +33,7 @@ function App() {
       </Routes>
     </Router>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 
