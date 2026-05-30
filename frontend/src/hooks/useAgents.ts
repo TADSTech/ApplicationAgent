@@ -1,55 +1,82 @@
 // frontend/src/hooks/useAgents.ts
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AgentState } from '../types';
+import { apiClient } from '../services/api';
+
+export interface TerminalLog {
+  id: string;
+  timestamp: string;
+  agent: string;
+  message: string;
+  type: 'info' | 'warning' | 'error' | 'success';
+}
 
 export function useAgents(sessionId: string) {
   const [agentStates, setAgentStates] = useState<Record<string, AgentState>>({});
+  const [logs, setLogs] = useState<TerminalLog[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Polls agent states for a given session
-  const fetchAgentStates = async () => {
+  const fetchAgentStates = useCallback(async () => {
     if (!sessionId) return;
     try {
-      // In a real implementation, this would fetch from Firestore or API
-      // Mock progress incrementing for scaffolding representation
-      setAgentStates(prev => {
-        const nextStates = { ...prev };
-        ['job', 'resume', 'contract', 'linkedin'].forEach(type => {
-          if (!nextStates[type]) {
-            nextStates[type] = {
-              sessionId,
-              agentType: type as any,
-              status: 'queued',
-              progress: 0,
-            };
-          } else if (nextStates[type].status === 'running') {
-            const nextProgress = Math.min(nextStates[type].progress + 25, 100);
-            nextStates[type] = {
-              ...nextStates[type],
-              progress: nextProgress,
-              status: nextProgress === 100 ? 'completed' : 'running',
-            };
-          }
-        });
-        return nextStates;
+      const states = await apiClient.getAgentStates(sessionId);
+      const statesMap: Record<string, AgentState> = {};
+      states.forEach(state => {
+        statesMap[state.agentType] = state;
       });
+      setAgentStates(statesMap);
+
+      // In a real app, logs might come from a separate endpoint or websocket
+      // For now, we derive some system logs based on state changes
+      deriveLogsFromStates(statesMap);
     } catch (err) {
       console.error('Error fetching agent states', err);
     }
-  };
+  }, [sessionId]);
 
-  const triggerAgent = (agentType: string) => {
-    setAgentStates(prev => ({
-      ...prev,
-      [agentType]: {
-        sessionId,
-        agentType: agentType as any,
-        status: 'running',
-        progress: 0,
+  const deriveLogsFromStates = (states: Record<string, AgentState>) => {
+    // This is a simplified log derivation for the demo
+    const newLogs: TerminalLog[] = [];
+    const now = new Date().toLocaleTimeString([], { hour12: false });
+    
+    Object.values(states).forEach(state => {
+      if (state.status === 'running' && state.progress < 10) {
+        newLogs.push({
+          id: `${state.agentType}-start-${Date.now()}`,
+          timestamp: now,
+          agent: `${state.agentType.charAt(0).toUpperCase() + state.agentType.slice(1)}Agent`,
+          message: `Initializing ${state.agentType} sequence...`,
+          type: 'info'
+        });
       }
-    }));
+    });
+    // Deduplicate and append logic would go here
   };
 
-  return { agentStates, isLoading, fetchAgentStates, triggerAgent };
+  useEffect(() => {
+    if (!sessionId) return;
+
+    const interval = setInterval(() => {
+      fetchAgentStates();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [sessionId, fetchAgentStates]);
+
+  const triggerAgent = async (agentType: string) => {
+    setIsLoading(true);
+    try {
+      // Logic to trigger a specific agent via API
+      await apiClient.startJobSearch(sessionId); // Example
+      await fetchAgentStates();
+    } catch (err) {
+      console.error('Failed to trigger agent', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { agentStates, logs, setLogs, isLoading, fetchAgentStates, triggerAgent };
 }
 export default useAgents;
