@@ -2,8 +2,8 @@
 from typing import List, Dict, Any
 
 from firecrawl import FirecrawlApp
-from ..core.logging import logger
-from ..core.config import settings
+from backend.core.logging import logger
+from backend.core.config import settings
 
 class FirecrawlService:
     def __init__(self, api_key: str):

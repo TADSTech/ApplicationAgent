@@ -5,8 +5,8 @@ from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
 from datetime import datetime
 import json
-from .gemini import gemini_service
-from ..core.logging import logger
+from backend.services.gemini import gemini_service
+from backend.core.logging import logger
 
 
 class UserProfile(BaseModel):

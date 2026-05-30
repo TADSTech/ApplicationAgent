@@ -1,9 +1,9 @@
 # backend/agents/resume_agent.py
 from typing import Dict, Any
 from pydantic import BaseModel, Field
-from .base import BaseAgent
-from ..services.gemini import gemini_service
-from ..core.logging import logger
+from backend.agents.base import BaseAgent
+from backend.services.gemini import gemini_service
+from backend.core.logging import logger
 
 class ResumeTailoringOutput(BaseModel):
     adapted_resume: str = Field(description="The tailored resume in markdown format")

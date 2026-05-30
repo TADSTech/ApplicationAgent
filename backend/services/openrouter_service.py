@@ -4,8 +4,8 @@
 from typing import Optional, Dict, Any
 from openrouter import OpenRouter
 import os
-from ..core.config import settings
-from ..core.logging import logger
+from backend.core.config import settings
+from backend.core.logging import logger
 
 
 class OpenRouterService:

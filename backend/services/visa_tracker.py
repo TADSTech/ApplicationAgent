@@ -2,9 +2,9 @@
 # backend/services/visa_tracker.py
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timezone
-from ..models.visa import VisaSponsorship, VisaStatusUpdate
-from ..core.logging import logger
-from .firebase import firebase_service
+from backend.models.visa import VisaSponsorship, VisaStatusUpdate
+from backend.core.logging import logger
+from backend.services.firebase import firebase_service
 
 class VisaTrackerService:
     def __init__(self):

@@ -1,7 +1,7 @@
 # backend/services/linkedin.py
 from typing import Dict, Any
 import asyncio
-from ..core.logging import logger
+from backend.core.logging import logger
 
 class LinkedInService:
     def __init__(self):

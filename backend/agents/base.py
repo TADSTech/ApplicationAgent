@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
 from datetime import datetime, timezone
 from pydantic import BaseModel
-from ..core.logging import logger
-from ..services.firebase import firebase_service
+from backend.core.logging import logger
+from backend.services.firebase import firebase_service
 
 class AgentState(BaseModel):
     session_id: str

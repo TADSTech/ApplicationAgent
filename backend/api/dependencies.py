@@ -1,8 +1,8 @@
 # backend/api/dependencies.py
 from fastapi import Header, HTTPException, status
 from firebase_admin import auth
-from ..core.logging import logger
-from ..core.config import settings
+from backend.core.logging import logger
+from backend.core.config import settings
 import requests
 from typing import Dict, Any, Optional
 

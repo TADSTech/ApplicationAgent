@@ -1,8 +1,8 @@
 
 # backend/services/interview_prep.py
 from typing import List, Dict, Any, Optional
-from ..core.logging import logger
-from .gemini import gemini_service
+from backend.core.logging import logger
+from backend.services.gemini import gemini_service
 
 class InterviewPrepService:
     def __init__(self):

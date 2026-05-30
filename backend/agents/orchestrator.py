@@ -2,8 +2,8 @@
 import asyncio
 from typing import Dict, Any, List, Optional
 from datetime import datetime, timezone
-from .base import BaseAgent
-from ..core.logging import logger
+from backend.agents.base import BaseAgent
+from backend.core.logging import logger
 
 class MultiAgentOrchestrator:
     def __init__(self, session_id: str):
