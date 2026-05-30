@@ -1,8 +1,12 @@
 // frontend/src/pages/Dashboard.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { cn } from '../lib/utils';
 import Sidebar from '../components/layout/Sidebar';
 import JobCard from '../components/jobs/JobCard';
 import { Job } from '../types';
+import { Avatar } from '../components/ui/Avatar';
+import { DropdownMenu } from '../components/ui/DropdownMenu';
 import { 
   Paperclip, 
   Globe, 
@@ -12,10 +16,20 @@ import {
   Coins, 
   TrendingUp, 
   ChevronRight,
-  HelpCircle 
+  HelpCircle,
+  User,
+  Bell,
+  CreditCard,
+  LifeBuoy,
+  LogOut,
+  FileText,
+  Building2,
+  Briefcase,
+  Plane,
 } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
   // Mode state: 'auto' | 'manual' controlled by Sidebar toggle
   const [mode, setMode] = useState<'auto' | 'manual'>('auto');
   
@@ -23,6 +37,74 @@ export const Dashboard: React.FC = () => {
   const [prompt, setPrompt] = useState<string>(
     'Find me a senior product designer role at a fintech startup with a focus on high-fidelity prototyping and design systems...'
   );
+
+  // Avatar dropdown menu
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Filter chips
+  const allFilters = [
+    { id: 'remote', label: 'Remote', icon: MapPin },
+    { id: 'full-time', label: 'Full-time', icon: Clock },
+    { id: '100k+', label: '$100k+', icon: Coins },
+    { id: 'series-b+', label: 'Series B+', icon: TrendingUp },
+    { id: 'visa', label: 'Visa Sponsorship', icon: Globe },
+    { id: 'contract', label: 'Contract', icon: FileText },
+    { id: 'senior', label: 'Senior Level', icon: Briefcase },
+    { id: 'startup', label: 'Startups', icon: Building2 },
+    { id: 'relocation', label: 'Relocation', icon: Plane },
+    { id: 'equity', label: 'Equity', icon: Coins },
+  ] as const;
+
+  const alwaysVisible = allFilters.slice(0, 4);
+  const optionalFilters = allFilters.slice(4);
+
+  const [activeFilters, setActiveFilters] = useState<Set<string>>(
+    new Set(['remote', 'full-time', '100k+', 'series-b+'])
+  );
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+
+  const toggleFilter = (id: string) => {
+    setActiveFilters(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMoreOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [moreOpen]);
+
+  const visibleChips = [
+    ...alwaysVisible,
+    ...optionalFilters.filter(f => activeFilters.has(f.id)),
+  ];
+
+  const popupChips = optionalFilters.filter(f => !activeFilters.has(f.id));
+
+  const dropdownItems = [
+    { label: 'Profile', icon: User, onClick: () => navigate('/account#profile') },
+    { label: 'Notifications', icon: Bell, onClick: () => navigate('/account#notifications') },
+    { label: 'Billing', icon: CreditCard, onClick: () => navigate('/account#billing') },
+    { label: 'Help & Support', icon: LifeBuoy, onClick: () => navigate('/account#help') },
+    { label: 'Sign Out', icon: LogOut, onClick: () => navigate('/account#signout') },
+  ];
 
   // Mock jobs matching the design screenshots exactly
   const mockJobs: Job[] = [
@@ -132,11 +214,20 @@ export const Dashboard: React.FC = () => {
             <button className="bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold px-6 py-2.5 rounded-full text-xs transition-all duration-200 shadow-sm cursor-pointer font-dm-sans">
               How to Guide
             </button>
-            <img 
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop" 
-              alt="Profile Avatar"
-              className="w-10 h-10 rounded-full object-cover border border-[#E4E2DD] shadow-sm"
-            />
+            <div className="relative">
+              <div
+                onClick={() => setMenuOpen(v => !v)}
+                className="cursor-pointer"
+              >
+                <Avatar seed="user@jobjockey.ai" size={40} />
+              </div>
+              {menuOpen && (
+                <DropdownMenu
+                  items={dropdownItems}
+                  onClose={() => setMenuOpen(false)}
+                />
+              )}
+            </div>
           </div>
         </div>
 
@@ -196,29 +287,68 @@ export const Dashboard: React.FC = () => {
 
           {/* Filters Row */}
           <div className="flex items-center space-x-3.5 flex-wrap gap-y-2">
-            <button type="button" className="bg-[#FFFFFF] border border-[#E4E2DD] rounded-full px-4 py-2 text-xs font-medium text-[#444444] flex items-center space-x-2 shadow-sm hover:bg-[#F5F3EE] cursor-pointer transition-colors">
-              <MapPin className="w-3.5 h-3.5 text-[#7F7F7F]" />
-              <span>Remote</span>
-            </button>
-            <button type="button" className="bg-[#FFFFFF] border border-[#E4E2DD] rounded-full px-4 py-2 text-xs font-medium text-[#444444] flex items-center space-x-2 shadow-sm hover:bg-[#F5F3EE] cursor-pointer transition-colors">
-              <Clock className="w-3.5 h-3.5 text-[#7F7F7F]" />
-              <span>Full-time</span>
-            </button>
-            <button type="button" className="bg-[#FFFFFF] border border-[#E4E2DD] rounded-full px-4 py-2 text-xs font-medium text-[#444444] flex items-center space-x-2 shadow-sm hover:bg-[#F5F3EE] cursor-pointer transition-colors">
-              <Coins className="w-3.5 h-3.5 text-[#7F7F7F]" />
-              <span>$100k+</span>
-            </button>
-            <button type="button" className="bg-[#FFFFFF] border border-[#E4E2DD] rounded-full px-4 py-2 text-xs font-medium text-[#444444] flex items-center space-x-2 shadow-sm hover:bg-[#F5F3EE] cursor-pointer transition-colors">
-              <TrendingUp className="w-3.5 h-3.5 text-[#7F7F7F]" />
-              <span>Series B+</span>
-            </button>
-            
-            <button 
-              type="button" 
-              className="text-[#FF4D00] hover:text-[#FF4D00]/80 text-xs font-semibold hover:underline cursor-pointer ml-2 transition-colors"
-            >
-              + More
-            </button>
+            {visibleChips.map((f) => {
+              const Icon = f.icon;
+              const isActive = activeFilters.has(f.id);
+              return (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => toggleFilter(f.id)}
+                  className={cn(
+                    'rounded-full px-4 py-2 text-xs font-medium flex items-center space-x-2 transition-all duration-200',
+                    isActive
+                      ? 'bg-white text-[#444444] border border-[#E4E2DD] shadow-sm'
+                      : 'bg-[#F5F3EE] text-[#B0B0B0]'
+                  )}
+                >
+                  <Icon className={cn('w-3.5 h-3.5', isActive ? 'text-[#7F7F7F]' : 'text-[#B0B0B0]')} />
+                  <span>{f.label}</span>
+                </button>
+              );
+            })}
+
+            {popupChips.length > 0 && (
+              <div className="relative ml-2" ref={moreRef}>
+                <button
+                  type="button"
+                  onClick={() => setMoreOpen(v => !v)}
+                  className={cn(
+                    'text-xs font-semibold transition-colors cursor-pointer',
+                    moreOpen ? 'text-[#FF4D00]' : 'text-[#FF4D00] hover:text-[#FF4D00]/80'
+                  )}
+                >
+                  + More
+                </button>
+
+              {moreOpen && (
+                <div className="absolute left-0 top-full mt-2 z-50 bg-white border border-[#E4E2DD] rounded-xl shadow-xl p-4 min-w-[340px] animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="grid grid-cols-2 gap-2">
+                    {popupChips.map((f) => {
+                      const Icon = f.icon;
+                      const isActive = activeFilters.has(f.id);
+                      return (
+                        <button
+                          key={f.id}
+                          type="button"
+                          onClick={() => toggleFilter(f.id)}
+                          className={cn(
+                            'rounded-full px-3 py-2 text-xs font-medium flex items-center space-x-2 transition-all duration-200',
+                            isActive
+                              ? 'bg-white text-[#444444] border border-[#E4E2DD]'
+                              : 'bg-[#F5F3EE] text-[#B0B0B0] hover:bg-[#EBE9E3]'
+                          )}
+                        >
+                          <Icon className={cn('w-3 h-3', isActive ? 'text-[#7F7F7F]' : 'text-[#B0B0B0]')} />
+                          <span>{f.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
           </div>
 
           {/* Job Card Grid */}
@@ -232,11 +362,10 @@ export const Dashboard: React.FC = () => {
                 onViewAnalysis={handleViewAnalysis}
                 onViewDescription={handleViewDescription}
                 onApply={handleApply}
-              />
-            ))}
+                />
+              ))}
+            </div>
           </div>
-
-        </div>
       </main>
     </div>
   );

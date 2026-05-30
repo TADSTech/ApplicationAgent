@@ -1,5 +1,5 @@
 // frontend/src/components/layout/Sidebar.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Search, 
@@ -25,6 +25,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setAnimated(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   // Navigation items mapping
   const menuItems = [
@@ -46,6 +52,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
   const strokeWidthCollapsed = 3;
   const circumferenceCollapsed = 2 * Math.PI * radiusCollapsed;
   const strokeDashoffsetCollapsed = circumferenceCollapsed - (score / 100) * circumferenceCollapsed;
+
+  const currentOffset = animated ? strokeDashoffset : circumference;
+  const currentOffsetCollapsed = animated ? strokeDashoffsetCollapsed : circumferenceCollapsed;
 
   return (
     <aside 
@@ -161,15 +170,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
                   cx="32"
                   cy="32"
                   r={radius}
-                  className="stroke-[#FF4D00]"
+                  className="stroke-[#FF4D00] transition-all duration-1000 ease-out"
                   strokeWidth={strokeWidth}
                   strokeDasharray={circumference}
-                  strokeDashoffset={strokeDashoffset}
+                  strokeDashoffset={currentOffset}
                   strokeLinecap="round"
                   fill="transparent"
                 />
               </svg>
-              <span className="absolute font-space-mono text-lg font-bold text-[#0A0A0A]">
+              <span className={`absolute font-space-mono text-lg font-bold text-[#0A0A0A] transition-opacity duration-700 delay-300 ${animated ? 'opacity-100' : 'opacity-0'}`}>
                 {score}
               </span>
             </div>
@@ -196,22 +205,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
                 strokeWidth={strokeWidthCollapsed}
                 fill="transparent"
               />
-              {/* Foreground Track */}
-              <circle
-                cx="24"
-                cy="24"
-                r={radiusCollapsed}
-                className="stroke-[#FF4D00]"
-                strokeWidth={strokeWidthCollapsed}
-                strokeDasharray={circumferenceCollapsed}
-                strokeDashoffset={strokeDashoffsetCollapsed}
-                strokeLinecap="round"
-                fill="transparent"
-              />
-            </svg>
-            <span className="absolute font-space-mono text-xs font-bold text-[#0A0A0A]">
-              {score}
-            </span>
+                {/* Foreground Track */}
+                <circle
+                  cx="24"
+                  cy="24"
+                  r={radiusCollapsed}
+                  className="stroke-[#FF4D00] transition-all duration-1000 ease-out"
+                  strokeWidth={strokeWidthCollapsed}
+                  strokeDasharray={circumferenceCollapsed}
+                  strokeDashoffset={currentOffsetCollapsed}
+                  strokeLinecap="round"
+                  fill="transparent"
+                />
+              </svg>
+              <span className={`absolute font-space-mono text-xs font-bold text-[#0A0A0A] transition-opacity duration-700 delay-300 ${animated ? 'opacity-100' : 'opacity-0'}`}>
+                {score}
+              </span>
           </div>
         )}
 
@@ -292,9 +301,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
               <Moon className="w-5 h-5" />
             </button>
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]">
-              <Bell className="w-5 h-5" />
-            </button>
-            <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]">
               <MoreHorizontal className="w-5 h-5" />
             </button>
           </div>
@@ -305,9 +311,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
             </button>
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="Toggle Theme">
               <Moon className="w-5 h-5" />
-            </button>
-            <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="Notifications">
-              <Bell className="w-5 h-5" />
             </button>
             <button className="hover:text-[#0A0A0A] transition-colors cursor-pointer p-1 rounded hover:bg-[#F5F3EE]" title="More">
               <MoreHorizontal className="w-5 h-5" />

@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import AutoMode from './pages/AutoMode';
 import SwipeMode from './pages/SwipeMode';
 import Settings from './pages/Settings';
+import Account from './pages/Account';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/auto" element={<AutoMode />} />
         <Route path="/swipe" element={<SwipeMode />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
   );

@@ -66,6 +66,14 @@ export interface Application {
   notes: ApplicationNote[];
 }
 
+export interface TerminalLine {
+  label: string;
+  labelColor: string;
+  message: string;
+  messageClassName?: string;
+  highlight?: { text: string; color: string };
+}
+
 export interface AgentState {
   sessionId: string;
   agentType: 'job' | 'resume' | 'contract' | 'linkedin' | 'orchestrator';
