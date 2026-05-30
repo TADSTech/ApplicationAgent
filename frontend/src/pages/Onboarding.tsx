@@ -37,8 +37,8 @@ const Step1Resume: React.FC<{ onContinue: () => void }> = ({ onContinue }) => {
         {!uploadedFile ? (
           <div {...getRootProps()} className={`border-2 border-dashed border-primary/50 rounded-lg text-center p-12 cursor-pointer transition-colors ${isDragActive ? 'bg-primary/20' : 'bg-primary/10 hover:bg-primary/20'}`}>
             <input {...getInputProps()} />
-            <div className="flex justify-center mb-4">
-              <Upload className="w-8 h-8 text-primary" />
+            <div className="flex justify-center mb-4 group">
+              <Upload className="w-8 h-8 text-primary animate-float group-hover:scale-110 transition-transform duration-300" />
             </div>
             <p className="font-semibold text-primary">Drag your resume here</p>
             <p className="text-sm text-primary/80 mt-1">or <span className="font-bold underline">browse files</span></p>
@@ -46,7 +46,7 @@ const Step1Resume: React.FC<{ onContinue: () => void }> = ({ onContinue }) => {
         ) : (
           <div className="bg-green-50 border-2 border-dashed border-green-500 rounded-lg p-6 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <FileText className="w-8 h-8 text-green-700" />
+              <FileText className="w-8 h-8 text-green-700 animate-pulse-soft" />
               <div>
                 <p className="font-semibold text-green-800">{uploadedFile.name}</p>
                 <p className="text-xs text-green-600">{(uploadedFile.size / 1024).toFixed(2)} KB</p>
@@ -57,8 +57,8 @@ const Step1Resume: React.FC<{ onContinue: () => void }> = ({ onContinue }) => {
             </button>
           </div>
         )}
-        <div className="mt-6 flex items-start space-x-4 bg-[#F5F3EE] p-4 rounded-lg">
-          <Wand2 className="w-5 h-5 text-yellow-500 mt-1" />
+        <div className="mt-6 flex items-start space-x-4 bg-[#F5F3EE] p-4 rounded-lg group">
+          <Wand2 className="w-5 h-5 text-yellow-500 mt-1 group-hover:animate-wiggle" />
           <div>
             <h4 className="font-bold text-sm">Intelligent Extraction</h4>
             <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
@@ -90,7 +90,7 @@ const Step2WorkMode: React.FC<{ onContinue: () => void }> = ({ onContinue }) => 
                 <div className="text-xs font-bold bg-primary/10 text-primary px-3 py-1 rounded-full absolute top-[10px] right-[10px]">Recommended</div>
                 )}
                 <div className="flex items-center space-x-4 mb-4">
-                <div className="p-3 bg-teal-100 rounded-lg"><Settings className="w-6 h-6 text-teal-600" /></div>
+                <div className="p-3 bg-teal-100 rounded-lg group"><Settings className="w-6 h-6 text-teal-600 group-hover:animate-spin-slow" /></div>
                 <h3 className="text-xl font-bold">Auto Mode</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -102,7 +102,7 @@ const Step2WorkMode: React.FC<{ onContinue: () => void }> = ({ onContinue }) => 
                 onClick={() => setSelectedMode('swipe')}
             >
                 <div className="flex items-center space-x-4 mb-4">
-                <div className="p-3 bg-red-100 rounded-lg"><Hand className="w-6 h-6 text-red-600" /></div>
+                <div className="p-3 bg-red-100 rounded-lg group"><Hand className="w-6 h-6 text-red-600 group-hover:animate-wiggle" /></div>
                 <h3 className="text-xl font-bold">Swipe Mode</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -120,8 +120,8 @@ const Step3AgentReady: React.FC = () => {
     return(
         <div className="w-full max-w-2xl mx-auto text-center">
             <div className="flex justify-center mb-6">
-            <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center">
-                <svg className="w-12 h-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center hover:scale-105 transition-transform duration-300">
+                <svg className="w-12 h-12 text-green-600 animate-bounce-in" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
             </div>
@@ -150,16 +150,20 @@ export const Onboarding: React.FC = () => {
   };
 
   const renderStep = () => {
-    switch (step) {
-      case 1:
-        return <Step1Resume onContinue={handleContinue} />;
-      case 2:
-        return <Step2WorkMode onContinue={handleContinue} />;
-      case 3:
-        return <Step3AgentReady />;
-      default:
-        return null;
-    }
+    const content = (() => {
+      switch (step) {
+        case 1: return <Step1Resume onContinue={handleContinue} />;
+        case 2: return <Step2WorkMode onContinue={handleContinue} />;
+        case 3: return <Step3AgentReady />;
+        default: return null;
+      }
+    })();
+
+    return (
+      <div key={step} className="animate-in fade-in slide-in-from-right-8 duration-500 fill-mode-both w-full">
+        {content}
+      </div>
+    );
   };
 
   return (

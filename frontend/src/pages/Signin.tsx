@@ -6,8 +6,21 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
 import { Separator } from '../components/ui/Separator';
 import { Header } from '../components/layout/Header';
 import { Eye } from 'lucide-react';
+import { TypedLine } from '../components/ui/TypedLine';
+import { useTerminalTyping } from '../hooks/useTerminalTyping';
+import { TerminalLine } from '../types';
+
+const TERMINAL_LINES: TerminalLine[] = [
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Analyzing 452 candidates for \'Staff Engineer\'', messageClassName: 'text-[#00FFCC]/90' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Filter applied: Human-in-the-loop validation required.', messageClassName: 'text-[#15B097]' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: '3 High-intent matches found.', messageClassName: 'text-[#00FF4D]' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Fetching LinkedIn signal data...', messageClassName: 'text-[#00FFCC]/60' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Awaiting executive sign-in...', messageClassName: 'text-[#7F7F7F]' },
+  { label: '>', labelColor: 'text-[#00FFCC] font-bold', message: 'Accessing predictive model \'Job-Sigma-04\'...', messageClassName: 'text-[#00FFCC]/90' },
+];
 
 export const Signin: React.FC = () => {
+  const { lineIndex, charIndex, finished, fullText } = useTerminalTyping(TERMINAL_LINES, { autoLoop: false });
   return (
     <div className="flex flex-col h-screen overflow-y-scroll font-dm-sans bg-[#FBF9F4]">
       <Header />
@@ -54,32 +67,19 @@ export const Signin: React.FC = () => {
                 </div>
               </div>
               
-              <div className="space-y-2">
-                <div className="flex space-x-2">
-                  <span className="text-[#00FFCC] font-bold">&gt;</span>
-                  <span className="text-[#00FFCC]/90">Analyzing 452 candidates for 'Staff Engineer'</span>
-                </div>
-                <div className="flex space-x-2">
-                  <span className="text-[#00FFCC] font-bold">&gt;</span>
-                  <span className="text-[#15B097]">Filter applied: Human-in-the-loop validation required.</span>
-                </div>
-                <div className="flex space-x-2">
-                  <span className="text-[#00FFCC] font-bold">&gt;</span>
-                  <span className="text-[#00FF4D]">3 High-intent matches found.</span>
-                </div>
-                <div className="flex space-x-2">
-                  <span className="text-[#00FFCC] font-bold">&gt;</span>
-                  <span className="text-[#00FFCC]/60">Fetching LinkedIn signal data...</span>
-                </div>
-                <div className="flex space-x-2">
-                  <span className="text-[#00FFCC] font-bold">&gt;</span>
-                  <span className="text-[#7F7F7F]">Awaiting executive sign-in...</span>
-                </div>
-                <div className="flex space-x-2">
-                  <span className="text-[#00FFCC] font-bold">&gt;</span>
-                  <span className="text-[#00FFCC]/90">Accessing predictive model 'Job-Sigma-04'...</span>
-                  <span className="inline-block w-2 h-4 bg-[#00FF88] animate-pulse"></span>
-                </div>
+              <div className="space-y-2 min-h-[144px]">
+                {TERMINAL_LINES.map((line, idx) => {
+                  if (idx > lineIndex) return null;
+                  const isCurrentLine = idx === lineIndex;
+                  const chars = isCurrentLine ? charIndex : fullText(idx).length;
+                  const showCursor = isCurrentLine && !finished;
+                  return (
+                    <TypedLine key={idx} line={line} visibleChars={chars} showCursor={showCursor} />
+                  );
+                })}
+                {finished && (
+                  <span className="inline-block w-2 h-4 bg-[#00FF88] animate-pulse mt-1" />
+                )}
               </div>
             </div>
           </div>

@@ -71,3 +71,16 @@
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+/* Kanban card spring-settle animation (triggered on drop) */
+@keyframes cardDrop {
+  0%   { opacity: 0.4; transform: scale(0.93) rotate(-2deg); }
+  60%  { transform: scale(1.03) rotate(0.5deg); }
+  80%  { transform: scale(0.99) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Prevent text selection while dragging */
+.kanban-dragging * {
+  user-select: none;
+}

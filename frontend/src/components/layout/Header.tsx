@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ step, totalSteps }) => {
       
       {step && totalSteps ? (
         <div className="text-sm p-4 text-muted-foreground font-medium">
-          Step {step} of {totalSteps}
+          Step <span key={step} className="animate-in fade-in duration-300 inline-block">{step}</span> of {totalSteps}
         </div>
       ) : (
         <div className="text-sm p-4 text-muted-foreground font-medium">
