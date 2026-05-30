@@ -1,7 +1,7 @@
 # backend/agents/orchestrator.py
 import asyncio
 from typing import Dict, Any, List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from backend.agents.base import BaseAgent
 from backend.core.logging import logger
 
@@ -39,7 +39,8 @@ class MultiAgentOrchestrator:
         )
 
         agent.state.status = "running"
-        agent.state.started_at = datetime.utcnow()
+        agent.state.started_at = datetime.now(timezone.utc)
+        await agent._sync_state()
 
         while retries <= max_retries:
             try:
@@ -47,7 +48,8 @@ class MultiAgentOrchestrator:
                 agent.state.status = "completed"
                 agent.state.progress = 100.0
                 agent.state.result = result
-                agent.state.completed_at = datetime.utcnow()
+                agent.state.completed_at = datetime.now(timezone.utc)
+                await agent._sync_state()
                 
                 logger.info(
                     f"Agent {agent_type} completed successfully",
@@ -75,7 +77,8 @@ class MultiAgentOrchestrator:
                 else:
                     agent.state.status = "failed"
                     agent.state.error = str(e)
-                    agent.state.completed_at = datetime.utcnow()
+                    agent.state.completed_at = datetime.now(timezone.utc)
+                    await agent._sync_state()
                     logger.error(
                         f"Agent {agent_type} exhausted all retries",
                         extra={

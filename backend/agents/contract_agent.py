@@ -1,48 +1,62 @@
 # backend/agents/contract_agent.py
 from typing import Dict, Any
 from backend.agents.base import BaseAgent
+from backend.services.openai import OpenAIService
+from backend.core.config import settings
 from backend.core.logging import logger
 
 class ContractAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("contract", session_id)
+        self.openai = OpenAIService(api_key=settings.OPENAI_API_KEY)
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Parses employment contracts, checks visa lock-ins and calculates tax withholding implications.
         """
+        contract_text = context.get("contract_text", "")
+        base_salary_usd = context.get("base_salary_usd", 0.0)
+
         logger.info(
             "ContractAgent is analyzing agreement terms",
             extra={
                 "session_id": self.session_id,
                 "agent_type": self.agent_type,
-                "payload": {"contract_id": context.get("contract_id")}
+                "payload": {"contract_length": len(contract_text)}
             }
         )
         self.update_progress(15.0)
 
-        contract_text = context.get("contract_text", "Relocation package includes $5,000 allowance, subject to a 12-month lock-in period.")
+        system_prompt = """
+        You are an expert Legal & Contract Analysis Agent for JobJockey.
+        Your goal is to parse employment contracts for Nigerian professionals moving abroad or working remotely.
         
-        # Flags detection
-        flagged_clauses = []
-        if "lock-in" in contract_text.lower() or "reimbursement" in contract_text.lower():
-            flagged_clauses.append({
-                "clause": "Relocation lock-in / reimbursement obligation",
-                "risk_level": "medium",
-                "description": "If you terminate contract before 12 months, you might be legally obligated to repay relocation allowances."
-            })
-            
-        self.update_progress(50.0)
+        STRICT FOCUS AREAS:
+        1. Visa Lock-in: Detect duration and reimbursement obligations if the employee leaves early.
+        2. Relocation: Identify relocation allowance and any repayment clauses.
+        3. Intellectual Property: Check if all IP created belongs to the company.
+        4. Termination: Identify notice periods and severance.
+        5. Remote Tax: Flag if the contract is B2B (Contractor) or W2 (Employee) and estimate US/UK tax withholding implications for a Nigerian resident.
+        
+        Provide a JSON response with 'flagged_clauses' (list of objects with 'clause', 'risk_level', 'description') and 'summary'.
+        """
 
-        # Tax estimation for remote contractors in Nigeria
-        base_salary_usd = context.get("base_salary_usd", 80000.0)
-        withholding_rate = 0.30 if "US" in contract_text else 0.0  # US W8-BEN vs W2 withholding
-        net_usd = base_salary_usd * (1.0 - withholding_rate)
+        prompt = f"""
+        CONTRACT TEXT:
+        {contract_text}
+        
+        BASE SALARY: ${base_salary_usd}
+        
+        Analyze this contract and flag any high-risk clauses for a Nigerian professional.
+        """
+
+        self.update_progress(40.0)
+        llm_response = await self.openai.generate_response(prompt, system_prompt)
+        
+        self.update_progress(90.0)
 
         self.update_progress(100.0, "completed")
         return {
-            "flagged_clauses": flagged_clauses,
-            "withholding_tax_estimate_rate": withholding_rate,
-            "estimated_net_usd_salary": net_usd,
-            "is_compliant": len(flagged_clauses) == 0
+            "analysis_output": llm_response,
+            "status": "success"
         }

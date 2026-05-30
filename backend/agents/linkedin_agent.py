@@ -1,41 +1,60 @@
 # backend/agents/linkedin_agent.py
 from typing import Dict, Any
 from backend.agents.base import BaseAgent
+from backend.services.openai import OpenAIService
+from backend.core.config import settings
 from backend.core.logging import logger
 
 class LinkedinAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("linkedin", session_id)
+        self.openai = OpenAIService(api_key=settings.OPENAI_API_KEY)
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Drafts LinkedIn connection requests and follow-up sequences.
         """
+        recruiter = context.get("recruiter_name", "Recruiter")
+        company = context.get("company_name", "the company")
+        job_title = context.get("job_title", "Software Engineer")
+
         logger.info(
             "LinkedInAgent starting outreach formulation",
             extra={
                 "session_id": self.session_id,
                 "agent_type": self.agent_type,
-                "payload": {"recruiter_name": context.get("recruiter_name")}
+                "payload": {"recruiter_name": recruiter, "company": company}
             }
         )
         self.update_progress(30.0)
 
-        recruiter = context.get("recruiter_name", "Jane Doe")
-        company = context.get("company_name", "GlobalTech")
+        system_prompt = """
+        You are an expert LinkedIn Outreach Agent for JobJockey.
+        Your goal is to craft highly personalized connection requests and DMs for Nigerian professionals.
         
-        # Outreach sequence formulation
-        invite_msg = f"Hi {recruiter}, I'm a software developer deeply impressed by {company}'s remote infrastructure. Let's connect!"
-        follow_up_dm = f"Hi {recruiter}, thanks for connecting. I am a Nigerian software engineer interested in global team collaboration. If there is a fit, here is my adapted portfolio."
+        STRICT RULES:
+        1. Keep connection requests under 300 characters.
+        2. Be professional but warm.
+        3. Mention specific interest in global/remote collaboration.
+        4. Draft a follow-up DM that is concise and value-driven.
+        5. Recommend the best time to send the message in WAT, assuming the recruiter is in the job's timezone (default EST if not provided).
+        """
 
-        self.update_progress(80.0)
+        prompt = f"""
+        RECRUITER: {recruiter}
+        COMPANY: {company}
+        JOB TITLE: {job_title}
+        
+        Draft a connection request and a follow-up DM.
+        """
 
-        # Scheduled post-engagement suggestions (times optimal in WAT relative to USA/EU timezone core hours)
-        suggested_send_time_wat = "15:00 WAT (3:00 PM)"
+        self.update_progress(60.0)
+        llm_response = await self.openai.generate_response(prompt, system_prompt)
+        
+        self.update_progress(90.0)
 
         self.update_progress(100.0, "completed")
         return {
-            "draft_invite_message": invite_msg,
-            "draft_follow_up_dm": follow_up_dm,
-            "optimal_outreach_time": suggested_send_time_wat
+            "outreach_drafts": llm_response,
+            "status": "success"
         }
