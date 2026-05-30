@@ -83,8 +83,11 @@ export const Welcome: React.FC = () => {
         </div>
 
         {/* Right Pane: Premium Editorial Canvas */}
-        <div className="w-full lg:w-[45%] flex flex-col justify-center items-center px-12 bg-[#FBF9F4]">
-          <div className="max-w-sm w-full text-center">
+        <div className="w-full lg:w-[45%] flex flex-col justify-between items-center px-12 py-8 bg-[#FBF9F4] h-full">
+          {/* Top spacer to balance the layout flow */}
+          <div className="h-12 w-full"></div>
+
+          <div className="max-w-sm w-full text-center my-auto">
             <h2 className="text-3xl font-bold text-[#0A0A0A] mb-2">Get started free</h2>
             <p className="text-[#7F7F7F] mb-10">No credit card required.</p>
 
@@ -121,7 +124,7 @@ export const Welcome: React.FC = () => {
           </div>
 
           {/* Footer */}
-          <footer className="absolute bottom-8 w-full text-center px-12">
+          <footer className="w-full text-center pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-[#7F7F7F] uppercase tracking-tighter space-y-4 md:space-y-0">
               <p>© 2026 JobJockey AI. Human-in-the-loop executive search.</p>
               <div className="flex space-x-6">
