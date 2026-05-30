@@ -1,11 +1,13 @@
 # backend/agents/job_agent.py
 from typing import Dict, Any, List
+from datetime import datetime
 from backend.agents.base import BaseAgent
 from backend.utils.currency import format_salary_display, get_usd_to_ngn_rate
 from backend.utils.timezones import calculate_wat_overlap
 from backend.services.firecrawl import FirecrawlService
 from backend.core.config import settings
 from backend.core.logging import logger
+from backend.models.job import Job
 
 class JobAgent(BaseAgent):
     def __init__(self, session_id: str):
@@ -15,13 +17,13 @@ class JobAgent(BaseAgent):
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
         Retrieves listings, checks WAT timezone alignment, and formats salaries.
-        No print() statements used to maintain SRE guidelines.
+        Adheres to Rule 3.2.1 and Nigeria-specific Rule 5.
         """
         keywords = context.get("keywords", "Software Engineer")
-        location = context.get("location", "USA")
+        location = context.get("location", "Remote")
 
         logger.info(
-            "JobAgent is active and processing listings",
+            "JobAgent initiating search",
             extra={
                 "session_id": self.session_id,
                 "agent_type": self.agent_type,
@@ -30,46 +32,77 @@ class JobAgent(BaseAgent):
         )
         self.update_progress(10.0)
         
-        # Scrape live jobs
-        raw_jobs = await self.firecrawl.scrape_jobs(keywords, location)
-        
-        if not raw_jobs:
+        try:
+            # Scrape live jobs via Firecrawl
+            raw_jobs = await self.firecrawl.scrape_jobs(keywords, location)
+            self.update_progress(40.0)
+            
+            if not raw_jobs:
+                logger.warning(
+                    "No jobs found",
+                    extra={"session_id": self.session_id, "agent_type": self.agent_type}
+                )
+                self.update_progress(100.0, "completed")
+                return {"scraped_count": 0, "matched_jobs": []}
+
+            processed_jobs = []
+            usd_to_ngn_rate = get_usd_to_ngn_rate()
+
+            for idx, job_data in enumerate(raw_jobs):
+                # Salary processing (Rule 5.1)
+                salary_usd = job_data.get("salary_usd", 0.0)
+                salary_ngn = salary_usd * usd_to_ngn_rate
+                salary_display = format_salary_display(salary_usd)
+                
+                # Timezone overlap calculation (Rule 5.2)
+                tz = job_data.get("timezone", "GMT")
+                wat_start, wat_end, is_late_night = calculate_wat_overlap(tz)
+                
+                # Constructing Job Model
+                job_obj = {
+                    "id": job_data.get("id", f"job-{idx}"),
+                    "title": job_data.get("title", "Unknown Title"),
+                    "company": job_data.get("company", "Unknown Company"),
+                    "location": job_data.get("location", location),
+                    "salary_min": salary_usd,
+                    "salary_max": salary_usd,
+                    "salary_min_ngn": salary_ngn,
+                    "salary_max_ngn": salary_ngn,
+                    "salary_display": salary_display,
+                    "description": job_data.get("description", ""),
+                    "requirements": job_data.get("requirements", []),
+                    "url": job_data.get("url", ""),
+                    "posted_at": datetime.utcnow().isoformat(), # Mocked for now
+                    "time_zone": tz,
+                    "wat_hours": f"{wat_start:02d}:00 - {wat_end:02d}:00 WAT",
+                    "is_late_night_wat_shift": is_late_night,
+                    "visa_sponsorship": job_data.get("visa_sponsorship", False),
+                    "remote": job_data.get("remote", True),
+                    "source": "Firecrawl"
+                }
+                
+                processed_jobs.append(job_obj)
+                
+                # Progress calculation
+                progress = 40.0 + ((idx + 1) / len(raw_jobs) * 60.0)
+                self.update_progress(min(progress, 99.0))
+
             self.update_progress(100.0, "completed")
-            return {"scraped_count": 0, "matched_jobs": [], "message": "No jobs found for criteria."}
+            return {
+                "scraped_count": len(raw_jobs),
+                "matched_jobs": processed_jobs
+            }
 
-        self.update_progress(50.0)
-        processed_jobs = []
-        usd_to_ngn_rate = get_usd_to_ngn_rate()
-
-        for idx, job in enumerate(raw_jobs):
-            salary_usd = job.get("salary_usd", 0.0)
-            salary_ngn = salary_usd * usd_to_ngn_rate
-            formatted_salary = format_salary_display(salary_usd)
-            
-            # Timezone calculation
-            timezone_str = job.get("timezone", "GMT")
-            wat_start, wat_end, is_late_night = calculate_wat_overlap(timezone_str)
-            
-            processed_jobs.append({
-                "id": job.get("id"),
-                "title": job.get("title"),
-                "company": job.get("company"),
-                "location": job.get("location"),
-                "salary_usd": salary_usd,
-                "salary_ngn": salary_ngn,
-                "salary_display": formatted_salary,
-                "wat_working_hours": f"{wat_start:02d}:00 - {wat_end:02d}:00 WAT",
-                "is_late_night_wat_shift": is_late_night,
-                "visa_sponsorship": job.get("visa_sponsorship", False),
-                "remote": job.get("remote", False),
-                "url": job.get("url")
-            })
-            
-            progress = 50.0 + ((idx + 1) / len(raw_jobs) * 50.0)
-            self.update_progress(min(progress, 99.0))
-
-        self.update_progress(100.0, "completed")
-        return {
-            "scraped_count": len(raw_jobs),
-            "matched_jobs": processed_jobs
-        }
+        except Exception as e:
+            logger.error(
+                "JobAgent execution failed",
+                extra={
+                    "session_id": self.session_id,
+                    "agent_type": self.agent_type,
+                    "payload": {"error": str(e)}
+                }
+            )
+            self.state.status = "failed"
+            self.state.error = str(e)
+            self._sync_state()
+            raise

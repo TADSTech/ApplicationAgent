@@ -6,22 +6,16 @@ from typing import Dict, Any, Optional
 
 class JSONFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
-        # Default empty dict or context from extra
-        extra = getattr(record, "extra", {}) or {}
-        trace_id = extra.get("trace_id", "")
-        session_id = extra.get("session_id", "")
-        agent_type = extra.get("agent_type", "orchestrator")
-        payload = extra.get("payload", {})
-        
-        # Build structured log
+        # Extract fields specified in Rule 4.2
+        # Standard record attributes + custom 'extra' attributes
         log_data = {
             "timestamp": datetime.now(timezone.utc).isoformat(),
-            "trace_id": trace_id,
-            "session_id": session_id,
-            "agent_type": agent_type,
+            "trace_id": getattr(record, "trace_id", ""),
+            "session_id": getattr(record, "session_id", ""),
+            "agent_type": getattr(record, "agent_type", "orchestrator"),
             "level": record.levelname,
             "message": record.getMessage(),
-            "payload": payload
+            "payload": getattr(record, "payload", {})
         }
         return json.dumps(log_data)
 
