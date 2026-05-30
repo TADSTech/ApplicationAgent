@@ -1,6 +1,7 @@
 import { Job, AgentState } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const rawApiUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const API_BASE_URL = rawApiUrl.replace(/\/+$/, '');
 
 const DEFAULT_TIMEOUT = 15000;
 const MAX_RETRIES = 3;

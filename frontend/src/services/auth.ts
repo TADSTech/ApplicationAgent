@@ -1,17 +1,10 @@
 // frontend/src/services/auth.ts
+import { apiClient } from './api';
 
 export const authProvider = {
   async loginWithFirebaseToken(token: string): Promise<any> {
     // Authenticate with the backend using Firebase JWT
-    const response = await fetch('/api/v1/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    if (!response.ok) throw new Error('Authentication failed');
-    return response.json();
+    return apiClient.login(token);
   },
 
   logout(): void {
