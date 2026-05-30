@@ -45,7 +45,7 @@ class AIQuestionService:
     def __init__(self):
         self.gemini = gemini_service
         self.profile_builder = profile_builder_service
-        self.claude_available = hasattr(settings, 'ANTHROPIC_API_KEY') and settings.ANTHROPIC_API_KEY
+        # OpenRouter is available via gemini service fallback
     
     async def generate_question_for_job(
         self,

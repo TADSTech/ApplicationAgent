@@ -24,8 +24,8 @@ class Settings(BaseSettings):
     # Gemini API Configuration
     GEMINI_API_KEY: Optional[str] = None
     
-    # Anthropic Claude API Configuration (Backup)
-    ANTHROPIC_API_KEY: Optional[str] = None
+    # OpenRouter API Configuration (Backup for Gemini rate limits)
+    OPENROUTER_API_KEY: Optional[str] = None
     
     # External API Keys (Nice-to-Have - with mock fallbacks)
     EXCHANGERATE_API_KEY: Optional[str] = None

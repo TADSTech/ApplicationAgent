@@ -3259,5 +3259,1335 @@
       "context": "travel_willingness",
       "follow_up": "What's your maximum acceptable travel percentage?"
     }
+  },
+  {
+    "id": "job-special-011",
+    "title": "Senior Designer (4-Day Work Week)",
+    "company": "WorkLife Balance Co",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 140000,
+    "description": "4-day work week (32 hours) with full-time benefits. Work Mon-Thu, enjoy 3-day weekends. Same responsibilities as 5-day roles but compressed schedule.",
+    "requirements": [
+      "Product Design",
+      "Time Management",
+      "Efficiency",
+      "Self-direction"
+    ],
+    "url": "https://worklifebalance.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "four_day_week",
+    "ai_question_trigger": {
+      "question": "This role offers a 4-day work week (32 hours). Would you prefer this over a traditional 5-day schedule?",
+      "context": "work_schedule_preference"
+    }
+  },
+  {
+    "id": "job-special-012",
+    "title": "Design Lead (Async-First Culture)",
+    "company": "Distributed Team Inc",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 165000,
+    "description": "Fully async-first company. No required meetings, all communication via Loom/Notion. Work whenever you want. Perfect for deep work.",
+    "requirements": [
+      "Design Leadership",
+      "Async Communication",
+      "Self-management",
+      "Documentation"
+    ],
+    "url": "https://distributedteam.com/careers",
+    "timezone": "Flexible",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "async_first",
+    "ai_question_trigger": {
+      "question": "This company is fully async with no required meetings. Do you thrive in async-first environments?",
+      "context": "communication_style"
+    }
+  },
+  {
+    "id": "job-special-013",
+    "title": "Product Designer (Performance Bonus Heavy)",
+    "company": "Company 13",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 185000,
+    "description": "Product Designer role. Special benefit: Base salary plus up to 40% performance bonus",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company13.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "performance_bonus",
+    "ai_question_trigger": {
+      "question": "This role offers: Base salary plus up to 40% performance bonus. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-014",
+    "title": "Product Designer (Unlimited PTO)",
+    "company": "Company 14",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 190000,
+    "description": "Product Designer role. Special benefit: Unlimited vacation policy with minimum 20 days required",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company14.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "unlimited_pto",
+    "ai_question_trigger": {
+      "question": "This role offers: Unlimited vacation policy with minimum 20 days required. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-015",
+    "title": "Product Designer (Sabbatical Offered)",
+    "company": "Company 15",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 195000,
+    "description": "Product Designer role. Special benefit: Paid 3-month sabbatical after 3 years",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company15.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "sabbatical",
+    "ai_question_trigger": {
+      "question": "This role offers: Paid 3-month sabbatical after 3 years. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-016",
+    "title": "Product Designer (Remote Stipend)",
+    "company": "Company 16",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 200000,
+    "description": "Product Designer role. Special benefit: 2000 USD/month remote work stipend",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company16.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "remote_stipend",
+    "ai_question_trigger": {
+      "question": "This role offers: 2000 USD/month remote work stipend. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-017",
+    "title": "Product Designer (Learning Budget)",
+    "company": "Company 17",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 205000,
+    "description": "Product Designer role. Special benefit: 10000 USD/year learning and development budget",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company17.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "learning_budget",
+    "ai_question_trigger": {
+      "question": "This role offers: 10000 USD/year learning and development budget. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-018",
+    "title": "Product Designer (Parental Leave)",
+    "company": "Company 18",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 210000,
+    "description": "Product Designer role. Special benefit: 6 months paid parental leave",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company18.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "parental_leave",
+    "ai_question_trigger": {
+      "question": "This role offers: 6 months paid parental leave. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-019",
+    "title": "Product Designer (Pet-Friendly Office)",
+    "company": "Company 19",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 215000,
+    "description": "Product Designer role. Special benefit: Bring your dog to office policy",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company19.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "pet_friendly",
+    "ai_question_trigger": {
+      "question": "This role offers: Bring your dog to office policy. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-020",
+    "title": "Product Designer (Wellness Focus)",
+    "company": "Company 20",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 220000,
+    "description": "Product Designer role. Special benefit: Mandatory wellness days, gym membership, mental health support",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company20.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "wellness",
+    "ai_question_trigger": {
+      "question": "This role offers: Mandatory wellness days, gym membership, mental health support. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-021",
+    "title": "Product Designer (Stock Options Vesting)",
+    "company": "Company 21",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 225000,
+    "description": "Product Designer role. Special benefit: Immediate vesting, no cliff",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company21.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "vesting_schedule",
+    "ai_question_trigger": {
+      "question": "This role offers: Immediate vesting, no cliff. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-022",
+    "title": "Product Designer (Profit Sharing)",
+    "company": "Company 22",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 230000,
+    "description": "Product Designer role. Special benefit: 10% of profits shared among employees",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration"
+    ],
+    "url": "https://company22.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "profit_sharing",
+    "ai_question_trigger": {
+      "question": "This role offers: 10% of profits shared among employees. How important is this benefit to you?",
+      "context": "benefits_preference"
+    }
+  },
+  {
+    "id": "job-special-011",
+    "title": "Senior Designer (4-Day Work Week)",
+    "company": "WorkLife Balance Co",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 140000,
+    "description": "4-day work week (32 hours) with full-time benefits. Work Mon-Thu, enjoy 3-day weekends. Same responsibilities as 5-day roles but compressed schedule.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://worklifebalanceco.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "four_day_week",
+    "ai_question_trigger": {
+      "question": "This role offers a 4-day work week (32 hours). Would you prefer this over a traditional 5-day schedule?",
+      "context": "work_schedule_preference",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-012",
+    "title": "Design Lead (Async-First Culture)",
+    "company": "Distributed Team Inc",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 165000,
+    "description": "Fully async-first company. No required meetings, all communication via Loom/Notion. Work whenever you want. Perfect for deep work.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://distributedteaminc.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "async_first",
+    "ai_question_trigger": {
+      "question": "This company is fully async with no required meetings. Do you thrive in async-first environments?",
+      "context": "communication_style",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-013",
+    "title": "Product Designer (Performance Bonus 40%)",
+    "company": "HighPerformance Corp",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 130000,
+    "description": "Base $130k + up to 40% performance bonus ($52k). Bonus tied to shipped features, user metrics, and team goals. High performers can earn $180k+.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://highperformancecorp.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "performance_bonus",
+    "ai_question_trigger": {
+      "question": "This role has a lower base but 40% performance bonus potential. Do you prefer guaranteed salary or performance-based comp?",
+      "context": "compensation_structure",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-014",
+    "title": "Staff Designer (Unlimited PTO)",
+    "company": "TrustCulture Inc",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 175000,
+    "description": "Unlimited PTO with minimum 20 days required. Company culture strongly encourages taking time off. Average employee takes 30+ days.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://trustcultureinc.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "unlimited_pto",
+    "ai_question_trigger": {
+      "question": "This company offers unlimited PTO (minimum 20 days required). How many vacation days do you typically take per year?",
+      "context": "work_life_balance",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-015",
+    "title": "Principal Designer (Sabbatical Program)",
+    "company": "LongTerm Growth Co",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 200000,
+    "description": "Paid 3-month sabbatical after 3 years, 6 months after 7 years. Encourages deep rest and personal projects.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://longtermgrowthco.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "sabbatical",
+    "ai_question_trigger": {
+      "question": "This company offers paid sabbaticals (3 months after 3 years). How important is long-term career sustainability to you?",
+      "context": "career_longevity",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-016",
+    "title": "Senior Designer ($2k/mo Remote Stipend)",
+    "company": "RemoteFirst Co",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 155000,
+    "description": "$2,000/month remote work stipend for coworking, home office, internet, etc. Plus annual $3k equipment budget.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://remotefirstco.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "remote_stipend",
+    "ai_question_trigger": {
+      "question": "This role includes $2k/month remote work stipend. How important are remote work benefits vs. base salary?",
+      "context": "benefits_valuation",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-017",
+    "title": "Design Manager ($10k Learning Budget)",
+    "company": "GrowthMindset Inc",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 170000,
+    "description": "$10,000/year learning budget for courses, conferences, coaching, books. Encourages continuous learning.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://growthmindsetinc.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "learning_budget",
+    "ai_question_trigger": {
+      "question": "This company provides $10k/year learning budget. How important is professional development support?",
+      "context": "growth_priorities",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-018",
+    "title": "Lead Designer (6 Month Parental Leave)",
+    "company": "FamilyFirst Corp",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 165000,
+    "description": "6 months fully paid parental leave for all parents. Gradual return-to-work program. Childcare stipend.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://familyfirstcorp.com/careers",
+    "timezone": "EST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "parental_leave",
+    "ai_question_trigger": {
+      "question": "This company offers 6 months paid parental leave. How important are family-friendly policies?",
+      "context": "life_stage_priorities",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-019",
+    "title": "Senior Designer (Pet-Friendly Office)",
+    "company": "DogLovers Inc",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 145000,
+    "description": "Bring your dog to office! Pet-friendly workspace with dog park, grooming station. Hybrid role, 2 days in office.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://dogloversinc.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "pet_friendly",
+    "ai_question_trigger": {
+      "question": "This office is pet-friendly (bring your dog). Is this a meaningful perk for you?",
+      "context": "lifestyle_fit",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-020",
+    "title": "Product Designer (Wellness-Focused)",
+    "company": "HealthFirst Co",
+    "location": "Remote (Global)",
+    "remote": false,
+    "salary_usd": 150000,
+    "description": "Mandatory wellness days, gym membership, mental health support, meditation rooms, healthy meals. Company prioritizes employee wellbeing.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://healthfirstco.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "wellness_focus",
+    "ai_question_trigger": {
+      "question": "This company has strong wellness focus (mandatory wellness days, mental health support). How important is workplace wellness?",
+      "context": "health_priorities",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-021",
+    "title": "Staff Designer (Immediate Vesting)",
+    "company": "EmployeeFirst Startup",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 160000,
+    "description": "Stock options vest immediately, no cliff. 1% equity with instant ownership. Rare in startups.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://employeefirststartup.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "immediate_vesting",
+    "ai_question_trigger": {
+      "question": "This startup offers immediate equity vesting (no cliff). How important is equity liquidity timing?",
+      "context": "equity_preferences",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-022",
+    "title": "Design Director (Profit Sharing)",
+    "company": "SharedSuccess Corp",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 180000,
+    "description": "10% of company profits distributed among employees quarterly. Last year average employee got $25k bonus.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://sharedsuccesscorp.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "profit_sharing",
+    "ai_question_trigger": {
+      "question": "This company shares 10% of profits with employees. Do you prefer profit sharing or higher base salary?",
+      "context": "compensation_model",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-023",
+    "title": "Senior Designer (Compressed Hours)",
+    "company": "FlexSchedule Inc",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 148000,
+    "description": "Work 4x10 hour days or 5x8 hours - your choice. Flexibility to change schedule monthly.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://flexscheduleinc.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "compressed_hours",
+    "ai_question_trigger": {
+      "question": "This role offers flexible scheduling (4x10 or 5x8). What work schedule do you prefer?",
+      "context": "schedule_flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-024",
+    "title": "Product Designer (Results-Only)",
+    "company": "ROWE Company",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 155000,
+    "description": "Results-Only Work Environment. No set hours, no tracking. Judged purely on output and impact.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://rowecompany.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "results_only",
+    "ai_question_trigger": {
+      "question": "This is a results-only environment (no set hours, judged on output). Do you thrive with this autonomy?",
+      "context": "work_style",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-025",
+    "title": "Lead Designer (Mentorship Required)",
+    "company": "Teaching Culture Co",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 170000,
+    "description": "Required to mentor 2 junior designers. 20% of role is teaching/mentoring. Great for those who love developing others.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://teachingcultureco.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "mentorship_required",
+    "ai_question_trigger": {
+      "question": "This role requires mentoring junior designers (20% of time). Do you enjoy teaching and mentoring?",
+      "context": "mentorship_interest",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-026",
+    "title": "Senior Designer (Side Project Friendly)",
+    "company": "CreatorFriendly Inc",
+    "location": "New York, NY",
+    "remote": false,
+    "salary_usd": 145000,
+    "description": "Explicitly allows side projects and freelancing. No IP assignment for personal work. Supports creator economy.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://creatorfriendlyinc.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "side_projects",
+    "ai_question_trigger": {
+      "question": "This company explicitly allows side projects and freelancing. Do you have or want side projects?",
+      "context": "entrepreneurial_interests",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-027",
+    "title": "Design Manager (Transparent Salaries)",
+    "company": "OpenBook Corp",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 175000,
+    "description": "All salaries are public internally. Transparent compensation formula. Promotes equity and fairness.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://openbookcorp.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "salary_transparency",
+    "ai_question_trigger": {
+      "question": "This company has fully transparent salaries (everyone knows what everyone makes). Are you comfortable with this?",
+      "context": "transparency_comfort",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-028",
+    "title": "Principal Designer (Equity-Only Advisor)",
+    "company": "Stealth Unicorn",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 0,
+    "description": "Advisor role, 10 hours/month, 0.5% equity, no salary. Company valued at $500M. Potential $2.5M+ if IPO.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://stealthunicorn.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "advisor_equity_only",
+    "ai_question_trigger": {
+      "question": "This is an equity-only advisor role (10hrs/month, 0.5% equity, no salary). Interested in advisor positions?",
+      "context": "advisor_interest",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-029",
+    "title": "Staff Designer (Quarterly Retreats)",
+    "company": "RemoteRetreat Co",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 165000,
+    "description": "Fully remote but quarterly week-long team retreats in amazing locations (Bali, Portugal, etc). All expenses paid.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://remoteretreatco.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "quarterly_retreats",
+    "ai_question_trigger": {
+      "question": "This remote company does quarterly week-long retreats abroad. Do you enjoy team offsites?",
+      "context": "team_bonding",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-030",
+    "title": "Senior Designer (Pair Design Required)",
+    "company": "Collaborative Co",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 150000,
+    "description": "All design work done in pairs. No solo work. Extreme collaboration model. Great for learning, challenging for introverts.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://collaborativeco.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "pair_design",
+    "ai_question_trigger": {
+      "question": "This company requires pair design (all work done collaboratively). Do you prefer solo or collaborative work?",
+      "context": "collaboration_preference",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-031",
+    "title": "Designer (Special Scenario 21)",
+    "company": "SpecialCo 21",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 130000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 21.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco21.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "special_21",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-032",
+    "title": "Designer (Special Scenario 22)",
+    "company": "SpecialCo 22",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 133000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 22.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco22.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_22",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-033",
+    "title": "Designer (Special Scenario 23)",
+    "company": "SpecialCo 23",
+    "location": "Remote (US)",
+    "remote": false,
+    "salary_usd": 136000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 23.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco23.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "special_23",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-034",
+    "title": "Designer (Special Scenario 24)",
+    "company": "SpecialCo 24",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 139000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 24.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco24.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "special_24",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-035",
+    "title": "Designer (Special Scenario 25)",
+    "company": "SpecialCo 25",
+    "location": "New York, NY",
+    "remote": false,
+    "salary_usd": 142000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 25.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco25.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_25",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-036",
+    "title": "Designer (Special Scenario 26)",
+    "company": "SpecialCo 26",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 145000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 26.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco26.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "special_26",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-037",
+    "title": "Designer (Special Scenario 27)",
+    "company": "SpecialCo 27",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 148000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 27.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco27.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_27",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-038",
+    "title": "Designer (Special Scenario 28)",
+    "company": "SpecialCo 28",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 151000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 28.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco28.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "special_28",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-039",
+    "title": "Designer (Special Scenario 29)",
+    "company": "SpecialCo 29",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 154000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 29.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco29.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "special_29",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-040",
+    "title": "Designer (Special Scenario 30)",
+    "company": "SpecialCo 30",
+    "location": "Remote (Global)",
+    "remote": true,
+    "salary_usd": 157000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 30.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco30.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_30",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-041",
+    "title": "Designer (Special Scenario 31)",
+    "company": "SpecialCo 31",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 160000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 31.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco31.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_31",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-042",
+    "title": "Designer (Special Scenario 32)",
+    "company": "SpecialCo 32",
+    "location": "San Francisco, CA",
+    "remote": false,
+    "salary_usd": 163000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 32.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco32.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": false,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "special_32",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-043",
+    "title": "Designer (Special Scenario 33)",
+    "company": "SpecialCo 33",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 166000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 33.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco33.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "special_33",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-044",
+    "title": "Designer (Special Scenario 34)",
+    "company": "SpecialCo 34",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 169000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 34.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco34.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": false,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_34",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-045",
+    "title": "Designer (Special Scenario 35)",
+    "company": "SpecialCo 35",
+    "location": "New York, NY",
+    "remote": true,
+    "salary_usd": 172000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 35.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco35.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": false,
+    "company_stage": "Series A",
+    "equity": true,
+    "special_scenario": "special_35",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-046",
+    "title": "Designer (Special Scenario 36)",
+    "company": "SpecialCo 36",
+    "location": "Remote (US)",
+    "remote": true,
+    "salary_usd": 175000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 36.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco36.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "special_36",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-047",
+    "title": "Designer (Special Scenario 37)",
+    "company": "SpecialCo 37",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 178000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 37.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco37.com/careers",
+    "timezone": "CET",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_37",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-048",
+    "title": "Designer (Special Scenario 38)",
+    "company": "SpecialCo 38",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 181000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 38.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco38.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series B",
+    "equity": true,
+    "special_scenario": "special_38",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-049",
+    "title": "Designer (Special Scenario 39)",
+    "company": "SpecialCo 39",
+    "location": "San Francisco, CA",
+    "remote": true,
+    "salary_usd": 184000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 39.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco39.com/careers",
+    "timezone": "PST",
+    "visa_sponsorship": true,
+    "company_stage": "Seed",
+    "equity": true,
+    "special_scenario": "special_39",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
+  },
+  {
+    "id": "job-special-050",
+    "title": "Designer (Special Scenario 40)",
+    "company": "SpecialCo 40",
+    "location": "Remote (Global)",
+    "remote": false,
+    "salary_usd": 187000,
+    "description": "Unique work arrangement with special benefits and requirements. Scenario 40.",
+    "requirements": [
+      "Product Design",
+      "Figma",
+      "Collaboration",
+      "Communication"
+    ],
+    "url": "https://specialco40.com/careers",
+    "timezone": "GMT",
+    "visa_sponsorship": true,
+    "company_stage": "Series C",
+    "equity": true,
+    "special_scenario": "special_40",
+    "ai_question_trigger": {
+      "question": "This role has unique requirements. Are you open to non-traditional work arrangements?",
+      "context": "flexibility",
+      "follow_up": "Tell us more about your preferences in this area."
+    }
   }
 ]

@@ -10,11 +10,22 @@ class GeminiService:
         self.api_key = api_key or settings.GEMINI_API_KEY
         if self.api_key:
             self.client = genai.Client(api_key=self.api_key)
-            self.model = "gemini-3.5-flash"
+            self.model = "gemini-2.0-flash-exp"
         else:
             self.client = None
-            self.model = "gemini-3.5-flash"
+            self.model = "gemini-2.0-flash-exp"
         logger.info("GeminiService initialized", extra={"payload": {"model": self.model}})
+        
+        # Import OpenRouter service for fallback
+        self._openrouter = None
+    
+    @property
+    def openrouter(self):
+        """Lazy load OpenRouter service."""
+        if self._openrouter is None:
+            from ..services.openrouter_service import openrouter_service
+            self._openrouter = openrouter_service
+        return self._openrouter
 
     async def generate_response(
         self, 
@@ -24,11 +35,11 @@ class GeminiService:
     ) -> str:
         """
         Sends requests to Gemini API for various tasks.
-        Uses the new google.genai SDK.
+        Falls back to OpenRouter if Gemini fails or hits rate limits.
         """
         if not self.client:
-            logger.warning("Gemini API key not configured. Returning mock response.")
-            return self._get_mock_response(prompt, system_prompt)
+            logger.warning("Gemini API key not configured. Trying OpenRouter fallback.")
+            return await self._fallback_to_openrouter(prompt, system_prompt)
 
         logger.info(
             "Sending payload request to Gemini model service",
@@ -49,9 +60,43 @@ class GeminiService:
                 contents=full_prompt
             )
             return response.text
+        
         except Exception as e:
-            logger.error(f"Gemini API call failed: {str(e)}")
+            error_str = str(e).lower()
+            
+            # Check if it's a rate limit or quota error
+            if any(keyword in error_str for keyword in ['rate limit', 'quota', '429', 'resource exhausted']):
+                logger.warning(f"Gemini rate limit hit: {str(e)}. Falling back to OpenRouter.")
+                return await self._fallback_to_openrouter(prompt, system_prompt)
+            
+            # For other errors, also try fallback
+            logger.error(f"Gemini API call failed: {str(e)}. Trying OpenRouter fallback.")
+            fallback_response = await self._fallback_to_openrouter(prompt, system_prompt)
+            
+            if fallback_response:
+                return fallback_response
+            
+            # If both fail, return error
             return f"Error: {str(e)}"
+    
+    async def _fallback_to_openrouter(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        """Fallback to OpenRouter when Gemini fails."""
+        try:
+            response = await self.openrouter.generate_response(
+                prompt=prompt,
+                system_prompt=system_prompt
+            )
+            
+            if response:
+                logger.info("Successfully used OpenRouter fallback")
+                return response
+            else:
+                logger.warning("OpenRouter fallback also failed")
+                return self._get_mock_response(prompt, system_prompt)
+        
+        except Exception as e:
+            logger.error(f"OpenRouter fallback failed: {str(e)}")
+            return self._get_mock_response(prompt, system_prompt)
 
     async def generate_structured_response(
         self,
