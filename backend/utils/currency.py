@@ -1,7 +1,10 @@
 # backend/utils/currency.py
 import httpx
 from typing import Optional
-from services.currency_converter import currency_converter_service
+try:
+    from services.currency_converter import currency_converter_service
+except ImportError:
+    from backend.services.currency_converter import currency_converter_service
 
 # Base exchange rate utility. Defaults to 1550 NGN to 1 USD as a fallback.
 FALLBACK_RATE = 1550.0
