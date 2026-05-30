@@ -4,6 +4,7 @@ from typing import Dict, Any, Optional
 from datetime import datetime
 from pydantic import BaseModel
 from backend.core.logging import logger
+from backend.services.firebase import firebase_service
 
 class AgentState(BaseModel):
     session_id: str
@@ -26,6 +27,7 @@ class BaseAgent(ABC):
             progress=0.0,
             started_at=datetime.utcnow()
         )
+        self._sync_state()
 
     @abstractmethod
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
@@ -38,6 +40,7 @@ class BaseAgent(ABC):
     def update_progress(self, progress: float, status: str = "running"):
         self.state.progress = progress
         self.state.status = status
+        self._sync_state()
         logger.info(
             f"Agent {self.agent_type} progress updated",
             extra={
@@ -46,3 +49,18 @@ class BaseAgent(ABC):
                 "payload": {"progress": progress, "status": status}
             }
         )
+
+    def _sync_state(self):
+        """
+        Syncs current agent state to Firestore.
+        Rule 4.3 compliant: Always save intermediate state to Firestore.
+        """
+        try:
+            state_data = self.state.model_dump()
+            firebase_service.update_agent_state(
+                self.session_id, 
+                self.agent_type, 
+                state_data
+            )
+        except Exception as e:
+            logger.error(f"Failed to sync agent state: {str(e)}")
