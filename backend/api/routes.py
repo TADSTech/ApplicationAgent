@@ -10,8 +10,39 @@ from backend.agents.contract_agent import ContractAgent
 from backend.agents.linkedin_agent import LinkedinAgent
 from backend.api.dependencies import verify_firebase_token
 from backend.core.logging import logger
+from backend.services.currency_converter import currency_converter_service
+from backend.services.portfolio_showcase import portfolio_showcase_service
 
 router = APIRouter()
+
+@router.get("/exchange-rate")
+async def get_exchange_rate():
+    """
+    Get current exchange rate between USD and NGN.
+    Returns both USD to NGN and NGN to USD rates.
+    """
+    from datetime import datetime, timezone
+    
+    try:
+        usd_to_ngn = await currency_converter_service.get_exchange_rate("USD", "NGN")
+        
+        if usd_to_ngn is None:
+            # Return fallback/mock rate if API call fails
+            usd_to_ngn = 1625.50  # Fallback rate
+            logger.warning("Exchange rate API call failed, using fallback rate", 
+                         extra={"agent_type": "api", "fallback_rate": usd_to_ngn})
+        
+        ngn_to_usd = 1.0 / usd_to_ngn if usd_to_ngn > 0 else 0.0
+        
+        return {
+            "usd_to_ngn": round(usd_to_ngn, 2),
+            "ngn_to_usd": round(ngn_to_usd, 6),
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+    except Exception as e:
+        logger.error(f"Error getting exchange rate: {str(e)}", 
+                    extra={"agent_type": "api", "error": str(e)})
+        raise HTTPException(status_code=500, detail="Failed to get exchange rate")
 
 class JobSearchRequest(BaseModel):
     session_id: str
@@ -33,6 +64,9 @@ class LinkedInDMRequest(BaseModel):
     recruiter_name: str
     company_name: str
     job_title: str
+
+class GitHubReposRequest(BaseModel):
+    github_username: str
 
 @router.post("/auth/login")
 async def login(auth_data: Dict[str, Any] = Depends(verify_firebase_token)):
@@ -98,3 +132,43 @@ async def prepare_linkedin_outreach(request: LinkedInDMRequest):
     
     result = await orchestrator.execute_agent_with_retry("linkedin", context)
     return {"session_id": request.session_id, "result": result}
+
+@router.post("/portfolio/github")
+async def get_github_repos(request: GitHubReposRequest):
+    """
+    Fetch GitHub repositories for a given username using GitHub token.
+    """
+    try:
+        repos = await portfolio_showcase_service.get_github_repos(request.github_username)
+        
+        if repos is None:
+            return {
+                "github_username": request.github_username,
+                "repos": [],
+                "status": "failed",
+                "message": "GitHub token not configured or API call failed"
+            }
+        
+        # Format repos to include only relevant info
+        formatted_repos = []
+        for repo in repos[:10]:  # Limit to 10 most recent repos
+            formatted_repos.append({
+                "name": repo.get("name"),
+                "description": repo.get("description"),
+                "language": repo.get("language"),
+                "stars": repo.get("stargazers_count"),
+                "forks": repo.get("forks_count"),
+                "url": repo.get("html_url"),
+                "updated_at": repo.get("updated_at")
+            })
+        
+        return {
+            "github_username": request.github_username,
+            "repos": formatted_repos,
+            "status": "success",
+            "total_count": len(repos)
+        }
+    except Exception as e:
+        logger.error(f"Error fetching GitHub repos: {str(e)}", 
+                    extra={"agent_type": "api", "error": str(e)})
+        raise HTTPException(status_code=500, detail="Failed to fetch GitHub repositories")

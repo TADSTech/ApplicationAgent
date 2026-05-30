@@ -1,5 +1,5 @@
 # backend/services/linkedin.py
-from backend.core.logging import logger
+from ..core.logging import logger
 from typing import Dict, Any
 import asyncio
 
@@ -36,3 +36,6 @@ class LinkedInService:
         # Simulate API call delay
         await asyncio.sleep(0.5)
         return True
+
+# Global instance
+linkedin_service = LinkedInService()

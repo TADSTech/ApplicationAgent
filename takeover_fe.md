@@ -10,13 +10,17 @@ JobJockey is a specialized, AI-powered job application system built to bridge th
 ---
 
 ## 📍 Current State
+
+### Backend Status
 - **Phase 1 (Scaffolding):** ✅ Completed.
 - **Phase 2 (Agent Reasoning & API):** ✅ Completed. All backend agents and API endpoints are implemented.
 - **Phase 4 (Cloud Run Deployment):** ✅ Completed. The backend is configured for Cloud Run deployment.
 - **Phase 5 (Testing & Quality Assurance):** ✅ Completed (Backend only, Performance Testing out of scope for automated execution). Backend unit and integration tests are in place.
 - **Phase 6 (Nigeria-Specific Features - Backend):** ✅ Completed. All backend logic for Nigeria-specific features (Time Zone Navigation, Visa Sponsorship Tracker, Currency Intelligence, Portfolio Showcase, Interview Preparation) has been implemented.
 
-All backend progress, including Gemini API integration, has been committed and pushed to the `feature/backend-phase2` branch.
+### Backend API Status
+- **Gemini AI Integration:** ✅ Completed. All LLM interactions now use the Gemini API (using `google-genai` SDK).
+- **All backend progress has been committed and pushed to the `feature/backend-phase2` branch.**
 
 ---
 
@@ -75,6 +79,165 @@ Your goal is to implement the frontend UI and integrate with the existing backen
 
 ---
 
+## 🔌 Backend API Integration Guide
+
+### API Base URL
+```
+http://localhost:8000/api/v1
+```
+Configure via `VITE_API_URL` in `.env` file.
+
+### Available Endpoints
+
+#### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/login` | Login with Firebase token |
+| POST | `/auth/logout` | Logout |
+
+#### Job Search
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/jobs/search` | Start autonomous job search |
+
+**Request Body:**
+```json
+{
+  "session_id": "unique-session-id",
+  "keywords": "Software Engineer",
+  "location": "Remote"
+}
+```
+
+**Response:**
+```json
+{
+  "session_id": "unique-session-id",
+  "result": {
+    "status": "success",
+    "data": [...]
+  }
+}
+```
+
+#### Resume Tailoring
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/resume/tailor` | Tailor resume for a specific job |
+
+**Request Body:**
+```json
+{
+  "session_id": "unique-session-id",
+  "job_description": "Job description text...",
+  "resume_text": "User's resume text..."
+}
+```
+
+**Response:**
+```json
+{
+  "session_id": "unique-session-id",
+  "result": {
+    "tailored_output": {...},
+    "nigeria_context_adapted": true,
+    "status": "success"
+  }
+}
+```
+
+#### Contract Analysis
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/contract/analyze` | Analyze employment contract |
+
+**Request Body:**
+```json
+{
+  "session_id": "unique-session-id",
+  "contract_text": "Contract text...",
+  "base_salary_usd": 80000
+}
+```
+
+**Response:**
+```json
+{
+  "session_id": "unique-session-id",
+  "result": {...}
+}
+```
+
+#### LinkedIn Outreach
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/linkedin/outreach` | Prepare LinkedIn outreach messages |
+
+**Request Body:**
+```json
+{
+  "session_id": "unique-session-id",
+  "recruiter_name": "John Doe",
+  "company_name": "Tech Company",
+  "job_title": "Software Engineer"
+}
+```
+
+**Response:**
+```json
+{
+  "session_id": "unique-session-id",
+  "result": {...}
+}
+```
+
+### Agent Types
+The backend supports the following agent types:
+- `job` - Job Agent (fetches and filters job listings)
+- `resume` - Resume Agent (tails and optimizes resumes)
+- `contract` - Contract Agent (analyzes employment contracts)
+- `linkedin` - LinkedIn Agent (manages LinkedIn outreach)
+- `orchestrator` - Multi-Agent Orchestrator
+
+### Agent State Structure
+```typescript
+interface AgentState {
+  sessionId: string;
+  agentType: 'job' | 'resume' | 'contract' | 'linkedin' | 'orchestrator';
+  status: 'queued' | 'running' | 'completed' | 'failed';
+  progress: number; // 0-100
+  result?: Record<string, any>;
+  error?: string;
+  startedAt?: string;
+  completedAt?: string;
+}
+```
+
+### Job Data Structure
+```typescript
+interface Job {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  salaryMin?: number; // USD
+  salaryMax?: number; // USD
+  salaryMinNgn?: number; // NGN equivalent
+  salaryMaxNgn?: number; // NGN equivalent
+  salaryDisplay?: string; // Formatted display string
+  description: string;
+  requirements: string[];
+  url: string;
+  postedAt: string;
+  timeZone: string; // WAT compatibility
+  visaSponsorship: boolean;
+  remote: boolean;
+  source: string; // Firecrawl, Indeed, etc.
+}
+```
+
+---
+
 ## 🛑 Strict Guardrails & Rules (From `AGENTS.md` and `DESIGN.md`)
 
 1.  **UI/UX Design System Enforcement**: Strictly adhere to `DESIGN.md` for all visual elements (colors, typography, spacing, component styles).
@@ -89,9 +252,35 @@ Your goal is to implement the frontend UI and integrate with the existing backen
 ## 🚀 How to Start
 
 1.  Checkout the `main` or `feature/frontend-phase3` branch (whichever is designated for frontend development).
-2.  Install frontend dependencies: `npm install` (or `yarn install`).
+2.  Install frontend dependencies: `pnpm install` (project uses pnpm).
 3.  Review the existing `frontend/src` directory structure.
 4.  Familiarize yourself with `DESIGN.md`.
 5.  Begin executing the tasks defined in **"Your Immediate Scope"** above, focusing on Phase 3.
+
+### Quick Start Commands
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
+
+### Environment Variables
+Copy `.env.example` to `.env` and configure:
+```env
+VITE_API_URL=http://localhost:8000/api/v1
+VITE_FIREBASE_API_KEY=your-firebase-api-key
+VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your-firebase-project-id
+```
+
+---
 
 Good luck, Agent! Build a beautiful and performant bridge.

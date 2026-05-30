@@ -1,8 +1,8 @@
 
 # backend/services/interview_prep.py
 from typing import List, Dict, Any, Optional
-from backend.core.logging import logger
-from backend.services.gemini import gemini_client # Assuming gemini_client is initialized
+from ..core.logging import logger
+from ..services.gemini import gemini_service
 
 class InterviewPrepService:
     def __init__(self):
@@ -57,7 +57,7 @@ class InterviewPrepService:
         try:
             # Example LLM interaction (replace with actual prompt engineering)
             # This is a basic placeholder; actual implementation needs careful prompt design.
-            response = await gemini_client.generate_response(
+            response = await gemini_service.generate_response(
                 prompt=f"Question: {question}\nCandidate Answer: {candidate_response}\nProvide constructive feedback on the candidate's response, focusing on structure, relevance, and completeness. Suggest areas for improvement.",
                 system_prompt="You are an interview coach providing feedback on a candidate's answer."
             )

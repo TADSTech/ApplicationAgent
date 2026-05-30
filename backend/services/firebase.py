@@ -1,8 +1,8 @@
 # backend/services/firebase.py
 import firebase_admin
 from firebase_admin import credentials, firestore
-from backend.core.config import settings
-from backend.core.logging import logger
+from ..core.config import settings
+from ..core.logging import logger
 from typing import Dict, Any, Optional
 
 class FirebaseService:

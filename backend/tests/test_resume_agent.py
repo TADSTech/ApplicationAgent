@@ -1,11 +1,12 @@
 # backend/tests/test_resume_agent.py
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, AsyncMock
 from backend.agents.resume_agent import ResumeAgent
 
 @pytest.mark.asyncio
 async def test_resume_agent_run(mock_openai):
-    with patch("backend.agents.resume_agent.OpenAIService", return_value=mock_openai), \
+    mock_openai.generate_structured_response = AsyncMock(return_value="Mock LLM Response")
+    with patch("backend.agents.resume_agent.gemini_service", mock_openai), \
          patch("backend.agents.base.firebase_service"):
         
         agent = ResumeAgent(session_id="test-session")

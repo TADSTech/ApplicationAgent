@@ -1,9 +1,10 @@
 # backend/agents/linkedin_agent.py
 from typing import Dict, Any
-from backend.agents.base import BaseAgent
-from backend.services.linkedin import linkedin_service
-from backend.core.config import settings
-from backend.core.logging import logger
+from .base import BaseAgent
+from ..services.linkedin import linkedin_service
+from ..services.gemini import gemini_service
+from ..core.config import settings
+from ..core.logging import logger
 
 class LinkedinAgent(BaseAgent):
     def __init__(self, session_id: str):
@@ -26,7 +27,7 @@ class LinkedinAgent(BaseAgent):
                 "payload": {"recruiter_name": recruiter, "company": company}
             }
         )
-        self.update_progress(30.0)
+        await self.update_progress(30.0)
 
         system_prompt = """
         You are an expert LinkedIn Outreach Agent for JobJockey.
@@ -48,12 +49,12 @@ class LinkedinAgent(BaseAgent):
         Draft a connection request and a follow-up DM.
         """
 
-        self.update_progress(60.0)
-        llm_response = await self.gemini.generate_response(prompt, system_prompt)
+        await self.update_progress(60.0)
+        llm_response = await gemini_service.generate_response(prompt, system_prompt)
         
-        self.update_progress(90.0)
+        await self.update_progress(90.0)
 
-        self.update_progress(100.0, "completed")
+        await self.update_progress(100.0, "completed")
         return {
             "outreach_drafts": llm_response,
             "status": "success"
