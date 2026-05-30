@@ -307,7 +307,10 @@ export const Dashboard: React.FC = () => {
           </h1>
           
           <div className="flex items-center space-x-5">
-            <button className="bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold px-6 py-2.5 rounded-full text-xs transition-all duration-200 shadow-sm cursor-pointer font-dm-sans">
+            <button
+              onClick={() => navigate('/guidelines')}
+              className="bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold px-6 py-2.5 rounded-full text-xs transition-all duration-200 shadow-sm cursor-pointer font-dm-sans"
+            >
               How to Guide
             </button>
             <div className="relative">

@@ -12,6 +12,7 @@ import Settings from './pages/Settings';
 import Account from './pages/Account';
 import Applications from './pages/Applications';
 import SavedJobs from './pages/SavedJobs';
+import Guidelines from './pages/Guidelines';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/auto" element={<AutoMode />} />
         <Route path="/swipe" element={<SwipeMode />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/guidelines" element={<Guidelines />} />
         <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
