@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, FileText, X, ArrowLeft } from 'lucide-react';
+import { Upload, FileText, X, ArrowLeft, Save, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ResumeEditorProps {
@@ -10,28 +10,25 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  const [name, setName] = useState('Kehinde Sholadoye');
-  const [email, setEmail] = useState('k@sholadoye.com');
-  const [phone, setPhone] = useState('+234 800 000 0000');
-  const [location, setLocation] = useState('Lagos, Nigeria');
-  const [title, setTitle] = useState('Senior Product Designer');
-
-  const [summary, setSummary] = useState(
-    'Product designer with 6+ years of experience crafting user-centered digital products for fintech and SaaS startups. Skilled in end-to-end design, design systems, and cross-functional collaboration.'
-  );
-
+  // Remove default data - start with empty fields
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
+  const [title, setTitle] = useState('');
+  const [summary, setSummary] = useState('');
   const [experience, setExperience] = useState([
     {
       id: 1,
-      company: 'Tech Company',
-      role: 'Senior Product Designer',
-      duration: '2022 — Present',
-      description: 'Leading design for the core product team. Built and maintained the company design system serving 4 product lines.',
+      company: '',
+      role: '',
+      duration: '',
+      description: '',
     },
   ]);
-
-  const [skills, setSkills] = useState('Figma, Prototyping, Design Systems, User Research, Framer, Tailwind CSS');
+  const [skills, setSkills] = useState('');
 
   const handleFileDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -39,12 +36,48 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
     const dropped = e.dataTransfer.files[0];
     if (dropped && (dropped.type.includes('pdf') || dropped.name.endsWith('.docx'))) {
       setFile(dropped);
+      // TODO: Parse file and populate fields
     }
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
-    if (selected) setFile(selected);
+    if (selected) {
+      setFile(selected);
+      // TODO: Parse file and populate fields
+    }
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      // TODO: Save to Firebase
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      alert('Resume saved successfully!');
+    } catch (error) {
+      alert('Failed to save resume. Please try again.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const addExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        id: Date.now(),
+        company: '',
+        role: '',
+        duration: '',
+        description: '',
+      },
+    ]);
+  };
+
+  const removeExperience = (id: number) => {
+    if (experience.length > 1) {
+      setExperience(experience.filter(exp => exp.id !== id));
+    }
   };
 
   return (
@@ -166,8 +199,16 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
 
           <div className="space-y-1.5">
             <label className="font-dm-sans text-xs font-medium text-[#7F7F7F]">Experience</label>
-            {experience.map((exp) => (
-              <div key={exp.id} className="bg-[#F5F3EE] border border-[#E4E2DD] rounded-xl p-4 space-y-3">
+            {experience.map((exp, idx) => (
+              <div key={exp.id} className="bg-[#F5F3EE] border border-[#E4E2DD] rounded-xl p-4 space-y-3 relative">
+                {experience.length > 1 && (
+                  <button
+                    onClick={() => removeExperience(exp.id)}
+                    className="absolute top-2 right-2 text-[#7F7F7F] hover:text-[#FF4D00] transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
                 <div className="grid grid-cols-2 gap-3">
                   <input
                     value={exp.company}
@@ -186,7 +227,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
                   value={exp.duration}
                   onChange={(e) => setExperience(prev => prev.map(x => x.id === exp.id ? { ...x, duration: e.target.value } : x))}
                   className="w-full bg-white border border-[#E4E2DD] rounded-xl px-4 py-2.5 font-dm-sans text-sm focus:outline-none focus:ring-2 focus:ring-[#FF4D00]/30 transition-all"
-                  placeholder="Duration"
+                  placeholder="Duration (e.g., 2022 - Present)"
                 />
                 <textarea
                   value={exp.description}
@@ -197,6 +238,12 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
                 />
               </div>
             ))}
+            <button
+              onClick={addExperience}
+              className="w-full border-2 border-dashed border-[#E4E2DD] rounded-xl px-4 py-3 text-sm text-[#7F7F7F] hover:text-[#FF4D00] hover:border-[#FF4D00]/30 transition-all font-dm-sans font-medium"
+            >
+              + Add Experience
+            </button>
           </div>
 
           <div className="space-y-1.5">
@@ -219,8 +266,22 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
           >
             Cancel
           </button>
-          <button className="px-8 py-3 rounded-full bg-[#FF4D00] text-white font-dm-sans text-sm font-bold hover:bg-[#FF4D00]/90 transition-all shadow-sm cursor-pointer">
-            Save Resume
+          <button 
+            onClick={handleSave}
+            disabled={saving}
+            className="px-8 py-3 rounded-full bg-[#FF4D00] text-white font-dm-sans text-sm font-bold hover:bg-[#FF4D00]/90 transition-all shadow-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+          >
+            {saving ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Saving...</span>
+              </>
+            ) : (
+              <>
+                <Save className="w-4 h-4" />
+                <span>Save Resume</span>
+              </>
+            )}
           </button>
         </div>
       </div>

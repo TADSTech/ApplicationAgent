@@ -54,10 +54,10 @@ export const Welcome: React.FC = () => {
           <div className="relative z-10 max-w-xl">
             <span className="text-xs font-bold tracking-widest text-[#B58A63] uppercase bg-[#FAF6F0] px-3 py-1 rounded-full border border-[#E4E2DD]">Introducing JobJockey</span>
             <h1 className="text-[#1A1A1A] text-5xl font-extrabold leading-tight tracking-tight mt-6 mb-6 font-dm-sans">
-              Your global career bridge on autopilot.
+              Your global career bridge on autopilot
             </h1>
             <p className="text-[#5C5A56] text-lg mb-12 max-w-md leading-relaxed">
-              Autonomous agents search remote roles, tailor your CV to global standards, and audit contracts for safety—all while keeping you in control.
+              Autonomous agents search remote roles, tailor your CV to global standards, and audit contracts for safety, all while keeping you in control.
             </p>
 
             {/* Clean, Non-Techy Floating Agent Status Cards */}
@@ -104,8 +104,8 @@ export const Welcome: React.FC = () => {
           <div className="h-12 w-full"></div>
 
           <div className="max-w-sm w-full text-center my-auto animate-in fade-in duration-500">
-            <h2 className="text-3xl font-bold text-[#0A0A0A] mb-2 font-space-mono">Get started</h2>
-            <p className="text-[#7F7F7F] mb-10">Your agents are standing by.</p>
+            <h2 className="text-3xl font-bold text-[#0A0A0A] mb-2 font-dm-sans">Get started</h2>
+            <p className="text-[#7F7F7F] mb-10 font-dm-sans">Your agents are standing by</p>
 
             <div className="space-y-4 w-full">
               <Button
@@ -127,11 +127,11 @@ export const Welcome: React.FC = () => {
 
           {/* Footer */}
           <footer className="w-full text-center pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-[#7F7F7F] uppercase tracking-tighter space-y-4 md:space-y-0">
-              <p>© 2026 JobJockey AI. Human-in-the-loop executive search.</p>
+            <div className="flex flex-col md:flex-row justify-between items-center text-[10px] text-[#7F7F7F] uppercase tracking-wider space-y-4 md:space-y-0 font-dm-sans">
+              <p>© 2026 JobJockey AI</p>
               <div className="flex space-x-6">
-                <a href="#" className="hover:text-[#0A0A0A]">Privacy Policy</a>
-                <a href="#" className="hover:text-[#0A0A0A]">Terms of Service</a>
+                <a href="#" className="hover:text-[#0A0A0A] transition-colors">Privacy</a>
+                <a href="#" className="hover:text-[#0A0A0A] transition-colors">Terms</a>
               </div>
             </div>
           </footer>
