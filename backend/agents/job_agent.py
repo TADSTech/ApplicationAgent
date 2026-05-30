@@ -32,19 +32,19 @@ class JobAgent(BaseAgent):
                 "payload": {"keywords": keywords, "location": location}
             }
         )
-        await self.update_progress(10.0)
+        self.update_progress(10.0)
         
         try:
             # Scrape live jobs via Firecrawl
             raw_jobs = await self.firecrawl.scrape_jobs(keywords, location)
-            await self.update_progress(40.0)
+            self.update_progress(40.0)
             
             if not raw_jobs:
                 logger.warning(
                     "No jobs found",
                     extra={"session_id": self.session_id, "agent_type": self.agent_type}
                 )
-                await self.update_progress(100.0, "completed")
+                self.update_progress(100.0, "completed")
                 return {"scraped_count": 0, "matched_jobs": []}
 
             processed_jobs = []
@@ -89,9 +89,9 @@ class JobAgent(BaseAgent):
                 
                 # Progress calculation
                 progress = 40.0 + ((idx + 1) / len(raw_jobs) * 60.0)
-                await self.update_progress(min(progress, 99.0))
+                self.update_progress(min(progress, 99.0))
 
-            await self.update_progress(100.0, "completed")
+            self.update_progress(100.0, "completed")
             return {
                 "scraped_count": len(raw_jobs),
                 "matched_jobs": processed_jobs

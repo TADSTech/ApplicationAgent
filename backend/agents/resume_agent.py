@@ -30,7 +30,7 @@ class ResumeAgent(BaseAgent):
                 "payload": {"resume_length": len(resume_text), "job_length": len(job_description)}
             }
         )
-        await self.update_progress(20.0)
+        self.update_progress(20.0)
 
         # System prompt enforcing Nigeria Context Adaptation (Rule 5.3)
         system_prompt = """
@@ -55,7 +55,7 @@ class ResumeAgent(BaseAgent):
         Please tailor this resume for the job and perform the Nigeria Context Adaptation.
         """
 
-        await self.update_progress(40.0)
+        self.update_progress(40.0)
         
         # Use structured output with Gemini
         llm_response = await gemini_service.generate_structured_response(
@@ -64,9 +64,9 @@ class ResumeAgent(BaseAgent):
             system_prompt
         )
         
-        await self.update_progress(90.0)
+        self.update_progress(90.0)
 
-        await self.update_progress(100.0, "completed")
+        self.update_progress(100.0, "completed")
         return {
             "tailored_output": llm_response,
             "nigeria_context_adapted": True,

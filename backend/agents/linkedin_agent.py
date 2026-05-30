@@ -10,7 +10,7 @@ class LinkedinAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("linkedin", session_id)
         self.linkedin_service = linkedin_service
-        self.gemini = gemini_client
+        self.gemini = gemini_service
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -28,7 +28,7 @@ class LinkedinAgent(BaseAgent):
                 "payload": {"recruiter_name": recruiter, "company": company}
             }
         )
-        await self.update_progress(30.0)
+        self.update_progress(30.0)
 
         system_prompt = """
         You are an expert LinkedIn Outreach Agent for JobJockey.
@@ -50,12 +50,12 @@ class LinkedinAgent(BaseAgent):
         Draft a connection request and a follow-up DM.
         """
 
-        await self.update_progress(60.0)
+        self.update_progress(60.0)
         llm_response = await gemini_service.generate_response(prompt, system_prompt)
         
-        await self.update_progress(90.0)
+        self.update_progress(90.0)
 
-        await self.update_progress(100.0, "completed")
+        self.update_progress(100.0, "completed")
         return {
             "outreach_drafts": llm_response,
             "status": "success"

@@ -6,7 +6,7 @@ from backend.agents.job_agent import JobAgent
 @pytest.mark.asyncio
 async def test_job_agent_run(mock_firecrawl):
     # Patch FirecrawlService and firebase_service to avoid real network/db calls
-    with patch("backend.agents.job_agent.firecrawl_service", mock_firecrawl), \
+    with patch("backend.agents.job_agent.FirecrawlService", return_value=mock_firecrawl), \
          patch("backend.agents.base.firebase_service") as mock_fb:
         
         agent = JobAgent(session_id="test-session")
