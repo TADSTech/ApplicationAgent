@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface ParsedProfile {
+  full_name?: string;
   fullName?: string;
   email?: string;
   phone?: string;
@@ -8,6 +9,8 @@ interface ParsedProfile {
   linkedInUrl?: string;
   gitHubUrl?: string;
   timezone?: string;
+  current_title?: string;
+  skills?: string[];
 }
 
 interface Resume {

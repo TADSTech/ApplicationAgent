@@ -104,7 +104,6 @@ const ProfileSection: React.FC = () => {
         fullName: parsedData.full_name || prev.fullName,
         phone: parsedData.phone || prev.phone,
         location: parsedData.location || prev.location,
-        email: parsedData.email || user?.email || prev.email,
         linkedInUrl: 'linkedin.com/in/michaeltunwashe',
         gitHubUrl: parsedData.gitHubUrl || prev.gitHubUrl,
         timezone: parsedData.timezone === 'WAT'
