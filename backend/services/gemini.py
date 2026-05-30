@@ -2,8 +2,12 @@
 from typing import Dict, Any, Optional
 from google import genai
 from google.genai import types
-from core.logging import logger
-from core.config import settings
+try:
+    from core.logging import logger
+    from core.config import settings
+except ImportError:
+    from backend.core.logging import logger
+    from backend.core.config import settings
 
 class GeminiService:
     def __init__(self, api_key: Optional[str] = None):
@@ -23,7 +27,10 @@ class GeminiService:
     def openrouter(self):
         """Lazy load OpenRouter service."""
         if self._openrouter is None:
-            from services.openrouter_service import openrouter_service
+            try:
+                from services.openrouter_service import openrouter_service
+            except ImportError:
+                from backend.services.openrouter_service import openrouter_service
             self._openrouter = openrouter_service
         return self._openrouter
 
