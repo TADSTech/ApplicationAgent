@@ -83,6 +83,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setLoading(true);
     setError(null);
     try {
+      if (!auth || !googleProvider) {
+        throw new Error("Firebase Auth is not initialized or invalid API key configuration");
+      }
       const result = await signInWithPopup(auth, googleProvider);
       const idToken = await result.user.getIdToken();
       

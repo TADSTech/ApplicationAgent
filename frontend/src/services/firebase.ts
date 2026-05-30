@@ -10,9 +10,23 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Initialize Firebase only if the config values exist
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
+const isConfigValid = firebaseConfig.apiKey && firebaseConfig.apiKey !== 'your-firebase-api-key';
 
+let app: any = null;
+let auth: any = null;
+let googleProvider: any = null;
+
+if (isConfigValid) {
+  try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    googleProvider = new GoogleAuthProvider();
+  } catch (err) {
+    console.error("Firebase initialization failed:", err);
+  }
+} else {
+  console.warn("Firebase credentials not configured or placeholder detected. Falling back to backend mock verification.");
+}
+
+export { auth, googleProvider };
 export default app;
