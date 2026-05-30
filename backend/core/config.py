@@ -16,6 +16,10 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY", None)
     LINKEDIN_CLIENT_ID: Optional[str] = os.getenv("LINKEDIN_CLIENT_ID", None)
     LINKEDIN_CLIENT_SECRET: Optional[str] = os.getenv("LINKEDIN_CLIENT_SECRET", None)
+    EXCHANGERATE_API_KEY: Optional[str] = os.getenv("EXCHANGERATE_API_KEY", None)
+    GITHUB_TOKEN: Optional[str] = os.getenv("GITHUB_TOKEN", None)
+    HACKERRANK_API_KEY: Optional[str] = os.getenv("HACKERRANK_API_KEY", None)
+    DEVTO_API_KEY: Optional[str] = os.getenv("DEVTO_API_KEY", None)
 
     model_config = SettingsConfigDict(
         env_file = ".env",
