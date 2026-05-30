@@ -1,14 +1,14 @@
 # backend/agents/linkedin_agent.py
 from typing import Dict, Any
 from backend.agents.base import BaseAgent
-from backend.services.gemini import GeminiService
+from backend.services.linkedin import linkedin_service
 from backend.core.config import settings
 from backend.core.logging import logger
 
 class LinkedinAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("linkedin", session_id)
-        self.gemini = GeminiService(api_key=settings.GEMINI_API_KEY)
+        self.linkedin_service = linkedin_service
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """

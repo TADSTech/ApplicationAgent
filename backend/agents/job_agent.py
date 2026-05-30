@@ -13,7 +13,7 @@ from backend.models.job import Job
 class JobAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("job", session_id)
-        self.firecrawl = FirecrawlService(api_key=settings.FIRECRAWL_API_KEY)
+        self.firecrawl = FirecrawlService()
         self.currency_converter_service = currency_converter_service
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
