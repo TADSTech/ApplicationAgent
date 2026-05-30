@@ -18,6 +18,12 @@ export const apiClient = {
     return res.json();
   },
 
+  async getAgentStates(sessionId: string): Promise<AgentState[]> {
+    const res = await fetch(`${API_BASE_URL}/agents/states?session_id=${sessionId}`);
+    if (!res.ok) throw new Error('Failed to fetch agent states');
+    return res.json();
+  },
+
   async tailorResume(sessionId: string, jobId: string, resumeText: string): Promise<any> {
     const res = await fetch(`${API_BASE_URL}/resume/tailor?session_id=${sessionId}&job_id=${jobId}`, {
       method: 'POST',

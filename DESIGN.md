@@ -16,12 +16,13 @@ colors:
   space-stars: '#FFFFFF'
   
   # Functional Accents (Aesthetic Gradient and Terminal Colors)
+  primary: '#FF4D00'
+  secondary: '#FFCC00'
+  success: '#00FF4D'
+  error: '#FF1500'
+  warning: '#FFEA00'
   accent-teal-start: '#15B097'
   accent-teal-end: '#217A94'
-  accent-green: '#10B981'
-  accent-blue: '#2563EB'
-  accent-terminal-green: '#00FFCC'
-  accent-terminal-cursor: '#00FF88'
   border: '#E4E2DD'
   muted: '#7F7F7F'
   
