@@ -109,9 +109,9 @@
 ## Phase 5: Testing & Quality Assurance
 
 ### Task 5.1: Unit Tests
-- [ ] 5.1.1 Write unit tests for agents
-- [ ] 5.1.2 Test API endpoints
-- [ ] 5.1.3 Test UI components
+- [x] 5.1.1 Write unit tests for agents
+- [x] 5.1.2 Test API endpoints
+- [x] 5.1.3 Test UI components
 - [ ] 5.1.4 Achieve >80% code coverage
 
 ### Task 5.2: Integration Tests
