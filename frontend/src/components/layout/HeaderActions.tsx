@@ -14,11 +14,11 @@ export const HeaderActions: React.FC<HeaderActionsProps> = ({ step, totalSteps }
   return (
     <>
       {step && totalSteps ? (
-        <div className="text-sm p-4 text-muted-foreground dark:text-gray-300 font-medium">
+        <div className="text-sm p-4 text-muted-foreground font-medium">
           Step {step} of {totalSteps}
         </div>
       ) : (
-        <div className="text-sm p-4 text-muted-foreground dark:text-gray-300 font-medium">
+        <div className="text-sm p-4 text-muted-foreground font-medium">
           {isSigninPage ? "Don't have an account?" : "Already have an account?"}
           <Link to={isSigninPage ? "/signup" : "/signin"} className="font-bold text-primary ml-2 hover:underline">
             {isSigninPage ? "Sign up" : "Sign in"}

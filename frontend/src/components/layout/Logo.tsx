@@ -10,7 +10,7 @@ export const Logo: React.FC = () => {
         <rect x="34.1729" y="9" width="6.47725" height="6.47725" transform="rotate(25.8552 34.1729 9)" fill="#FF4D00"/>
         <rect x="15.8291" y="19.0051" width="10.5255" height="6.47725" transform="rotate(25.8552 15.8291 19.0051)" fill="#FF4D00"/>
       </svg>
-      <span className="font-space-mono text-xl font-bold tracking-tighter text-[#0A0A0A] dark:text-white">
+      <span className="font-space-mono text-xl font-bold tracking-tighter text-[#0A0A0A]">
         JobJockey
       </span>
     </div>
