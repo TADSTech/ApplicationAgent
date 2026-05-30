@@ -3,10 +3,10 @@
 
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
-from ..services.gemini import gemini_service
-from ..services.profile_builder import profile_builder_service, ProfileQuestion
-from ..core.logging import logger
-from ..core.config import settings
+from services.gemini import gemini_service
+from services.profile_builder import profile_builder_service, ProfileQuestion
+from core.logging import logger
+from core.config import settings
 import json
 import re
 
@@ -116,7 +116,7 @@ class AIQuestionService:
         )
         
         # Use profile builder service
-        from ..services.profile_builder import UserProfile
+        from services.profile_builder import UserProfile
         profile = UserProfile(**user_profile)
         
         questions = await self.profile_builder.generate_next_questions(

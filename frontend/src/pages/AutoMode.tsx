@@ -24,10 +24,8 @@ export const AutoMode: React.FC = () => {
     if (logs.length === 0 && started) {
       const now = new Date().toLocaleTimeString([], { hour12: false });
       setLogs([
-        { id: '1', timestamp: now, agent: 'System', message: `JobJockey Multi-Agent Orchestrator v1.0.4 initialized. Session: ${sessionId.slice(0, 20)}...`, type: 'info' },
-        { id: '2', timestamp: now, agent: 'System', message: 'Establishing secure tunnel to Google Cloud Run...', type: 'info' },
-        { id: '3', timestamp: now, agent: 'System', message: `Search initiated: "${searchQuery}"`, type: 'success' },
-        { id: '4', timestamp: now, agent: 'System', message: 'JobAgent deployed. Scraping job boards...', type: 'info' },
+        { id: '1', timestamp: now, agent: 'System', message: `Starting search: ${searchQuery}`, type: 'info' },
+        { id: '2', timestamp: now, agent: 'System', message: 'Job Scout is looking for matching roles...', type: 'info' },
       ]);
     }
   }, [started, logs.length, setLogs, sessionId, searchQuery]);
@@ -44,8 +42,8 @@ export const AutoMode: React.FC = () => {
     } catch {
       const now = new Date().toLocaleTimeString([], { hour12: false });
       setLogs([
-        { id: '1', timestamp: now, agent: 'System', message: 'Failed to connect to backend. Using demo mode.', type: 'warning' },
-        { id: '2', timestamp: now, agent: 'System', message: 'Running local simulation with mock agents...', type: 'info' },
+        { id: '1', timestamp: now, agent: 'System', message: 'Using demo mode', type: 'info' },
+        { id: '2', timestamp: now, agent: 'System', message: 'Running local simulation...', type: 'info' },
       ]);
       setStarted(true);
     } finally {
@@ -53,98 +51,73 @@ export const AutoMode: React.FC = () => {
     }
   };
 
-  const handleTerminate = () => {
-    window.location.reload();
+  const handleReset = () => {
+    setStarted(false);
+    setSearchQuery('Senior Product Designer fintech remote');
   };
 
   if (!started) {
     return (
-      <div className="flex h-screen bg-[#FBF9F4] overflow-hidden font-dm-sans">
-        {/* Left Pane: SRE Terminal (idle) */}
-        <div className="w-1/2 bg-[#07111E] p-8 flex flex-col">
-          <div className="mb-8">
-            <h2 className="text-white font-dm-sans text-3xl font-bold leading-tight">
-              Autonomous <span className="text-primary">Recruitment</span> <br />
-              Loop
-            </h2>
-            <p className="text-[#7F7F7F] mt-2 font-dm-sans text-sm">
-              Configure your search below and deploy the agent fleet.
-            </p>
-          </div>
+      <div className="min-h-screen bg-[#FBF9F4] py-12 px-6 font-dm-sans">
+        <div className="max-w-3xl mx-auto">
+          <button
+            onClick={() => navigate('/dashboard')}
+            className="flex items-center space-x-2 text-sm font-semibold text-[#7F7F7F] hover:text-[#0A0A0A] transition-colors mb-8 cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Dashboard</span>
+          </button>
 
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center">
-              <div className="inline-block w-16 h-16 rounded-full border-2 border-primary/30 flex items-center justify-center mb-6">
-                <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
-              </div>
-              <p className="text-[#00FFCC]/60 font-mono text-sm">
-                Awaiting deployment command...
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Pane: Launch Configuration */}
-        <div className="w-1/2 p-12 flex flex-col bg-[#FBF9F4]">
-          <div className="max-w-md mx-auto w-full flex flex-col h-full">
-            <div className="mb-8">
-              <button
-                onClick={() => navigate('/dashboard')}
-                className="flex items-center space-x-2 text-xs font-semibold text-[#7F7F7F] hover:text-[#0A0A0A] transition-colors mb-6 cursor-pointer"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Dashboard</span>
-              </button>
-              <h3 className="text-xl font-bold text-[#0A0A0A]">Launch Agent Fleet</h3>
-              <p className="text-sm text-[#7F7F7F] mt-1">
-                Describe the role you're looking for and let the agents handle the rest.
+          <div className="space-y-8">
+            <div>
+              <h1 className="text-3xl font-bold text-[#0A0A0A]">Start Auto Search</h1>
+              <p className="text-[#7F7F7F] mt-2">
+                Let our assistants find and prepare applications for you.
               </p>
             </div>
 
-            <div className="flex-1 space-y-6">
+            <div className="space-y-6">
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">
-                  Job Search Query
+                <label className="text-xs font-semibold text-[#7F7F7F] uppercase tracking-wider">
+                  What are you looking for?
                 </label>
                 <textarea
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="e.g. Senior Product Designer at a fintech startup..."
                   rows={4}
-                  className="w-full bg-white border border-[#E4E2DD] rounded-[20px] px-6 py-4 text-sm font-dm-sans text-[#0A0A0A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4D00] resize-none"
+                  className="w-full bg-white border border-[#E4E2DD] rounded-2xl px-5 py-4 text-sm font-dm-sans text-[#0A0A0A] focus:outline-none focus:ring-2 focus:ring-[#FF4D00]/30 resize-none"
                 />
               </div>
 
-              <Card className="border-[#E4E2DD] bg-[#FFF0EA]/30 rounded-2xl">
-                <CardContent className="p-5 space-y-2">
-                  <h4 className="text-xs font-bold text-[#FF4D00] uppercase tracking-wider">What happens next</h4>
-                  <ul className="text-xs text-[#444444] space-y-1.5 font-medium">
-                    <li>1. <span className="font-bold">JobAgent</span> scans 40+ boards for matching roles</li>
-                    <li>2. <span className="font-bold">ResumeAgent</span> tailors your resume per job</li>
-                    <li>3. <span className="font-bold">ContractAgent</span> reviews legal terms</li>
-                    <li>4. <span className="font-bold">LinkedInAgent</span> drafts outreach messages</li>
+              <Card className="border-[#E4E2DD] bg-white rounded-2xl">
+                <CardContent className="p-6 space-y-3">
+                  <h4 className="text-sm font-semibold text-[#0A0A0A]">What we'll do</h4>
+                  <ul className="text-sm text-[#444444] space-y-2">
+                    <li>• Job Scout will search for matching roles</li>
+                    <li>• Resume Tailor will adapt your resume</li>
+                    <li>• Contract Reviewer will check terms</li>
+                    <li>• Outreach Assistant will draft messages</li>
                   </ul>
                 </CardContent>
               </Card>
-            </div>
 
-            <div className="pt-8">
               <Button
                 onClick={handleStart}
                 disabled={starting || !searchQuery.trim()}
                 variant="default"
                 size="xl"
-                className="w-full rounded-full bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold shadow-md cursor-pointer disabled:opacity-50"
+                className="w-full rounded-full bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold cursor-pointer disabled:opacity-50"
               >
                 {starting ? (
                   <span className="flex items-center space-x-2">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Deploying Agents...</span>
+                    <span>Starting...</span>
                   </span>
                 ) : (
                   <span className="flex items-center space-x-2">
                     <Send className="w-4 h-4" />
-                    <span>Deploy Agent Fleet</span>
+                    <span>Start Search</span>
                   </span>
                 )}
               </Button>
@@ -156,77 +129,61 @@ export const AutoMode: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-[#FBF9F4] overflow-hidden">
-      {/* Left Pane: SRE Terminal */}
-      <div className="w-1/2 bg-[#07111E] p-8 flex flex-col">
-        <div className="mb-8">
-          <h2 className="text-white font-dm-sans text-3xl font-bold leading-tight">
-            Autonomous <span className="text-primary">Recruitment</span> <br />
-            Loop Active
-          </h2>
-          <p className="text-[#7F7F7F] mt-2 font-dm-sans text-sm">
-            Agents scanning for: <span className="text-white font-semibold">{searchQuery}</span>
-          </p>
-        </div>
-
-        <div className="flex-1 min-h-0">
-          <TerminalConsole logs={logs} />
-        </div>
-
-        <div className="mt-6 flex items-center justify-between px-2">
-          <div className="flex space-x-4">
-            <div className="text-[10px] text-primary uppercase tracking-tighter font-bold">
-              ● Live Stream
-            </div>
-            <div className="text-[10px] text-[#7F7F7F] uppercase tracking-tighter">
-              Session: {sessionId.slice(-8)}
-            </div>
+    <div className="min-h-screen bg-[#FBF9F4] py-12 px-6 font-dm-sans">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <h1 className="text-3xl font-bold text-[#0A0A0A]">Auto Search in Progress</h1>
+            <p className="text-[#7F7F7F] mt-1">
+              Searching for: <span className="text-[#0A0A0A] font-semibold">{searchQuery}</span>
+            </p>
           </div>
-          <button
-            onClick={handleTerminate}
-            className="text-[10px] text-destructive uppercase tracking-tighter font-bold hover:underline cursor-pointer"
+          <Button
+            onClick={handleReset}
+            variant="ghost"
+            className="text-[#7F7F7F] hover:text-[#0A0A0A]"
           >
-            Emergency Terminate
-          </button>
+            Reset
+          </Button>
         </div>
-      </div>
 
-      {/* Right Pane: Agent Status Dashboard */}
-      <div className="w-1/2 p-12 flex flex-col bg-[#FBF9F4]">
-        <div className="max-w-md mx-auto w-full flex flex-col h-full">
-          <div className="mb-12">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#7F7F7F]">Overall Progress</span>
-              <span className="text-xs font-medium text-[#7F7F7F]">{Math.round(totalProgress)}%</span>
-            </div>
-            <ProgressMeter progress={totalProgress} label="Orchestration Progress" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left Column: Activity Log */}
+          <div className="h-[600px]">
+            <TerminalConsole logs={logs} />
           </div>
 
-          <div className="flex-1 overflow-y-auto pr-2">
-            <div className="mb-6">
-              <h3 className="text-xs font-bold text-[#7F7F7F] uppercase tracking-widest mb-4">
-                Active Agent Fleet
+          {/* Right Column: Agent Status */}
+          <div className="space-y-6">
+            <div>
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-xs font-semibold text-[#7F7F7F] uppercase tracking-wider">Overall Progress</span>
+                <span className="text-xs font-medium text-[#7F7F7F]">{Math.round(totalProgress)}%</span>
+              </div>
+              <ProgressMeter progress={totalProgress} label="Orchestration Progress" />
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xs font-semibold text-[#7F7F7F] uppercase tracking-wider">
+                Assistants
               </h3>
               <AgentStatusPanel agentStates={agentStates} />
             </div>
 
-            <Card className="mt-12 bg-[#ECEBE4] border-[#E4E2DD]">
-              <CardContent className="pt-6">
-                <h4 className="text-sm font-bold text-[#0A0A0A] mb-2 font-dm-sans">Agent Intelligence Note</h4>
-                <p className="text-xs text-[#444444] leading-relaxed">
-                  The <span className="font-bold">JobAgent</span> is filtering for WAT (UTC+1) compatibility.
-                  Roles requiring US Pacific core hours will be flagged for late-night shift confirmation.
+            <Card className="border-[#E4E2DD] bg-white rounded-2xl mt-8">
+              <CardContent className="p-6">
+                <h4 className="text-sm font-semibold text-[#0A0A0A] mb-2">Note</h4>
+                <p className="text-sm text-[#444444]">
+                  Roles requiring unusual time zone overlap will be flagged for your confirmation.
                 </p>
               </CardContent>
             </Card>
-          </div>
 
-          <div className="mt-8 pt-8 border-t border-[#E4E2DD]">
             <Button
               onClick={() => navigate('/dashboard')}
               variant="premium"
               size="xl"
-              className="w-full rounded-full cursor-pointer"
+              className="w-full rounded-full cursor-pointer mt-4"
             >
               Back to Dashboard
             </Button>

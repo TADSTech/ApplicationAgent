@@ -5,6 +5,9 @@ import { Avatar } from '../components/ui/Avatar';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card } from '../components/ui/Card';
+import { useAuth } from '../context/AuthContext';
+import { useResume } from '../context/ResumeContext';
+import { apiClient } from '../services/api';
 import {
   User,
   Bell,
@@ -14,6 +17,7 @@ import {
   ChevronLeft,
   ExternalLink,
   ChevronDown,
+  Upload,
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -51,56 +55,170 @@ const faqs = [
   { q: 'What happens after I apply?', a: 'Our LinkedIn Agent can draft follow-up messages, and the Contract Agent reviews any offers for legal red flags before you sign.' },
 ];
 
-const ProfileSection: React.FC = () => (
-  <div className="space-y-8">
-    <div className="flex items-center space-x-6">
-      <Avatar seed="user@jobjockey.ai" size={72} />
-      <div>
-        <h3 className="text-lg font-bold text-[#0A0A0A]">Your Photo</h3>
-        <p className="text-sm text-[#7F7F7F] mt-0.5">This is generated from your email. Sign in with Google to use your Google photo.</p>
-      </div>
-    </div>
+interface ProfileFormData {
+  fullName: string;
+  phone: string;
+  location: string;
+  linkedInUrl: string;
+  gitHubUrl: string;
+  timezone: string;
+}
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Full Name</label>
-        <Input defaultValue="Kendall Jones" />
-      </div>
-      <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Email Address</label>
-        <Input defaultValue="kendall@jobjockey.ai" disabled />
-      </div>
-      <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Phone</label>
-        <Input defaultValue="+234 800 000 0000" />
-      </div>
-      <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Location</label>
-        <Input defaultValue="Lagos, Nigeria" />
-      </div>
-      <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">LinkedIn URL</label>
-        <Input defaultValue="https://linkedin.com/in/kendalljones" />
-      </div>
-      <div className="space-y-2">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">GitHub URL</label>
-        <Input defaultValue="https://github.com/kendalljones" />
-      </div>
-    </div>
+const ProfileSection: React.FC = () => {
+  const { user } = useAuth();
+  const { resume, setParsedProfile } = useResume();
+  const [isAutoFilling, setIsAutoFilling] = useState(false);
+  const [formData, setFormData] = useState<ProfileFormData>({
+    fullName: user?.name || '',
+    phone: '',
+    location: 'Lagos, Nigeria',
+    linkedInUrl: '',
+    gitHubUrl: '',
+    timezone: 'West Africa Time (WAT, UTC+1)',
+  });
 
-    <div className="space-y-2 max-w-xs">
-      <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Preferred Timezone</label>
-      <select className="flex h-12 w-full rounded-[20px] border border-[#E4E2DD] bg-white px-6 py-2 text-sm font-dm-sans text-[#444444] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4D00]">
-        <option>West Africa Time (WAT, UTC+1)</option>
-        <option>Eastern Time (ET, UTC-5)</option>
-        <option>British Time (BST, UTC+1)</option>
-        <option>Central European Time (CET, UTC+1)</option>
-      </select>
-    </div>
+  const handleChange = (field: keyof ProfileFormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
 
-    <Button size="lg" className="rounded-full px-10">Save Changes</Button>
-  </div>
-);
+  const handleSave = () => {
+    alert('Profile saved!');
+  };
+
+  const handleAutoFillFromResume = async () => {
+    if (!resume.hasResume || !resume.resumeContent) {
+      alert('Please upload your resume first from the Dashboard!');
+      return;
+    }
+
+    setIsAutoFilling(true);
+    try {
+      const parsedData = await apiClient.parseResume(
+        resume.resumeContent,
+        user?.email || 'demo_user'
+      );
+
+      // Update form data with parsed values
+      setFormData(prev => ({
+        ...prev,
+        fullName: parsedData.full_name || prev.fullName,
+        phone: parsedData.phone || prev.phone,
+        location: parsedData.location || prev.location,
+        email: parsedData.email || user?.email || prev.email,
+        linkedInUrl: 'linkedin.com/in/michaeltunwashe',
+        gitHubUrl: parsedData.gitHubUrl || prev.gitHubUrl,
+        timezone: parsedData.timezone === 'WAT'
+          ? 'West Africa Time (WAT, UTC+1)'
+          : prev.timezone,
+      }));
+
+      // Store parsed profile in resume context
+      setParsedProfile(parsedData);
+
+      alert('Profile auto-filled from resume!');
+    } catch (error) {
+      console.error('Failed to parse resume:', error);
+      alert('Failed to auto-fill profile from resume. Please try again.');
+    } finally {
+      setIsAutoFilling(false);
+    }
+  };
+
+  return (
+    <div className="space-y-8">
+      <div className="flex items-center space-x-6">
+        <Avatar seed={user?.email || 'user@jobjockey.ai'} size={72} />
+        <div>
+          <h3 className="text-lg font-bold text-[#0A0A0A]">Your Photo</h3>
+          <p className="text-sm text-[#7F7F7F] mt-0.5">This is generated from your email. Sign in with Google to use your Google photo.</p>
+        </div>
+      </div>
+
+      {/* Auto-fill from Resume button */}
+      {resume.hasResume && (
+        <Button
+          variant="outline"
+          onClick={handleAutoFillFromResume}
+          disabled={isAutoFilling}
+          className="w-full md:w-auto rounded-full"
+        >
+          <Upload className="w-4 h-4 mr-2" />
+          {isAutoFilling ? 'Auto-filling...' : 'Auto-fill from Resume'}
+        </Button>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Full Name</label>
+          <Input
+            value={formData.fullName}
+            onChange={(e) => handleChange('fullName', e.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Email Address</label>
+          <Input
+            value={user?.email || ''}
+            disabled
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Phone</label>
+          <Input
+            value={formData.phone}
+            onChange={(e) => handleChange('phone', e.target.value)}
+            placeholder="+234 800 000 0000"
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Location</label>
+          <Input
+            value={formData.location}
+            onChange={(e) => handleChange('location', e.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">LinkedIn URL</label>
+          <Input
+            value={formData.linkedInUrl}
+            onChange={(e) => handleChange('linkedInUrl', e.target.value)}
+            placeholder="https://linkedin.com/in/yourusername"
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">GitHub URL</label>
+          <Input
+            value={formData.gitHubUrl}
+            onChange={(e) => handleChange('gitHubUrl', e.target.value)}
+            placeholder="https://github.com/yourusername"
+          />
+        </div>
+      </div>
+
+      <div className="space-y-2 max-w-xs">
+        <label className="text-[10px] font-bold uppercase tracking-widest text-[#7F7F7F] ml-4">Preferred Timezone</label>
+        <select
+          value={formData.timezone}
+          onChange={(e) => handleChange('timezone', e.target.value)}
+          className="flex h-12 w-full rounded-[20px] border border-[#E4E2DD] bg-white px-6 py-2 text-sm font-dm-sans text-[#444444] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4D00]"
+        >
+          <option>West Africa Time (WAT, UTC+1)</option>
+          <option>Eastern Time (ET, UTC-5)</option>
+          <option>British Time (BST, UTC+1)</option>
+          <option>Central European Time (CET, UTC+1)</option>
+        </select>
+      </div>
+
+      <Button
+        size="lg"
+        className="rounded-full px-10"
+        onClick={handleSave}
+      >
+        Save Changes
+      </Button>
+    </div>
+  );
+};
 
 const NotificationsSection: React.FC = () => {
   const [toggles, setToggles] = useState({
@@ -236,23 +354,46 @@ const HelpSection: React.FC = () => {
   );
 };
 
-const SignOutSection: React.FC = () => (
-  <div className="max-w-lg">
-    <Card className="p-8 rounded-2xl border-destructive/20 text-center">
-      <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
-        <LogOut className="w-6 h-6 text-destructive" />
-      </div>
-      <h3 className="text-lg font-bold text-[#0A0A0A]">Sign out of your account?</h3>
-      <p className="text-sm text-[#7F7F7F] mt-2 max-w-xs mx-auto leading-relaxed">
-        Your agents will pause. You can pick up where you left off anytime.
-      </p>
-      <div className="flex items-center justify-center space-x-4 mt-8">
-        <Button variant="outline" className="rounded-full">Cancel</Button>
-        <Button variant="destructive" size="lg" className="rounded-full">Sign Out</Button>
-      </div>
-    </Card>
-  </div>
-);
+const SignOutSection: React.FC = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await logout();
+    navigate('/');
+  };
+
+  return (
+    <div className="max-w-lg">
+      <Card className="p-8 rounded-2xl border-destructive/20 text-center">
+        <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
+          <LogOut className="w-6 h-6 text-destructive" />
+        </div>
+        <h3 className="text-lg font-bold text-[#0A0A0A]">Sign out of your account?</h3>
+        <p className="text-sm text-[#7F7F7F] mt-2 max-w-xs mx-auto leading-relaxed">
+          Your agents will pause. You can pick up where you left off anytime.
+        </p>
+        <div className="flex items-center justify-center space-x-4 mt-8">
+          <Button
+            variant="outline"
+            className="rounded-full"
+            onClick={() => window.location.hash = 'profile'}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="destructive"
+            size="lg"
+            className="rounded-full"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </Button>
+        </div>
+      </Card>
+    </div>
+  );
+};
 
 const SectionContent: Record<SectionId, React.FC> = {
   profile: ProfileSection,

@@ -1,6 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { Upload, FileText, X, ArrowLeft, Save, Loader2 } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Upload, FileText, X, ArrowLeft, Save, Loader2, Upload as UploadIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useResume } from '@/context/ResumeContext';
+import { useAuth } from '@/context/AuthContext';
+import { apiClient } from '@/services/api';
+import { useModal, SimpleModal } from '../ui/Modal';
 
 interface ResumeEditorProps {
   onBack: () => void;
@@ -11,6 +15,12 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [parsing, setParsing] = useState(false);
+
+  // Get context
+  const { user } = useAuth();
+  const { resume, uploadResume, setParsedProfile } = useResume();
+  const { openModal } = useModal();
 
   // Remove default data - start with empty fields
   const [name, setName] = useState('');
@@ -29,6 +39,53 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
     },
   ]);
   const [skills, setSkills] = useState('');
+
+  // Auto-fill from context if we have a parsed profile
+  useEffect(() => {
+    if (resume.parsedProfile) {
+      const p = resume.parsedProfile;
+      setName(p.full_name || '');
+      setEmail(p.email || user?.email || '');
+      setPhone(p.phone || '');
+      setLocation(p.location || '');
+      setTitle(p.current_title || '');
+      setSkills(p.skills?.join(', ') || '');
+      // For experience, we'd need more parsing - for now, we'll leave as is
+    } else if (resume.hasResume) {
+      // If we have a resume but not parsed, pre-fill email from user
+      setEmail(user?.email || '');
+    }
+  }, [resume.parsedProfile, resume.hasResume, user?.email]);
+
+  // Auto-fill from mock content if we just uploaded
+  useEffect(() => {
+    if (resume.hasResume && resume.resumeContent && !resume.parsedProfile) {
+      handleAutoFillFromResume();
+    }
+  }, [resume.hasResume]);
+
+  const handleAutoFillFromResume = async () => {
+    if (!resume.resumeContent) return;
+    setParsing(true);
+    try {
+      const parsedData = await apiClient.parseResume(
+        resume.resumeContent,
+        user?.email || 'demo_user'
+      );
+      setParsedProfile(parsedData);
+      // Fill fields
+      setName(parsedData.full_name || '');
+      setEmail(parsedData.email || user?.email || '');
+      setPhone(parsedData.phone || '');
+      setLocation(parsedData.location || '');
+      setTitle(parsedData.current_title || '');
+      setSkills(parsedData.skills?.join(', ') || '');
+    } catch (error) {
+      console.error('Failed to parse resume:', error);
+    } finally {
+      setParsing(false);
+    }
+  };
 
   const handleFileDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -53,9 +110,19 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
     try {
       // TODO: Save to Firebase
       await new Promise(resolve => setTimeout(resolve, 1000));
-      alert('Resume saved successfully!');
+      openModal(
+        <SimpleModal
+          title="Success!"
+          message="Resume saved successfully!"
+        />
+      );
     } catch (error) {
-      alert('Failed to save resume. Please try again.');
+      openModal(
+        <SimpleModal
+          title="Error"
+          message="Failed to save resume. Please try again."
+        />
+      );
     } finally {
       setSaving(false);
     }
@@ -142,6 +209,26 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ onBack }) => {
 
         {/* Editable Fields */}
         <div className="bg-white border border-[#E4E2DD] rounded-2xl p-8 space-y-6">
+          {/* Auto-fill button */}
+          {resume.hasResume && (
+            <button
+              onClick={handleAutoFillFromResume}
+              disabled={parsing}
+              className="w-full md:w-auto flex items-center space-x-2 px-6 py-3 rounded-full border border-[#E4E2DD] text-[#0A0A0A] font-dm-sans text-sm font-semibold hover:bg-[#F5F3EE] transition-all cursor-pointer disabled:opacity-50"
+            >
+              {parsing ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Parsing...</span>
+                </>
+              ) : (
+                <>
+                  <UploadIcon className="w-4 h-4" />
+                  <span>Auto-fill from Resume</span>
+                </>
+              )}
+            </button>
+          )}
           <h2 className="font-dm-sans text-lg font-semibold text-[#0A0A0A]">Personal Information</h2>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">

@@ -1,5 +1,5 @@
 # backend/services/linkedin.py
-from ..core.logging import logger
+from core.logging import logger
 from typing import Dict, Any
 import asyncio
 

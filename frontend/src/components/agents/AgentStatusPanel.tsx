@@ -7,27 +7,27 @@ interface AgentStatusPanelProps {
 
 export const AgentStatusPanel: React.FC<AgentStatusPanelProps> = ({ agentStates }) => {
   const agents = [
-    { key: 'job', label: 'Job Scout Agent', description: 'Scraping & WAT Filter' },
-    { key: 'resume', label: 'Resume Aligner', description: 'Context Adaptation' },
-    { key: 'contract', label: 'Legal Advisor', description: 'Clause Analysis' },
-    { key: 'linkedin', label: 'Outreach Agent', description: 'Personalized DMs' },
+    { key: 'job', label: 'Job Scout', description: 'Finds matching roles' },
+    { key: 'resume', label: 'Resume Tailor', description: 'Adapts your resume' },
+    { key: 'contract', label: 'Contract Reviewer', description: 'Checks legal terms' },
+    { key: 'linkedin', label: 'Outreach Assistant', description: 'Drafts messages' },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return 'bg-success';
-      case 'running': return 'bg-primary animate-pulse';
-      case 'failed': return 'bg-destructive';
-      default: return 'bg-border';
+      case 'completed': return 'bg-green-500';
+      case 'running': return 'bg-[#FF4D00]';
+      case 'failed': return 'bg-red-500';
+      default: return 'bg-[#E4E2DD]';
     }
   };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'completed': return 'Ready';
+      case 'completed': return 'Done';
       case 'running': return 'Active';
       case 'failed': return 'Error';
-      default: return 'Queued';
+      default: return 'Pending';
     }
   };
 
@@ -38,28 +38,28 @@ export const AgentStatusPanel: React.FC<AgentStatusPanelProps> = ({ agentStates 
         return (
           <div 
             key={agent.key}
-            className="flex items-center justify-between p-4 bg-white border border-border rounded-xl shadow-sm hover:shadow-md transition-shadow"
+            className="flex items-center justify-between p-5 bg-white border border-[#E4E2DD] rounded-2xl"
           >
             <div className="flex items-center space-x-4">
               <div className={`w-3 h-3 rounded-full ${getStatusColor(state.status)}`}></div>
               <div>
-                <h4 className="text-sm font-bold text-foreground font-dm-sans">{agent.label}</h4>
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wider">{agent.description}</p>
+                <h4 className="text-sm font-semibold text-[#0A0A0A] font-dm-sans">{agent.label}</h4>
+                <p className="text-xs text-[#7F7F7F]">{agent.description}</p>
               </div>
             </div>
             
             <div className="text-right">
-              <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter ${
-                state.status === 'completed' ? 'text-success bg-success/10' :
-                state.status === 'running' ? 'text-primary bg-primary/10' :
-                state.status === 'failed' ? 'text-destructive bg-destructive/10' :
-                'text-muted-foreground bg-background'
+              <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
+                state.status === 'completed' ? 'text-green-700 bg-green-50' :
+                state.status === 'running' ? 'text-[#FF4D00] bg-[#FFF0EA]' :
+                state.status === 'failed' ? 'text-red-700 bg-red-50' :
+                'text-[#7F7F7F] bg-[#F5F3EE]'
               }`}>
                 {getStatusText(state.status)}
               </span>
-              <div className="mt-2 w-24 bg-muted h-1 rounded-full overflow-hidden">
+              <div className="mt-3 w-32 bg-[#E4E2DD] h-2 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-primary transition-all duration-500" 
+                  className="h-full bg-[#FF4D00] transition-all duration-500" 
                   style={{ width: `${state.progress}%` }}
                 ></div>
               </div>

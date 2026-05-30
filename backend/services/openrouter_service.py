@@ -4,8 +4,8 @@
 from typing import Optional, Dict, Any
 from openrouter import OpenRouter
 import os
-from ..core.config import settings
-from ..core.logging import logger
+from core.config import settings
+from core.logging import logger
 
 
 class OpenRouterService:
@@ -14,9 +14,9 @@ class OpenRouterService:
     def __init__(self):
         self.api_key = getattr(settings, 'OPENROUTER_API_KEY', None) or os.getenv('OPENROUTER_API_KEY')
         self.available = bool(self.api_key)
-        self.default_model = "google/gemini-2.0-flash-exp:free"  # Free Gemini via OpenRouter
+        self.default_model = "openrouter/owl-alpha"  # Use owl-alpha as per user instruction
         self.fallback_models = [
-            "google/gemini-2.0-flash-exp:free",
+            "openrouter/owl-alpha",
             "meta-llama/llama-3.2-3b-instruct:free",
             "microsoft/phi-3-mini-128k-instruct:free"
         ]

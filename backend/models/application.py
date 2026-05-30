@@ -2,7 +2,7 @@
 from pydantic import BaseModel
 from typing import List, Dict, Optional
 from datetime import datetime
-from backend.models.job import Job
+from models.job import Job
 
 class ApplicationNote(BaseModel):
     id: str

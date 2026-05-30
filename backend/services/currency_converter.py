@@ -4,8 +4,8 @@ import os
 import httpx
 import asyncio
 from typing import Optional, Dict, Any
-from ..core.logging import logger
-from ..core.config import settings
+from core.logging import logger
+from core.config import settings
 
 class CurrencyConverterService:
     def __init__(self):

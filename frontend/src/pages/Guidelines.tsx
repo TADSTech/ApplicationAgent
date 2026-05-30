@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useResume } from '../context/ResumeContext';
 import Sidebar from '../components/layout/Sidebar';
 import { Avatar } from '../components/ui/Avatar';
 import { DropdownMenu } from '../components/ui/DropdownMenu';
@@ -61,6 +62,14 @@ export const Guidelines: React.FC = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState<'auto' | 'manual'>('auto');
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  const { resume, uploadResume } = useResume();
+
+  const handleUpdateResume = () => {
+    const mockResumeName = 'MyProfessionalResume.pdf';
+    const mockAtsScore = 92;
+    uploadResume(mockResumeName, mockAtsScore);
+  };
 
   const dropdownItems = [
     { label: 'Profile', icon: User, onClick: () => navigate('/account#profile') },
@@ -75,7 +84,10 @@ export const Guidelines: React.FC = () => {
       <Sidebar
         mode={mode}
         onModeChange={setMode}
-        onUpdateResume={() => navigate('/account#profile')}
+        onUpdateResume={handleUpdateResume}
+        hasResume={resume.hasResume}
+        resumeName={resume.resumeName}
+        atsScore={resume.atsScore}
       />
 
       <main className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">

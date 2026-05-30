@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useResume } from '../context/ResumeContext';
 import { cn } from '../lib/utils';
 import Sidebar from '../components/layout/Sidebar';
 import { Avatar } from '../components/ui/Avatar';
@@ -137,6 +138,14 @@ export const Settings: React.FC = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState<'auto' | 'manual'>('auto');
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  const { resume, uploadResume } = useResume();
+
+  const handleUpdateResume = () => {
+    const mockResumeName = 'MyProfessionalResume.pdf';
+    const mockAtsScore = 92;
+    uploadResume(mockResumeName, mockAtsScore);
+  };
 
   // Section 1: Job Preferences
   const [targetSalary, setTargetSalary] = useState<number>(80000);
@@ -203,7 +212,14 @@ export const Settings: React.FC = () => {
 
   return (
     <div className="flex bg-[#FBF9F4] h-screen w-screen overflow-hidden font-dm-sans text-[#0A0A0A]">
-      <Sidebar mode={mode} onModeChange={setMode} />
+      <Sidebar
+        mode={mode}
+        onModeChange={setMode}
+        onUpdateResume={handleUpdateResume}
+        hasResume={resume.hasResume}
+        resumeName={resume.resumeName}
+        atsScore={resume.atsScore}
+      />
 
       <main className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         {/* Top Header */}

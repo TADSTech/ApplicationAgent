@@ -1,30 +1,27 @@
-# Use an official lightweight Python runtime as a parent image
-FROM python:3.11-slim as builder
+# Backend Dockerfile for Google Cloud Run
+FROM python:3.11-slim
 
+# Set working directory
 WORKDIR /app
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Install build dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+    gcc \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first for better caching
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Final stage
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
-COPY --from=builder /usr/local/bin /usr/local/bin
-
+# Copy the rest of the application
 COPY . .
 
-EXPOSE 8000
+# Expose the port Cloud Run uses
+EXPOSE 8080
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "${PORT}"]
+# Command to run the application with uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

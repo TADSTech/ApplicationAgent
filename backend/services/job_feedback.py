@@ -3,8 +3,8 @@
 
 from typing import Dict, Any, Optional
 from pydantic import BaseModel
-from ..services.gemini import gemini_service
-from ..core.logging import logger
+from services.gemini import gemini_service
+from core.logging import logger
 
 
 class JobFeedback(BaseModel):

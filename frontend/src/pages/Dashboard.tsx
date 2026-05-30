@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useResume } from '../context/ResumeContext';
 import { cn } from '../lib/utils';
 import { useAgents } from '../hooks/useAgents';
 import { apiClient } from '../services/api';
@@ -13,6 +14,7 @@ import { Job } from '../types';
 import { Avatar } from '../components/ui/Avatar';
 import { DropdownMenu } from '../components/ui/DropdownMenu';
 import { ResumeEditor } from '../components/resume/ResumeEditor';
+import { useModal, SimpleModal } from '../components/ui/Modal';
 import { 
   Paperclip, 
   Globe, 
@@ -41,14 +43,14 @@ import {
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { resume, uploadResume } = useResume();
+  const { openModal } = useModal();
   // Mode state: 'auto' | 'manual' controlled by Sidebar toggle
   const [mode, setMode] = useState<'auto' | 'manual'>('auto');
   const [view, setView] = useState<'dashboard' | 'resume'>('dashboard');
   
   // Search prompt state
-  const [prompt, setPrompt] = useState<string>(
-    'Find me a senior product designer role at a fintech startup with a focus on high-fidelity prototyping and design systems...'
-  );
+  const [prompt, setPrompt] = useState<string>("Product Designer");
   const [searching, setSearching] = useState(false);
 
   // Jobs state
@@ -140,12 +142,17 @@ export const Dashboard: React.FC = () => {
       }));
       
       setJobs(transformedJobs);
+      
+      if (transformedJobs.length === 0) {
+        openModal(<SimpleModal title="No Jobs Found" message="We couldn't find any jobs matching your search. Try adjusting your filters or search term." />);
+      }
     } catch (error) {
+      openModal(<SimpleModal title="Search Failed" message={`Couldn't complete your search for "${prompt}". Make sure the backend is running.`} />);
       console.error('Error fetching jobs:', error);
     } finally {
       setJobsLoading(false);
     }
-  }, [prompt, activeFilters]);
+  }, [prompt, activeFilters, openModal]);
 
   // Initial fetch
   useEffect(() => {
@@ -259,15 +266,66 @@ export const Dashboard: React.FC = () => {
 
   // Callback handlers for job card actions
   const handleViewAnalysis = (job: Job) => {
-    alert(`[Auto Mode] Launching agent analysis for ${job.title} at ${job.company}.\nRetrieving ATS score alignment, skills-gap analysis, and WAT timezone compatibility report...`);
+    openModal(
+      <SimpleModal
+        title={`${job.title} - Agent Analysis`}
+        message={`Launching agent analysis for ${job.title} at ${job.company}. Retrieving ATS score alignment, skills-gap analysis, and WAT timezone compatibility report...`}
+      />
+    );
   };
 
   const handleViewDescription = (job: Job) => {
-    alert(`[Manual Mode] Displaying job description for ${job.title} at ${job.company}:\n\n${job.description}`);
+    openModal(
+      <SimpleModal
+        title={job.title}
+        message={job.description}
+      />
+    );
   };
 
   const handleApply = (job: Job) => {
-    alert(`[Manual Mode] Redirecting to external application form for ${job.title} at ${job.company}:\n${job.url}`);
+    openModal(
+      <SimpleModal
+        title={`Apply to ${job.title}`}
+        message={`You will be redirected to the external application form for ${job.title} at ${job.company}.`}
+        primaryButtonText="Go to Application"
+        onPrimaryButtonClick={() => window.open(job.url, '_blank')}
+      />
+    );
+  };
+
+  const handleUpdateResume = () => {
+    // Simulate uploading resume
+    const mockResumeName = 'MichaelTunwasheResume.pdf';
+    const mockAtsScore = 95;
+    const mockResumeContent = `
+Michael Tunwashe
+Email: motrenewed@gmail.com
+Phone: +234 803 456 7890
+LinkedIn: linkedin.com/in/michaeltunwashe
+Location: Lagos, Nigeria
+
+PROFESSIONAL EXPERIENCE
+Data Engineer | E-Commerce Platform Inc. | Mar 2022 - Present
+- Designed and implemented data pipelines using Apache Spark and Airflow
+- Migrated legacy data warehouse to Google BigQuery, reducing query time by 60%
+- Built real-time data streaming systems with Kafka and Flink
+- Automated infrastructure provisioning with Terraform and AWS CloudFormation
+
+Junior Data Engineer | Fintech Solutions Ltd. | Jun 2020 - Feb 2022
+- Developed ETL jobs to process transactional data from multiple sources
+- Implemented data quality checks and monitoring dashboards
+- Collaborated with data science team to prepare data for ML models
+
+EDUCATION
+B.Sc. Computer Science | Covenant University | 2016 - 2020
+
+SKILLS
+Python, Apache Spark, Apache Airflow, Apache Kafka, PostgreSQL, Google BigQuery, AWS, Terraform, Docker, dbt
+    `.trim();
+    uploadResume(mockResumeName, mockAtsScore, mockResumeContent);
+    // Optionally show resume editor view
+    setView('resume');
   };
 
   const handleSendPrompt = async (e: React.FormEvent) => {
@@ -283,8 +341,8 @@ export const Dashboard: React.FC = () => {
         // In manual mode, just fetch jobs
         await fetchJobs();
       }
-    } catch {
-      alert(`Search failed for: "${prompt}". Ensure the backend is running.`);
+    } catch (error) {
+      openModal(<SimpleModal title="Search Failed" message={`Couldn't complete your search for "${prompt}". Make sure the backend is running.`} />);
     } finally {
       setSearching(false);
     }
@@ -293,7 +351,14 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="flex h-screen bg-[#FBF9F4] overflow-hidden">
       {/* Left Sidebar Layout */}
-      <Sidebar mode={mode} onModeChange={setMode} onUpdateResume={() => setView('resume')} />
+      <Sidebar
+        mode={mode}
+        onModeChange={setMode}
+        onUpdateResume={handleUpdateResume}
+        hasResume={resume.hasResume}
+        resumeName={resume.resumeName}
+        atsScore={resume.atsScore}
+      />
 
       {view === 'resume' ? (
         <ResumeEditor onBack={() => setView('dashboard')} />

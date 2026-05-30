@@ -143,6 +143,28 @@ export const apiClient = {
     });
   },
 
+  async parseResume(
+    resumeText: string,
+    userId: string = 'demo_user',
+  ): Promise<{
+    full_name?: string;
+    email?: string;
+    location?: string;
+    phone?: string;
+    linkedInUrl?: string;
+    gitHubUrl?: string;
+    timezone?: string;
+    current_title?: string;
+    years_experience?: number;
+    skills?: string[];
+    industries?: string[];
+  }> {
+    return request('/resume/parse', {
+      method: 'POST',
+      body: JSON.stringify({ resume_text: resumeText, user_id: userId }),
+    });
+  },
+
   // ── Contract ───────────────────────────────────────────────
   async analyzeContract(
     sessionId: string,

@@ -5,9 +5,9 @@ steps:
       [
         'build',
         '-t',
-        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${TAG}',
+        '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}',
         '.',
-      ],
+      ]
     id: 'Build Image'
 
   # Push the container image to Artifact Registry
@@ -15,7 +15,7 @@ steps:
     args:
       [
         'push',
-        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${TAG}',
+        '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}',
       ]
     id: 'Push Image'
     waitFor: ['Build Image'] # Ensure build is complete before pushing
@@ -27,7 +27,7 @@ steps:
         'deploy',
         '${_SERVICE_NAME}',
         '--image',
-        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${TAG}',
+        '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}',
         '--region',
         '${_REGION}',
         '--platform',
@@ -39,7 +39,7 @@ steps:
 
 images:
   # Specify the image to be built and pushed
-  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${TAG}'
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}'
 
 substitutions:
   _REGION: us-central1 # Default region, can be overridden
@@ -47,4 +47,4 @@ substitutions:
   _REPOSITORY: my-repo # Replace with your Artifact Registry repository name
   _IMAGE_NAME: job-jockey-backend # Name for your container image
   _SERVICE_NAME: job-jockey-backend # Name for your Cloud Run service
-  TAG: latest # Tag for your image, e.g., 'latest', 'v1.0.0'
+  _TAG: latest # Tag for your image, e.g., 'latest', 'v1.0.0'

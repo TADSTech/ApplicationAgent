@@ -22,61 +22,43 @@ export const TerminalConsole: React.FC<TerminalConsoleProps> = ({ logs }) => {
   }, [logs]);
 
   return (
-    <div className="flex flex-col h-full bg-[#07111E] border border-primary/30 rounded-lg overflow-hidden shadow-2xl">
-      {/* Terminal Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-[#030810] border-b border-primary/20">
-        <div className="flex space-x-2">
-          <div className="w-3 h-3 rounded-full bg-destructive"></div>
-          <div className="w-3 h-3 rounded-full bg-warning"></div>
-          <div className="w-3 h-3 rounded-full bg-success"></div>
+    <div className="flex flex-col h-full bg-white border border-[#E4E2DD] rounded-2xl overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 bg-[#F5F3EE] border-b border-[#E4E2DD]">
+        <div className="font-dm-sans text-sm font-semibold text-[#0A0A0A]">
+          Activity Log
         </div>
-        <div className="text-[10px] text-primary/60 font-mono uppercase tracking-widest">
-          SRE Live Orchestrator Console
-        </div>
-        <div className="w-12"></div>
       </div>
 
-      {/* Terminal Body */}
+      {/* Logs Body */}
       <div 
         ref={scrollRef}
-        className="flex-1 p-4 font-mono text-xs overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent"
+        className="flex-1 p-6 overflow-y-auto space-y-3"
       >
-        <div className="space-y-1">
-          {logs.length === 0 ? (
-            <div className="text-[#00FFCC]/40 animate-pulse">
-              [SYSTEM] Awaiting agent initialization...
-              <span className="inline-block w-2 h-4 ml-1 bg-[#00FF88] animate-blink"></span>
+        {logs.length === 0 ? (
+          <div className="text-center py-12 text-[#7F7F7F] font-dm-sans text-sm">
+            No activity yet. Start a search to see updates.
+          </div>
+        ) : (
+          logs.map((log) => (
+            <div key={log.id} className="flex items-start space-x-3">
+              <span className="text-[#7F7F7F] font-dm-sans text-xs shrink-0 mt-0.5">
+                {log.timestamp}
+              </span>
+              <span className="font-dm-sans text-sm font-semibold text-[#0A0A0A] shrink-0">
+                {log.agent}
+              </span>
+              <span className={`font-dm-sans text-sm ${
+                log.type === 'error' ? 'text-red-600' :
+                log.type === 'warning' ? 'text-amber-600' :
+                log.type === 'success' ? 'text-green-600' :
+                'text-[#444444]'
+              }`}>
+                {log.message}
+              </span>
             </div>
-          ) : (
-            logs.map((log) => (
-              <div key={log.id} className="flex space-x-2 leading-relaxed">
-                <span className="text-primary/40 shrink-0">[{log.timestamp}]</span>
-                <span className={`shrink-0 font-bold ${
-                  log.agent === 'JobAgent' ? 'text-blue-400' :
-                  log.agent === 'ResumeAgent' ? 'text-purple-400' :
-                  log.agent === 'ContractAgent' ? 'text-orange-400' :
-                  log.agent === 'LinkedInAgent' ? 'text-pink-400' :
-                  'text-[#00FFCC]'
-                }`}>
-                  [{log.agent}]
-                </span>
-                <span className={`${
-                  log.type === 'error' ? 'text-destructive' :
-                  log.type === 'warning' ? 'text-warning' :
-                  log.type === 'success' ? 'text-success' :
-                  'text-[#00FFCC]/90'
-                }`}>
-                  {log.message}
-                </span>
-              </div>
-            ))
-          )}
-          {logs.length > 0 && (
-            <div className="pt-2">
-              <span className="inline-block w-2 h-4 bg-success animate-blink"></span>
-            </div>
-          ) }
-        </div>
+          ))
+        )}
       </div>
     </div>
   );

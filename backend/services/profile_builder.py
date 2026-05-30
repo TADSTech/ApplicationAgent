@@ -4,8 +4,8 @@
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
 from datetime import datetime
-from ..services.gemini import gemini_service
-from ..core.logging import logger
+from services.gemini import gemini_service
+from core.logging import logger
 import json
 
 
