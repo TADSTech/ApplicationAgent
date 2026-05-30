@@ -35,10 +35,11 @@
 - [x] 2.2.4 Implement time zone compatibility checking
 
 ### Task 2.3: Resume Agent
-- [x] 2.3.1 Integrate OpenAI/VertexAI for resume tailoring
+- [x] 2.3.1 Integrate Gemini AI for resume tailoring (using google-genai SDK)
 - [x] 2.3.2 Implement job description analysis
 - [x] 2.3.3 Add Nigeria context adaptation
 - [x] 2.3.4 Create skill gap analysis
+*Note: Uses Gemini 3.5 Flash model with structured outputs for type-safe responses. Falls back to mock data if API key not configured.*
 
 ### Task 2.4: Contract Agent
 - [x] 2.4.1 Implement contract parsing
@@ -145,8 +146,9 @@
 
 ### Task 6.4: Portfolio Showcase
 - [x] 6.4.1 Integrate GitHub API
-- [x] 6.4.2 Add HackerRank integration
-- [x] 6.4.3 Create Dev.to integration
+- [x] 6.4.2 Add HackerRank integration (Mocked - returns sample data)
+- [x] 6.4.3 Create Dev.to integration (Mocked - returns sample data)
+*Note: HackerRank and Dev.to integrations return mock data for demo purposes. Real API integration requires API keys.*
 
 ### Task 6.5: Interview Preparation
 - [x] 6.5.1 Create interview question database
@@ -173,3 +175,24 @@
 - Error handling and resilience should be prioritized
 - Code should be modular and testable
 - Documentation should be updated as tasks are completed
+
+## Implementation Notes
+
+### Gemini AI Integration (CRITICAL - Functional)
+- Uses the new `google-genai` SDK (not `google-generativeai`)
+- Model: Gemini 3.5 Flash
+- Structured outputs with Pydantic models for type-safe responses
+- Falls back to mock data if API key not configured
+- Get API key from: https://aistudio.google.com/app/apikey
+
+### Nice-to-Have Features (Mocked for Demo)
+- HackerRank integration: Returns sample data
+- Dev.to integration: Returns sample data
+- LinkedIn automation: Returns sample data
+- These features can be enabled by adding real API keys
+
+### Environment Variables
+Copy `.env.example` to `.env` and fill in your values:
+- `GEMINI_API_KEY` - Required for AI features (critical path)
+- `FIRESTORE_PROJECT_ID` - Required for state persistence
+- Other keys are optional (Nice-to-Have features)

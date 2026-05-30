@@ -1,16 +1,18 @@
 # backend/tests/test_utils.py
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, AsyncMock
 from backend.utils.currency import get_usd_to_ngn_rate, format_salary_display
 from backend.utils.timezones import calculate_wat_overlap
 
 @pytest.mark.asyncio
 async def test_currency_formatting():
     # Mock rate to 1600 for predictable output
-    with patch("backend.utils.currency.get_usd_to_ngn_rate", return_value=1600.0):
+    with patch("backend.utils.currency.get_usd_to_ngn_rate", new_callable=AsyncMock) as mock_rate:
+        mock_rate.return_value = 1600.0
         display = await format_salary_display(100000.0)
         assert "$100,000" in display
         assert "₦160,000,000" in display
+
 
 def test_timezone_overlap_pst():
     # PST (UTC-8) 9 AM - 5 PM is 6 PM - 2 AM WAT

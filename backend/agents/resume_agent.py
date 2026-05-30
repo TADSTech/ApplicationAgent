@@ -1,14 +1,18 @@
 # backend/agents/resume_agent.py
 from typing import Dict, Any
-from backend.agents.base import BaseAgent
-from backend.services.gemini import gemini_client
-from backend.core.config import settings
-from backend.core.logging import logger
+from pydantic import BaseModel, Field
+from .base import BaseAgent
+from ..services.gemini import gemini_service
+from ..core.logging import logger
+
+class ResumeTailoringOutput(BaseModel):
+    adapted_resume: str = Field(description="The tailored resume in markdown format")
+    skill_gap_analysis: list = Field(description="List of missing skills and recommendations")
+    nigeria_context_notes: list = Field(description="Notes about Nigeria context adaptations made")
 
 class ResumeAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("resume", session_id)
-        self.gemini = gemini_client
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -26,7 +30,7 @@ class ResumeAgent(BaseAgent):
                 "payload": {"resume_length": len(resume_text), "job_length": len(job_description)}
             }
         )
-        self.update_progress(20.0)
+        await self.update_progress(20.0)
 
         # System prompt enforcing Nigeria Context Adaptation (Rule 5.3)
         system_prompt = """
@@ -51,14 +55,18 @@ class ResumeAgent(BaseAgent):
         Please tailor this resume for the job and perform the Nigeria Context Adaptation.
         """
 
-        self.update_progress(40.0)
-        llm_response = await self.gemini.generate_response(prompt, system_prompt)
+        await self.update_progress(40.0)
         
-        # In a production environment, we'd parse the JSON from LLM. 
-        # For now, we'll store the raw response or a simplified version.
-        self.update_progress(90.0)
+        # Use structured output with Gemini
+        llm_response = await gemini_service.generate_structured_response(
+            prompt, 
+            ResumeTailoringOutput,
+            system_prompt
+        )
+        
+        await self.update_progress(90.0)
 
-        self.update_progress(100.0, "completed")
+        await self.update_progress(100.0, "completed")
         return {
             "tailored_output": llm_response,
             "nigeria_context_adapted": True,

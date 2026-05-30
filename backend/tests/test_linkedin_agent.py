@@ -5,7 +5,7 @@ from backend.agents.linkedin_agent import LinkedinAgent
 
 @pytest.mark.asyncio
 async def test_linkedin_agent_run(mock_openai):
-    with patch("backend.agents.linkedin_agent.gemini_client", mock_openai), \
+    with patch("backend.agents.linkedin_agent.gemini_service", mock_openai), \
          patch("backend.agents.base.firebase_service"):
         agent = LinkedinAgent(session_id="test-session")
         context = {

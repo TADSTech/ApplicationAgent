@@ -1,19 +1,19 @@
 # backend/agents/job_agent.py
 from typing import Dict, Any, List
 from datetime import datetime, timezone
-from backend.agents.base import BaseAgent
-from backend.utils.currency import format_salary_display, FALLBACK_RATE
-from backend.services.currency_converter import currency_converter_service
-from backend.utils.timezones import calculate_wat_overlap
-from backend.services.firecrawl import firecrawl_service
-from backend.core.config import settings
-from backend.core.logging import logger
-from backend.models.job import Job
+from .base import BaseAgent
+from ..utils.currency import format_salary_display, FALLBACK_RATE
+from ..services.currency_converter import currency_converter_service
+from ..utils.timezones import calculate_wat_overlap
+from ..services.firecrawl import FirecrawlService
+from ..core.config import settings
+from ..core.logging import logger
+from ..models.job import Job
 
 class JobAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("job", session_id)
-        self.firecrawl = firecrawl_service
+        self.firecrawl = FirecrawlService(api_key=settings.FIRECRAWL_API_KEY)
         self.currency_converter_service = currency_converter_service
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
@@ -32,19 +32,19 @@ class JobAgent(BaseAgent):
                 "payload": {"keywords": keywords, "location": location}
             }
         )
-        self.update_progress(10.0)
+        await self.update_progress(10.0)
         
         try:
             # Scrape live jobs via Firecrawl
             raw_jobs = await self.firecrawl.scrape_jobs(keywords, location)
-            self.update_progress(40.0)
+            await self.update_progress(40.0)
             
             if not raw_jobs:
                 logger.warning(
                     "No jobs found",
                     extra={"session_id": self.session_id, "agent_type": self.agent_type}
                 )
-                self.update_progress(100.0, "completed")
+                await self.update_progress(100.0, "completed")
                 return {"scraped_count": 0, "matched_jobs": []}
 
             processed_jobs = []
@@ -89,9 +89,9 @@ class JobAgent(BaseAgent):
                 
                 # Progress calculation
                 progress = 40.0 + ((idx + 1) / len(raw_jobs) * 60.0)
-                self.update_progress(min(progress, 99.0))
+                await self.update_progress(min(progress, 99.0))
 
-            self.update_progress(100.0, "completed")
+            await self.update_progress(100.0, "completed")
             return {
                 "scraped_count": len(raw_jobs),
                 "matched_jobs": processed_jobs
