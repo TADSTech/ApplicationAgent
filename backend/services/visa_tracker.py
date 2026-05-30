@@ -1,6 +1,6 @@
 
 # backend/services/visa_tracker.py
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from datetime import datetime, timezone
 from backend.models.visa import VisaSponsorship, VisaStatusUpdate
 from backend.core.logging import logger
@@ -8,12 +8,15 @@ from backend.services.firebase import firebase_service
 
 class VisaTrackerService:
     def __init__(self):
-        self.db = firebase_service.db # Assuming firebase_service is already initialized
+        self.db = firebase_service.get_db()
 
     async def add_or_update_visa_sponsorship(self, sponsorship_data: VisaSponsorship) -> bool:
         """
         Adds a new visa sponsorship entry or updates an existing one.
         """
+        if not self.db:
+            logger.warning("Firestore DB not initialized. Skipping visa sponsorship add/update.")
+            return False
         try:
             doc_ref = self.db.collection("visa_sponsorships").document(sponsorship_data.company_name.lower())
             sponsorship_dict = sponsorship_data.model_dump()
@@ -35,6 +38,9 @@ class VisaTrackerService:
         """
         Retrieves visa sponsorship information for a given company.
         """
+        if not self.db:
+            logger.warning("Firestore DB not initialized. Skipping visa sponsorship retrieval.")
+            return None
         try:
             doc_ref = self.db.collection("visa_sponsorships").document(company_name.lower())
             doc = await doc_ref.get()
@@ -49,6 +55,9 @@ class VisaTrackerService:
         """
         Adds a new visa status update for a company.
         """
+        if not self.db:
+            logger.warning("Firestore DB not initialized. Skipping visa status update.")
+            return False
         try:
             doc_ref = self.db.collection("visa_status_updates").document()
             update_dict = update_data.model_dump()

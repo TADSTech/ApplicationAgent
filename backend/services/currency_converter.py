@@ -42,8 +42,9 @@ class CurrencyConverterService:
         """
         (Placeholder) Fetches cost of living comparison data.
         In a real application, this would integrate with a cost-of-living API like Numbeo.
-        """\n        logger.info(f"Fetching cost of living comparison for {city1} vs {city2} (placeholder).",
-                    extra={"agent_type": "currency_converter_service", "payload": {"city1": city1, "city2": city2}}))
+                """
+        logger.info(f"Fetching cost of living comparison for {city1} vs {city2} (placeholder).",
+                    extra={"agent_type": "currency_converter_service", "payload": {"city1": city1, "city2": city2}})
         # Mock data for demonstration
         if city1.lower() == "lagos" and city2.lower() == "london":
             return {

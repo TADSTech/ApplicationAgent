@@ -60,4 +60,5 @@ def suggest_interview_slots(
 def get_current_wat_time() -> datetime:
     """
     Returns the current time in West African Time (WAT, UTC+1).
-    """\n    return datetime.now(timezone.utc) + WAT_OFFSET
+    """
+    return datetime.now(timezone.utc) + WAT_OFFSET

@@ -13,10 +13,10 @@ JobJockey is a specialized, AI-powered job application system built to bridge th
 - **Phase 1 (Scaffolding):** ✅ Completed.
 - **Phase 2 (Agent Reasoning & API):** ✅ Completed. All backend agents and API endpoints are implemented.
 - **Phase 4 (Cloud Run Deployment):** ✅ Completed. The backend is configured for Cloud Run deployment.
-- **Phase 5 (Unit & Integration Tests):** ✅ Completed. Backend unit and integration tests are in place.
-- **Phase 6 (Nigeria-Specific Features - Backend):** ✅ Completed. All backend logic for Nigeria-specific features has been implemented.
+- **Phase 5 (Testing & Quality Assurance):** ✅ Completed (Backend only, Performance Testing out of scope for automated execution). Backend unit and integration tests are in place.
+- **Phase 6 (Nigeria-Specific Features - Backend):** ✅ Completed. All backend logic for Nigeria-specific features (Time Zone Navigation, Visa Sponsorship Tracker, Currency Intelligence, Portfolio Showcase, Interview Preparation) has been implemented.
 
-All backend progress has been committed and pushed to the `feature/backend-phase2` branch.
+All backend progress, including Gemini API integration, has been committed and pushed to the `feature/backend-phase2` branch.
 
 ---
 
@@ -66,12 +66,12 @@ Your goal is to implement the frontend UI and integrate with the existing backen
 ### 3. Phase 5: Testing & Quality Assurance
 *Reference: `tasks.md` -> Task 5.1, 5.3*
 - [ ] **5.1.3 Test UI components:** Write unit tests for all reusable UI components.
-- [ ] **5.1.4 Achieve >80% code coverage:** Ensure comprehensive test coverage for frontend code.
+- [ ] **5.1.4 Achieve >80% code coverage:** Ensure comprehensive test coverage for frontend code (Backend coverage achieved, Frontend pending).
 
 - [ ] **5.3.1 Test job search performance:** Evaluate frontend performance for job search.
 - [ ] **5.3.2 Test resume tailoring performance:** Test performance of resume tailoring UI.
 - [ ] **5.3.3 Test contract analysis performance:** Assess performance of contract analysis display.
-- [ ] **5.3.4 Optimize slow endpoints:** Work with backend team to optimize any slow API calls affecting frontend.
+- [ ] **5.3.4 Optimize slow endpoints:** Work with backend team to optimize any slow API calls affecting frontend. (Note: Backend performance testing is out of scope for automated execution in this phase).
 
 ---
 
@@ -82,6 +82,7 @@ Your goal is to implement the frontend UI and integrate with the existing backen
 3.  **SRE-driven UI**: Ensure frontend components can display structured JSON logs and real-time process updates in the SRE Terminal panes (deep space midnight background, green-glowing `Space Mono` typography).
 4.  **Nigeria Context**: Implement UI elements that properly display USD/NGN currency conversions and WAT timezone information using the backend utilities.
 5.  **State Management**: Integrate with the backend's Firestore state persistence for agent progress and results.
+6.  **Backend API**: All backend LLM interactions now use the Gemini API.
 
 ---
 

@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     
     # API Keys
     FIRECRAWL_API_KEY: Optional[str] = os.getenv("FIRECRAWL_API_KEY", None)
-    OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY", None)
+    GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY", None)
     LINKEDIN_CLIENT_ID: Optional[str] = os.getenv("LINKEDIN_CLIENT_ID", None)
     LINKEDIN_CLIENT_SECRET: Optional[str] = os.getenv("LINKEDIN_CLIENT_SECRET", None)
     EXCHANGERATE_API_KEY: Optional[str] = os.getenv("EXCHANGERATE_API_KEY", None)

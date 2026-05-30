@@ -1,8 +1,9 @@
 # backend/agents/job_agent.py
 from typing import Dict, Any, List
-from datetime import datetime
+from datetime import datetime, timezone
 from backend.agents.base import BaseAgent
-from backend.utils.currency import format_salary_display, get_usd_to_ngn_rate
+from backend.utils.currency import format_salary_display, FALLBACK_RATE
+from backend.services.currency_converter import currency_converter_service
 from backend.utils.timezones import calculate_wat_overlap
 from backend.services.firecrawl import FirecrawlService
 from backend.core.config import settings
@@ -13,6 +14,7 @@ class JobAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("job", session_id)
         self.firecrawl = FirecrawlService(api_key=settings.FIRECRAWL_API_KEY)
+        self.currency_converter_service = currency_converter_service
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -46,13 +48,15 @@ class JobAgent(BaseAgent):
                 return {"scraped_count": 0, "matched_jobs": []}
 
             processed_jobs = []
-            usd_to_ngn_rate = get_usd_to_ngn_rate()
+            usd_to_ngn_rate = await self.currency_converter_service.get_exchange_rate("USD", "NGN")
+            if usd_to_ngn_rate is None:
+                usd_to_ngn_rate = FALLBACK_RATE # Fallback to default if service fails
 
             for idx, job_data in enumerate(raw_jobs):
                 # Salary processing (Rule 5.1)
                 salary_usd = job_data.get("salary_usd", 0.0)
                 salary_ngn = salary_usd * usd_to_ngn_rate
-                salary_display = format_salary_display(salary_usd)
+                salary_display = await format_salary_display(salary_usd)
                 
                 # Timezone overlap calculation (Rule 5.2)
                 tz = job_data.get("timezone", "GMT")
@@ -72,7 +76,7 @@ class JobAgent(BaseAgent):
                     "description": job_data.get("description", ""),
                     "requirements": job_data.get("requirements", []),
                     "url": job_data.get("url", ""),
-                    "posted_at": datetime.utcnow().isoformat(), # Mocked for now
+                    "posted_at": datetime.now(timezone.utc).isoformat(), # Mocked for now
                     "time_zone": tz,
                     "wat_hours": f"{wat_start:02d}:00 - {wat_end:02d}:00 WAT",
                     "is_late_night_wat_shift": is_late_night,

@@ -1,6 +1,6 @@
 # backend/services/__init__.py
 from . import firecrawl
-from . import openai
+from . import gemini
 from . import linkedin
 from . import firebase
 from . import visa_tracker

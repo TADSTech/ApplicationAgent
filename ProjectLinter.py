@@ -56,13 +56,19 @@ REQUIRED_BACKEND_FILES = {
     "backend/models/resume.py": "Pydantic Resume schema",
     "backend/models/application.py": "Pydantic Application schema",
     "backend/models/user.py": "Pydantic User schema",
+    "backend/models/visa.py": "Pydantic Visa Sponsorship schema", # Added
     "backend/services/__init__.py": "External services module package",
     "backend/services/firecrawl.py": "Firecrawl scraping service wrapper",
-    "backend/services/openai.py": "LLM client wrappers",
+    "backend/services/gemini.py": "LLM client wrappers", # Replaced openai.py
     "backend/services/linkedin.py": "LinkedIn service integrations",
+    "backend/services/visa_tracker.py": "Visa sponsorship tracking and updates", # Added
+    "backend/services/currency_converter.py": "Real-time currency conversion and cost-of-living comparisons", # Added
+    "backend/services/portfolio_showcase.py": "GitHub, HackerRank, Dev.to integrations", # Added
+    "backend/services/interview_prep.py": "Interview questions and bias mitigation tips", # Added
     "backend/utils/__init__.py": "Utils module package",
     "backend/utils/currency.py": "USD/NGN currency conversions & calculations",
     "backend/utils/timezones.py": "WAT timezone alignment calculations",
+    "backend/utils/interview_scheduling.py": "Interview scheduling and timezone utilities", # Added
     "backend/main.py": "FastAPI app entrypoint",
     "backend/requirements.txt": "Python package dependencies",
     "backend/Dockerfile": "Containerization setup",
@@ -261,13 +267,13 @@ def check_nigeria_guards(missing_files: List[str]) -> Tuple[List[str], List[str]
             tree = ast.parse(code)
             
             funcs = [node.name for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
-            has_conversion = any("convert" in f.lower() or "ngn" in f.lower() or "usd" in f.lower() for f in funcs)
+            has_conversion = "currency_converter_service.get_exchange_rate" in code
             
             if not has_conversion:
-                all_warnings.append((currency_path, "Currency utility should define exchange calculation functions"))
-                print(f"  {YELLOW}{BOLD}[WARN]{RESET} {currency_path}: No obvious USD/NGN conversion function defined yet (WIP)")
+                all_warnings.append((currency_path, "Currency utility should define exchange calculation functions or use currency_converter_service"))
+                print(f"  {YELLOW}{BOLD}[WARN]{RESET} {currency_path}: No direct USD/NGN conversion function or service call detected (WIP)")
             else:
-                print(f"  {GREEN}{BOLD}[OK]{RESET} {currency_path}: Implements conversion algorithms")
+                print(f"  {GREEN}{BOLD}[OK]{RESET} {currency_path}: Implements conversion algorithms via service")
         except Exception as e:
             all_errors.append((currency_path, f"Error parsing: {e}"))
             print(f"  {RED}{BOLD}[FAIL]{RESET} {currency_path}: Error parsing - {e}")

@@ -2,7 +2,7 @@
 # backend/services/interview_prep.py
 from typing import List, Dict, Any, Optional
 from backend.core.logging import logger
-from backend.services.openai import openai_client # Assuming openai_client is initialized
+from backend.services.gemini import gemini_client # Assuming gemini_client is initialized
 
 class InterviewPrepService:
     def __init__(self):
@@ -57,15 +57,11 @@ class InterviewPrepService:
         try:
             # Example LLM interaction (replace with actual prompt engineering)
             # This is a basic placeholder; actual implementation needs careful prompt design.
-            response = await openai_client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are an interview coach providing feedback on a candidate's answer."},
-                    {"role": "user", "content": f"Question: {question}\nCandidate Answer: {candidate_response}\nProvide constructive feedback on the candidate's response, focusing on structure, relevance, and completeness. Suggest areas for improvement."}
-                ],
-                max_tokens=200
+            response = await gemini_client.generate_response(
+                prompt=f"Question: {question}\nCandidate Answer: {candidate_response}\nProvide constructive feedback on the candidate's response, focusing on structure, relevance, and completeness. Suggest areas for improvement.",
+                system_prompt="You are an interview coach providing feedback on a candidate's answer."
             )
-            feedback = response.choices[0].message.content.strip()
+            feedback = response
             return {"feedback": feedback, "simulation_status": "mock_llm_evaluation"}
         except Exception as e:
             logger.error(f"LLM interview simulation failed: {e}", extra={"agent_type": "interview_prep", "error": str(e)})
