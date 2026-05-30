@@ -14,6 +14,12 @@ JobJockey is structured as a two-tier system:
 1. **Frontend (Vite + React + TS):** Interactive dashboards with terminal-style visualizers for agent actions, Swipe Mode, and Auto Mode tracking.
 2. **Backend (FastAPI + Python):** Orchestration engine, REST API endpoints, background worker integrations, and state persistence with Firebase Firestore.
 
+### 1.1 UI/UX Design System Enforcement
+To keep consistent design throughout the entire application, all developer agents must strictly adhere to the styles defined in the project-wide **[DESIGN.md](./DESIGN.md)** file:
+- **Sleek UI Minimalism**: Off-white paper background (`#FBF9F4`) with rich charcoal text, clean outlines (`#E4E2DD`), and rounded pill-shaped form elements (20px border radius) for interactive states.
+- **UX Maximalism**: Interactive Live SRE Terminal panes set in deep space midnight dark background (`#07111E`), featuring a green-glowing live stream of logs and process updates in `Space Mono` typography.
+- **Brand Dualism**: Dual-pane layouts where automated backend operations and metrics are clearly contrasted against direct, easy-to-use human controls.
+
 ### High-Level Flow
 ```
                                 ┌─────────────────────────┐
