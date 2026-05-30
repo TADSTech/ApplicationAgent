@@ -50,6 +50,121 @@
     --border: 214 66% 15%;
     --input: 214 66% 15%;
     --ring: 171 78% 39%;
+
+    /* CSS Overrides for hardcoded colors in dark mode */
+    .bg-white,
+    .bg-\[\#FFFFFF\],
+    [class*="bg-white"],
+    [class*="bg-slate-50"],
+    [class*="bg-gray-50"],
+    [class*="bg-neutral-50"],
+    [class*="bg-zinc-50"] {
+      background-color: hsl(var(--card)) !important;
+    }
+    
+    .bg-slate-100,
+    .bg-slate-200,
+    .bg-gray-100,
+    .bg-gray-200,
+    .bg-neutral-100,
+    .bg-neutral-200,
+    .bg-zinc-100,
+    .bg-zinc-200,
+    .bg-\[\#F5F3EE\],
+    .hover\:bg-\[\#F5F3EE\]:hover,
+    [class*="bg-slate-100"],
+    [class*="bg-slate-200"],
+    [class*="bg-gray-100"],
+    [class*="bg-gray-200"],
+    [class*="bg-neutral-100"],
+    [class*="bg-neutral-200"],
+    [class*="bg-zinc-100"],
+    [class*="bg-zinc-200"] {
+      background-color: hsl(var(--muted)) !important;
+    }
+
+    .border-slate-100,
+    .border-slate-200,
+    .border-gray-100,
+    .border-gray-200,
+    .border-\[\#E4E2DD\],
+    [class*="border-slate-"],
+    [class*="border-gray-"],
+    [class*="border-neutral-"],
+    [class*="border-zinc-"] {
+      border-color: hsl(var(--border)) !important;
+    }
+
+    .text-slate-900,
+    .text-gray-900,
+    .text-black,
+    .text-\[\#0A0A0A\],
+    [class*="text-slate-900"],
+    [class*="text-slate-800"],
+    [class*="text-slate-700"],
+    [class*="text-gray-900"],
+    [class*="text-gray-800"],
+    [class*="text-gray-700"],
+    [class*="text-neutral-900"],
+    [class*="text-neutral-800"],
+    [class*="text-neutral-700"],
+    [class*="text-zinc-900"],
+    [class*="text-zinc-800"],
+    [class*="text-zinc-700"] {
+      color: hsl(var(--foreground)) !important;
+    }
+
+    .text-slate-500,
+    .text-slate-600,
+    .text-gray-500,
+    .text-gray-600,
+    .text-\[\#7F7F7F\],
+    .text-\[\#444444\],
+    [class*="text-slate-500"],
+    [class*="text-slate-600"],
+    [class*="text-gray-500"],
+    [class*="text-gray-600"],
+    [class*="text-neutral-500"],
+    [class*="text-neutral-600"],
+    [class*="text-zinc-500"],
+    [class*="text-zinc-600"] {
+      color: hsl(var(--muted-foreground)) !important;
+    }
+
+    /* Orange / primary branding overrides in dark mode */
+    .text-\[\#FF4D00\],
+    [class*="text-[#FF4D00]"],
+    [class*="text-primary"] {
+      color: hsl(var(--primary)) !important;
+    }
+
+    .bg-\[\#FF4D00\],
+    [class*="bg-[#FF4D00]"] {
+      background-color: hsl(var(--primary)) !important;
+    }
+
+    .bg-\[\#FFF0EA\],
+    [class*="bg-[#FFF0EA]"] {
+      background-color: hsla(var(--primary) / 0.15) !important;
+    }
+
+    .bg-\[\#0A0A0A\],
+    [class*="bg-[#0A0A0A]"] {
+      background-color: hsl(var(--primary)) !important;
+    }
+    
+    .hover\:bg-\[\#222222\]:hover,
+    [class*="hover:bg-[#222222]"]:hover {
+      background-color: hsl(var(--primary) / 0.8) !important;
+    }
+
+    .stroke-\[\#F5F3EE\] {
+      stroke: hsl(var(--muted)) !important;
+    }
+
+    .stroke-\[\#FF4D00\] {
+      stroke: hsl(var(--primary)) !important;
+    }
   }
 }
 
