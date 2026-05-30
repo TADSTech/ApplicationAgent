@@ -5,7 +5,7 @@ from backend.agents.base import BaseAgent
 from backend.utils.currency import format_salary_display, FALLBACK_RATE
 from backend.services.currency_converter import currency_converter_service
 from backend.utils.timezones import calculate_wat_overlap
-from backend.services.firecrawl import FirecrawlService
+from backend.services.firecrawl import firecrawl_service
 from backend.core.config import settings
 from backend.core.logging import logger
 from backend.models.job import Job
@@ -13,7 +13,7 @@ from backend.models.job import Job
 class JobAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("job", session_id)
-        self.firecrawl = FirecrawlService()
+        self.firecrawl = firecrawl_service
         self.currency_converter_service = currency_converter_service
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:

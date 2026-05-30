@@ -5,9 +5,8 @@ from backend.agents.contract_agent import ContractAgent
 
 @pytest.mark.asyncio
 async def test_contract_agent_run(mock_openai):
-    with patch("backend.agents.contract_agent.OpenAIService", return_value=mock_openai), \
+    with patch("backend.agents.contract_agent.gemini_client", mock_openai), \
          patch("backend.agents.base.firebase_service"):
-        
         agent = ContractAgent(session_id="test-session")
         context = {
             "contract_text": "Sample US employment contract with relocation lock-in.",

@@ -36,3 +36,5 @@ class LinkedInService:
         # Simulate API call delay
         await asyncio.sleep(0.5)
         return True
+
+linkedin_service = LinkedInService()

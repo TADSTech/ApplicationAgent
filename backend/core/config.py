@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     FIRESTORE_PROJECT_ID: str = os.getenv("FIRESTORE_PROJECT_ID", "jobjockey-default")
     
     # API Keys
+    FIRECRAWL_API_KEY: Optional[str] = os.getenv("FIRECRAWL_API_KEY", None)
+    GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY", None)
     EXCHANGERATE_API_KEY: Optional[str] = os.getenv("EXCHANGERATE_API_KEY", None)
     GITHUB_TOKEN: Optional[str] = os.getenv("GITHUB_TOKEN", None)
     HACKERRANK_API_KEY: Optional[str] = os.getenv("HACKERRANK_API_KEY", None)

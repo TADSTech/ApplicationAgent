@@ -2,6 +2,7 @@
 from typing import Dict, Any
 from backend.agents.base import BaseAgent
 from backend.services.linkedin import linkedin_service
+from backend.services.gemini import gemini_client
 from backend.core.config import settings
 from backend.core.logging import logger
 
@@ -9,6 +10,7 @@ class LinkedinAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("linkedin", session_id)
         self.linkedin_service = linkedin_service
+        self.gemini = gemini_client
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """

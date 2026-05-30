@@ -202,7 +202,7 @@ async def test_orchestrator_executes_agent_and_updates_state(mock_job_agent):
     result = await orchestrator.execute_agent_with_retry("job", context)
 
     mock_job_agent.run.assert_awaited_once_with(context)
-    mock_job_agent._sync_state.assert_awaited() # Should be called multiple times for state updates
+    mock_job_agent._sync_state.assert_called() # Should be called multiple times for state updates
 
     assert mock_job_agent.state.status == "completed"
     assert mock_job_agent.state.progress == 100.0
@@ -240,4 +240,5 @@ async def test_orchestrator_handles_persistent_agent_failure(mock_job_agent):
     assert mock_job_agent.state.status == "failed"
     assert "Persistent simulated failure" in mock_job_agent.state.error
     assert result == {"status": "failed", "error": "Persistent simulated failure"}
+
 

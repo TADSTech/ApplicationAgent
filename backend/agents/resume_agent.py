@@ -1,14 +1,14 @@
 # backend/agents/resume_agent.py
 from typing import Dict, Any
 from backend.agents.base import BaseAgent
-from backend.services.gemini import GeminiService
+from backend.services.gemini import gemini_client
 from backend.core.config import settings
 from backend.core.logging import logger
 
 class ResumeAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("resume", session_id)
-        self.gemini = GeminiService()
+        self.gemini = gemini_client
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
