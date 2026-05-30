@@ -10,6 +10,7 @@ class LinkedinAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("linkedin", session_id)
         self.linkedin_service = linkedin_service
+        self.gemini = gemini_client
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """

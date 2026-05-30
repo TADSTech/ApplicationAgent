@@ -7,7 +7,6 @@ from backend.agents.contract_agent import ContractAgent
 async def test_contract_agent_run(mock_openai):
     with patch("backend.agents.contract_agent.GeminiService", return_value=mock_openai), \
          patch("backend.agents.base.firebase_service"):
-        
         agent = ContractAgent(session_id="test-session")
         context = {
             "contract_text": "Sample US employment contract with relocation lock-in.",

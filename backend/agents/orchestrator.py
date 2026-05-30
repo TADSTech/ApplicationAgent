@@ -40,7 +40,7 @@ class MultiAgentOrchestrator:
 
         agent.state.status = "running"
         agent.state.started_at = datetime.now(timezone.utc)
-        await agent._sync_state()
+        agent._sync_state()
 
         while retries <= max_retries:
             try:
@@ -49,7 +49,7 @@ class MultiAgentOrchestrator:
                 agent.state.progress = 100.0
                 agent.state.result = result
                 agent.state.completed_at = datetime.now(timezone.utc)
-                await agent._sync_state()
+                agent._sync_state()
                 
                 logger.info(
                     f"Agent {agent_type} completed successfully",
@@ -78,7 +78,7 @@ class MultiAgentOrchestrator:
                     agent.state.status = "failed"
                     agent.state.error = str(e)
                     agent.state.completed_at = datetime.now(timezone.utc)
-                    await agent._sync_state()
+                    agent._sync_state()
                     logger.error(
                         f"Agent {agent_type} exhausted all retries",
                         extra={

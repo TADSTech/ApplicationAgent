@@ -8,7 +8,7 @@ from ..core.logging import logger
 class ContractAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("contract", session_id)
-        self.gemini = GeminiService()
+        self.gemini = gemini_client
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """

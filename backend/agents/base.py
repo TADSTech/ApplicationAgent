@@ -36,10 +36,10 @@ class BaseAgent(ABC):
         """
         pass
 
-    async def update_progress(self, progress: float, status: str = "running"):
+    def update_progress(self, progress: float, status: str = "running"):
         self.state.progress = progress
         self.state.status = status
-        await self._sync_state()
+        self._sync_state()
         logger.info(
             f"Agent {self.agent_type} progress updated",
             extra={
@@ -49,7 +49,7 @@ class BaseAgent(ABC):
             }
         )
 
-    async def _sync_state(self):
+    def _sync_state(self):
         """
         Syncs current agent state to Firestore.
         Rule 4.3 compliant: Always save intermediate state to Firestore.

@@ -8,7 +8,6 @@ async def test_resume_agent_run(mock_openai):
     mock_openai.generate_structured_response = AsyncMock(return_value="Mock LLM Response")
     with patch("backend.agents.resume_agent.gemini_service", mock_openai), \
          patch("backend.agents.base.firebase_service"):
-        
         agent = ResumeAgent(session_id="test-session")
         context = {
             "resume_text": "NYSC Software Engineer",
