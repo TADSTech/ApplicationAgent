@@ -51,6 +51,10 @@ export const Dashboard: React.FC = () => {
   );
   const [searching, setSearching] = useState(false);
 
+  // Jobs state
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [jobsLoading, setJobsLoading] = useState(false);
+
   // Agent tracking (3.4.3)
   const currentSession = 'session-' + (user?.email || 'default');
   const { agentStates, isLoading: agentsLoading } = useAgents(currentSession);
@@ -102,6 +106,51 @@ export const Dashboard: React.FC = () => {
       return next;
     });
   };
+
+  // Fetch jobs function
+  const fetchJobs = useCallback(async () => {
+    setJobsLoading(true);
+    try {
+      const remoteOnly = activeFilters.has('remote');
+      const visaRequired = activeFilters.has('visa');
+      const minSalary = activeFilters.has('100k+') ? 100000 : undefined;
+      
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs?keywords=${encodeURIComponent(prompt)}&remote_only=${remoteOnly}&visa_required=${visaRequired}&min_salary=${minSalary || ''}`);
+      
+      if (!response.ok) throw new Error('Failed to fetch jobs');
+      const data = await response.json();
+      
+      // Transform demo jobs to Job type
+      const transformedJobs: Job[] = data.jobs.map((job: any) => ({
+        id: job.id,
+        title: job.title,
+        company: job.company,
+        location: job.location,
+        remote: job.remote,
+        salaryMin: job.salary_usd,
+        salaryMax: job.salary_usd,
+        salaryDisplay: `$${Math.round(job.salary_usd / 1000)}k`,
+        description: job.description,
+        requirements: job.requirements,
+        url: job.url,
+        postedAt: job.posted_at,
+        timeZone: job.timezone,
+        visaSponsorship: job.visa_sponsorship,
+        source: 'Demo',
+      }));
+      
+      setJobs(transformedJobs);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+    } finally {
+      setJobsLoading(false);
+    }
+  }, [prompt, activeFilters]);
+
+  // Initial fetch
+  useEffect(() => {
+    fetchJobs();
+  }, [fetchJobs]);
 
   useEffect(() => {
     if (!moreOpen) return;
@@ -226,8 +275,14 @@ export const Dashboard: React.FC = () => {
     if (!prompt.trim()) return;
     setSearching(true);
     try {
-      await apiClient.startJobSearch(currentSession, prompt, 'Remote');
-      navigate('/auto');
+      // If in auto mode, navigate to auto
+      if (mode === 'auto') {
+        await apiClient.startJobSearch(currentSession, prompt, 'Remote');
+        navigate('/auto');
+      } else {
+        // In manual mode, just fetch jobs
+        await fetchJobs();
+      }
     } catch {
       alert(`Search failed for: "${prompt}". Ensure the backend is running.`);
     } finally {
@@ -395,18 +450,44 @@ export const Dashboard: React.FC = () => {
 
           {/* Job Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-            {mockJobs.map((job) => (
-              <JobCard
-                key={job.id}
-                job={job}
-                mode={mode}
-                matchScore={98}
-                onViewAnalysis={handleViewAnalysis}
-                onViewDescription={handleViewDescription}
-                onApply={handleApply}
-                />
-              ))}
-            </div>
+            {jobsLoading ? (
+              // Loading skeletons
+              [...Array(2)].map((_, i) => (
+                <div key={i} className="border border-[#E4E2DD] bg-[#FFFFFF] rounded-2xl p-5 shadow-sm animate-pulse">
+                  <div className="h-5 bg-[#F5F3EE] rounded w-3/4 mb-3"></div>
+                  <div className="h-4 bg-[#F5F3EE] rounded w-1/2 mb-2"></div>
+                  <div className="h-3 bg-[#F5F3EE] rounded w-2/3 mb-3"></div>
+                  <div className="h-8 bg-[#F5F3EE] rounded-full w-full"></div>
+                </div>
+              ))
+            ) : jobs.length === 0 ? (
+              // Empty state
+              <div className="col-span-full text-center py-16">
+                <div className="w-20 h-20 mx-auto rounded-full bg-[#F5F3EE] flex items-center justify-center mb-5">
+                  <Bot className="w-10 h-10 text-[#7F7F7F]" />
+                </div>
+                <h4 className="font-dm-sans text-lg font-semibold text-[#0A0A0A] mb-2">No jobs found yet</h4>
+                <p className="font-dm-sans text-sm text-[#7F7F7F] max-w-md mx-auto">
+                  Enter a search prompt above or upload your resume to get personalized recommendations.
+                </p>
+              </div>
+            ) : (
+              // Job cards
+              jobs.map((job) => (
+                <div key={job.id} className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+                  <JobCard
+                    key={job.id}
+                    job={job}
+                    mode={mode}
+                    matchScore={98}
+                    onViewAnalysis={handleViewAnalysis}
+                    onViewDescription={handleViewDescription}
+                    onApply={handleApply}
+                  />
+                </div>
+              ))
+            )}
+          </div>
 
           {/* Agent Status Section (3.4.3) */}
           <div className="pt-8">
