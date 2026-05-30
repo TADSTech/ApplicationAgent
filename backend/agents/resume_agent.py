@@ -1,14 +1,14 @@
 # backend/agents/resume_agent.py
 from typing import Dict, Any
 from backend.agents.base import BaseAgent
-from backend.services.openai import OpenAIService
+from backend.services.gemini import GeminiService
 from backend.core.config import settings
 from backend.core.logging import logger
 
 class ResumeAgent(BaseAgent):
     def __init__(self, session_id: str):
         super().__init__("resume", session_id)
-        self.openai = OpenAIService(api_key=settings.OPENAI_API_KEY)
+        self.gemini = GeminiService(api_key=settings.GEMINI_API_KEY)
 
     async def run(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -52,7 +52,7 @@ class ResumeAgent(BaseAgent):
         """
 
         self.update_progress(40.0)
-        llm_response = await self.openai.generate_response(prompt, system_prompt)
+        llm_response = await self.gemini.generate_response(prompt, system_prompt)
         
         # In a production environment, we'd parse the JSON from LLM. 
         # For now, we'll store the raw response or a simplified version.
