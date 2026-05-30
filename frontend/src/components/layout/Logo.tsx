@@ -1,16 +1,15 @@
-// src/components/layout/Logo.tsx
 import React from 'react';
 
 export const Logo: React.FC = () => {
   return (
     <div className="flex items-center space-x-3">
-      <div className="flex flex-col space-y-1">
-        <div className="flex space-x-1">
-          <div className="w-3 h-3 bg-primary rounded-sm"></div>
-          <div className="w-3 h-3 bg-primary rounded-sm"></div>
-        </div>
-        <div className="w-3 h-3 bg-primary rounded-sm ml-4"></div>
-      </div>
+      <svg width="32" height="36" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="30.6416" y="16.2861" width="6.47725" height="15.3835" transform="rotate(25.8552 30.6416 16.2861)" fill="#FF4D00"/>
+        <rect x="2.8252" y="21.7009" width="17.0028" height="6.47725" transform="rotate(25.8552 2.8252 21.7009)" fill="#FFCC00"/>
+        <rect x="19.3643" y="11.7192" width="6.47725" height="6.47725" transform="rotate(25.8552 19.3643 11.7192)" fill="#FFCC00"/>
+        <rect x="34.1729" y="9" width="6.47725" height="6.47725" transform="rotate(25.8552 34.1729 9)" fill="#FF4D00"/>
+        <rect x="15.8291" y="19.0051" width="10.5255" height="6.47725" transform="rotate(25.8552 15.8291 19.0051)" fill="#FF4D00"/>
+      </svg>
       <span className="font-space-mono text-xl font-bold tracking-tighter text-[#0A0A0A] dark:text-white">
         JobJockey
       </span>

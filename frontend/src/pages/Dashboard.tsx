@@ -1,12 +1,14 @@
 // frontend/src/pages/Dashboard.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { cn } from '../lib/utils';
 import Sidebar from '../components/layout/Sidebar';
 import JobCard from '../components/jobs/JobCard';
 import { Job } from '../types';
 import { Avatar } from '../components/ui/Avatar';
 import { DropdownMenu } from '../components/ui/DropdownMenu';
+import { ResumeEditor } from '../components/resume/ResumeEditor';
 import { 
   Paperclip, 
   Globe, 
@@ -30,8 +32,10 @@ import {
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   // Mode state: 'auto' | 'manual' controlled by Sidebar toggle
   const [mode, setMode] = useState<'auto' | 'manual'>('auto');
+  const [view, setView] = useState<'dashboard' | 'resume'>('dashboard');
   
   // Search prompt state
   const [prompt, setPrompt] = useState<string>(
@@ -62,7 +66,20 @@ export const Dashboard: React.FC = () => {
     new Set(['remote', 'full-time', '100k+', 'series-b+'])
   );
   const [moreOpen, setMoreOpen] = useState(false);
+  const [popupAlignRight, setPopupAlignRight] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
+
+  const toggleMore = () => {
+    if (moreOpen) {
+      setMoreOpen(false);
+      return;
+    }
+    if (moreRef.current) {
+      const rect = moreRef.current.getBoundingClientRect();
+      setPopupAlignRight(rect.right + 360 > window.innerWidth);
+    }
+    setMoreOpen(true);
+  };
 
   const toggleFilter = (id: string) => {
     setActiveFilters(prev => {
@@ -199,9 +216,11 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="flex h-screen bg-[#FBF9F4] overflow-hidden">
       {/* Left Sidebar Layout */}
-      <Sidebar mode={mode} onModeChange={setMode} />
+      <Sidebar mode={mode} onModeChange={setMode} onUpdateResume={() => setView('resume')} />
 
-      {/* Main Content Pane (Premium Editorial Canvas) */}
+      {view === 'resume' ? (
+        <ResumeEditor onBack={() => setView('dashboard')} />
+      ) : (
       <main className="flex-1 overflow-y-auto px-12 py-8 flex flex-col space-y-8">
         
         {/* Top Header Row */}
@@ -237,7 +256,7 @@ export const Dashboard: React.FC = () => {
           {/* Welcome Header */}
           <div className="text-center pt-8">
             <h2 className="font-dm-sans text-[#7F7F7F] text-2xl font-light leading-snug">
-              Welcome,
+              Welcome {user?.name ?? 'there'},
             </h2>
             <h3 className="font-dm-sans text-[#0A0A0A] text-4xl font-semibold tracking-tight mt-1.5">
               What job would you like to find today?
@@ -312,7 +331,7 @@ export const Dashboard: React.FC = () => {
               <div className="relative ml-2" ref={moreRef}>
                 <button
                   type="button"
-                  onClick={() => setMoreOpen(v => !v)}
+                  onClick={toggleMore}
                   className={cn(
                     'text-xs font-semibold transition-colors cursor-pointer',
                     moreOpen ? 'text-[#FF4D00]' : 'text-[#FF4D00] hover:text-[#FF4D00]/80'
@@ -322,7 +341,7 @@ export const Dashboard: React.FC = () => {
                 </button>
 
               {moreOpen && (
-                <div className="absolute left-0 top-full mt-2 z-50 bg-white border border-[#E4E2DD] rounded-xl shadow-xl p-4 min-w-[340px] animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className={cn("absolute top-full mt-2 z-50 bg-white border border-[#E4E2DD] rounded-xl shadow-xl p-4 min-w-[340px] animate-in fade-in slide-in-from-top-2 duration-200", popupAlignRight ? 'right-0' : 'left-0')}>
                   <div className="grid grid-cols-2 gap-2">
                     {popupChips.map((f) => {
                       const Icon = f.icon;
@@ -367,6 +386,7 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
       </main>
+      )}
     </div>
   );
 };

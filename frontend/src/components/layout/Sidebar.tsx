@@ -19,9 +19,10 @@ import Logo from './Logo';
 interface SidebarProps {
   mode: 'auto' | 'manual';
   onModeChange: (mode: 'auto' | 'manual') => void;
+  onUpdateResume?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange, onUpdateResume }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
@@ -278,12 +279,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ mode, onModeChange }) => {
       <div className="flex flex-col space-y-5 w-full items-center">
         {/* Update Resume Action */}
         {!isCollapsed ? (
-          <button className="bg-[#0A0A0A] hover:bg-[#222222] text-white py-4 px-6 rounded-[20px] text-sm font-bold flex items-center justify-center space-x-2 transition-all duration-200 shadow-md cursor-pointer w-full font-dm-sans">
+          <button
+            onClick={onUpdateResume}
+            className="bg-[#0A0A0A] hover:bg-[#222222] text-white py-4 px-6 rounded-[20px] text-sm font-bold flex items-center justify-center space-x-2 transition-all duration-200 shadow-md cursor-pointer w-full font-dm-sans"
+          >
             <UploadCloud className="w-5 h-5" />
             <span>Update Resume</span>
           </button>
         ) : (
-          <button 
+          <button
+            onClick={onUpdateResume}
             className="bg-[#0A0A0A] hover:bg-[#222222] text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 shadow-md cursor-pointer"
             title="Update Resume"
           >

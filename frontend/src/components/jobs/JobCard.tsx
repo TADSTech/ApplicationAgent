@@ -94,15 +94,8 @@ export const JobCard: React.FC<JobCardProps> = ({
           {formatSalaryWithNgn()}
         </div>
 
-        <div className="flex items-center justify-between mt-1">
-          {mode === 'auto' ? (
-            <button
-              onClick={() => onViewAnalysis?.(job)}
-              className="text-[#FF4D00] hover:text-[#FF4D00]/80 text-xs font-bold font-dm-sans transition-colors cursor-pointer hover:underline"
-            >
-              View Analysis
-            </button>
-          ) : (
+        {mode === 'manual' && (
+          <div className="flex items-center justify-between mt-1">
             <div className="flex items-center justify-between w-full">
               <button
                 onClick={() => onViewDescription?.(job)}
@@ -118,8 +111,8 @@ export const JobCard: React.FC<JobCardProps> = ({
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

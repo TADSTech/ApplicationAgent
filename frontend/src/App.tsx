@@ -1,3 +1,4 @@
+import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './pages/Welcome';
 import Signup from './pages/Signup';
@@ -13,6 +14,7 @@ import SavedJobs from './pages/SavedJobs';
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Welcome />} />
@@ -28,6 +30,7 @@ function App() {
         <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 
