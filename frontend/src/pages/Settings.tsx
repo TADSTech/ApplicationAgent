@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useResume } from '../context/ResumeContext';
 import { cn } from '../lib/utils';
 import Sidebar from '../components/layout/Sidebar';
 import { Avatar } from '../components/ui/Avatar';
@@ -137,6 +138,14 @@ export const Settings: React.FC = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState<'auto' | 'manual'>('auto');
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  const { resume, uploadResume } = useResume();
+
+  const handleUpdateResume = () => {
+    const mockResumeName = 'MyProfessionalResume.pdf';
+    const mockAtsScore = 92;
+    uploadResume(mockResumeName, mockAtsScore);
+  };
 
   // Section 1: Job Preferences
   const [targetSalary, setTargetSalary] = useState<number>(80000);
@@ -203,7 +212,14 @@ export const Settings: React.FC = () => {
 
   return (
     <div className="flex bg-[#FBF9F4] h-screen w-screen overflow-hidden font-dm-sans text-[#0A0A0A]">
-      <Sidebar mode={mode} onModeChange={setMode} />
+      <Sidebar
+        mode={mode}
+        onModeChange={setMode}
+        onUpdateResume={handleUpdateResume}
+        hasResume={resume.hasResume}
+        resumeName={resume.resumeName}
+        atsScore={resume.atsScore}
+      />
 
       <main className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         {/* Top Header */}
@@ -216,7 +232,10 @@ export const Settings: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <button className="bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold px-6 py-2.5 rounded-full text-xs transition-all duration-200 shadow-sm cursor-pointer">
+            <button
+              onClick={() => navigate('/guidelines')}
+              className="bg-[#FF4D00] hover:bg-[#FF4D00]/90 text-white font-bold px-6 py-2.5 rounded-full text-xs transition-all duration-200 shadow-sm cursor-pointer"
+            >
               How to Guide
             </button>
             <div className="relative">
@@ -233,6 +252,36 @@ export const Settings: React.FC = () => {
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-10 bg-[#FBF9F4]">
           <div className="max-w-3xl mx-auto flex flex-col space-y-6 pb-16">
+            {/* Section 0: Quick Links */}
+            <Section title="Quick Links" icon={Settings2} defaultOpen={true}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button
+                  onClick={() => navigate('/account#profile')}
+                  className="flex items-center space-x-3 bg-white border border-[#E4E2DD] rounded-2xl p-4 hover:border-[#FF4D00]/30 transition-colors cursor-pointer text-left"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#FFF0EA] flex items-center justify-center shrink-0">
+                    <User className="w-5 h-5 text-[#FF4D00]" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#0A0A0A]">Edit Profile</h4>
+                    <p className="text-xs text-[#7F7F7F] mt-0.5">Update your personal details</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => navigate('/guidelines')}
+                  className="flex items-center space-x-3 bg-white border border-[#E4E2DD] rounded-2xl p-4 hover:border-[#FF4D00]/30 transition-colors cursor-pointer text-left"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#E2F9EE] flex items-center justify-center shrink-0">
+                    <LifeBuoy className="w-5 h-5 text-[#15B097]" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#0A0A0A]">How to Guide</h4>
+                    <p className="text-xs text-[#7F7F7F] mt-0.5">Learn how to use JobJockey</p>
+                  </div>
+                </button>
+              </div>
+            </Section>
+
             {/* Section 1: Job Preferences */}
             <Section title="Job Preferences" icon={Briefcase} defaultOpen={true}>
               <div className="space-y-6">

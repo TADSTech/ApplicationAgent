@@ -1,9 +1,15 @@
 # backend/services/firebase.py
 import firebase_admin
 from firebase_admin import credentials, firestore
-from ..core.config import settings
-from ..core.logging import logger
 from typing import Dict, Any, Optional
+try:
+    from core.config import settings
+    from core.logging import logger
+    from core.state import active_sessions
+except ImportError:
+    from backend.core.config import settings
+    from backend.core.logging import logger
+    from backend.core.state import active_sessions
 
 class FirebaseService:
     _instance = None
@@ -42,7 +48,6 @@ class FirebaseService:
     def update_agent_state(self, session_id: str, agent_type: str, state: Dict[str, Any]):
         # Keep an in-memory cache of agent states to support local/offline mode
         try:
-            from backend.core.state import active_sessions
             if session_id not in active_sessions:
                 active_sessions[session_id] = {}
             active_sessions[session_id][agent_type] = state
@@ -62,7 +67,6 @@ class FirebaseService:
 
     def get_agent_states(self, session_id: str) -> list[Dict[str, Any]]:
         # Fetch from in-memory cache first
-        from backend.core.state import active_sessions
         in_memory_states = active_sessions.get(session_id, {})
         
         # Merge with Firestore if database is available

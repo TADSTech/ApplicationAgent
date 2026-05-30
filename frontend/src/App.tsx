@@ -1,5 +1,7 @@
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { ResumeProvider } from './context/ResumeContext';
+import { ModalProvider } from './components/ui/Modal';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './pages/Welcome';
 import Signup from './pages/Signup';
@@ -12,11 +14,14 @@ import Settings from './pages/Settings';
 import Account from './pages/Account';
 import Applications from './pages/Applications';
 import SavedJobs from './pages/SavedJobs';
+import Guidelines from './pages/Guidelines';
 
 function App() {
   return (
+    <ModalProvider>
     <ThemeProvider>
     <AuthProvider>
+    <ResumeProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Welcome />} />
@@ -29,11 +34,14 @@ function App() {
         <Route path="/auto" element={<AutoMode />} />
         <Route path="/swipe" element={<SwipeMode />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/guidelines" element={<Guidelines />} />
         <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
+    </ResumeProvider>
     </AuthProvider>
     </ThemeProvider>
+    </ModalProvider>
   );
 }
 

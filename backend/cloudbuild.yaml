@@ -1,0 +1,50 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}',
+        '.',
+      ]
+    id: 'Build Image'
+
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}',
+      ]
+    id: 'Push Image'
+    waitFor: ['Build Image'] # Ensure build is complete before pushing
+
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-run'
+    args:
+      [
+        'deploy',
+        '${_SERVICE_NAME}',
+        '--image',
+        '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}',
+        '--region',
+        '${_REGION}',
+        '--platform',
+        'managed',
+        '--allow-unauthenticated', # Or configure authentication as needed
+      ]
+    id: 'Deploy to Cloud Run'
+    waitFor: ['Push Image'] # Ensure image is pushed before deploying
+
+images:
+  # Specify the image to be built and pushed
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:${_TAG}'
+
+substitutions:
+  _REGION: us-central1 # Default region, can be overridden
+  _PROJECT_ID: gdg-lagos-bwai-hackathon-2026 # Your GCP Project ID
+  _REPOSITORY: my-repo # Replace with your Artifact Registry repository name
+  _IMAGE_NAME: job-jockey-backend # Name for your container image
+  _SERVICE_NAME: job-jockey-backend # Name for your Cloud Run service
+  _TAG: latest # Tag for your image, e.g., 'latest', 'v1.0.0'

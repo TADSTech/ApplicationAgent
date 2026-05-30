@@ -3,10 +3,10 @@
 
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
-from ..services.gemini import gemini_service
-from ..services.profile_builder import profile_builder_service, ProfileQuestion
-from ..core.logging import logger
-from ..core.config import settings
+from services.gemini import gemini_service
+from services.profile_builder import profile_builder_service, ProfileQuestion
+from core.logging import logger
+from core.config import settings
 import json
 import re
 
@@ -116,7 +116,7 @@ class AIQuestionService:
         )
         
         # Use profile builder service
-        from ..services.profile_builder import UserProfile
+        from services.profile_builder import UserProfile
         profile = UserProfile(**user_profile)
         
         questions = await self.profile_builder.generate_next_questions(
@@ -157,11 +157,7 @@ class AIQuestionService:
             if response:
                 return self._parse_question_response(response, job['id'], scenario)
             
-            # Fallback to Claude if available
-            if self.claude_available:
-                response = await self._call_claude_with_guardrails(prompt)
-                if response:
-                    return self._parse_question_response(response, job['id'], scenario)
+            return None
         
         except Exception as e:
             logger.error(f"AI question generation failed: {e}")
@@ -234,43 +230,7 @@ If you cannot generate a safe, appropriate question, return an empty response.""
             logger.error(f"Gemini call failed: {e}")
             return None
     
-    async def _call_claude_with_guardrails(self, prompt: str) -> Optional[str]:
-        """Call Claude (Anthropic) as backup with safety checks."""
-        try:
-            # Import anthropic only if needed
-            import anthropic
-            
-            client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY)
-            
-            system_prompt = f"""You are a professional career advisor.
 
-STRICT SAFETY RULES:
-1. NEVER ask about: {', '.join(self.FORBIDDEN_TOPICS)}
-2. ONLY ask about: {', '.join(self.ALLOWED_CATEGORIES)}
-3. Keep all questions professional and job-relevant
-4. Respect user privacy and legal boundaries"""
-            
-            message = client.messages.create(
-                model="claude-3-5-sonnet-20241022",
-                max_tokens=1024,
-                system=system_prompt,
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            
-            response = message.content[0].text
-            
-            # Safety check response
-            if self._contains_forbidden_content(response):
-                logger.warning("Claude response contained forbidden content")
-                return None
-            
-            return response
-        
-        except Exception as e:
-            logger.error(f"Claude call failed: {e}")
-            return None
     
     def _contains_forbidden_content(self, text: str) -> bool:
         """Check if text contains forbidden topics."""

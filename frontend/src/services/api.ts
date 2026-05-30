@@ -1,6 +1,7 @@
 import { Job, AgentState } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const rawApiUrl = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const API_BASE_URL = rawApiUrl.replace(/\/+$/, '');
 
 const DEFAULT_TIMEOUT = 15000;
 const MAX_RETRIES = 3;
@@ -140,6 +141,28 @@ export const apiClient = {
     return request('/resume/tailor', {
       method: 'POST',
       body: JSON.stringify({ session_id: sessionId, job_description: jobDescription, resume_text: resumeText }),
+    });
+  },
+
+  async parseResume(
+    resumeText: string,
+    userId: string = 'demo_user',
+  ): Promise<{
+    full_name?: string;
+    email?: string;
+    location?: string;
+    phone?: string;
+    linkedInUrl?: string;
+    gitHubUrl?: string;
+    timezone?: string;
+    current_title?: string;
+    years_experience?: number;
+    skills?: string[];
+    industries?: string[];
+  }> {
+    return request('/resume/parse', {
+      method: 'POST',
+      body: JSON.stringify({ resume_text: resumeText, user_id: userId }),
     });
   },
 

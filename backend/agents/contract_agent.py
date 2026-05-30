@@ -1,9 +1,9 @@
 # backend/agents/contract_agent.py
 from typing import Dict, Any
 from .base import BaseAgent
-from ..services.gemini import GeminiService
-from ..core.config import settings
-from ..core.logging import logger
+from services.gemini import GeminiService
+from core.config import settings
+from core.logging import logger
 
 class ContractAgent(BaseAgent):
     def __init__(self, session_id: str):

@@ -2,18 +2,22 @@
 from typing import Dict, Any, Optional
 from google import genai
 from google.genai import types
-from ..core.logging import logger
-from ..core.config import settings
+try:
+    from core.logging import logger
+    from core.config import settings
+except ImportError:
+    from backend.core.logging import logger
+    from backend.core.config import settings
 
 class GeminiService:
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key or settings.GEMINI_API_KEY
         if self.api_key:
             self.client = genai.Client(api_key=self.api_key)
-            self.model = "gemini-2.0-flash-exp"
+            self.model = "gemini-3.5-flash"
         else:
             self.client = None
-            self.model = "gemini-2.0-flash-exp"
+            self.model = "gemini-3.5-flash"
         logger.info("GeminiService initialized", extra={"payload": {"model": self.model}})
         
         # Import OpenRouter service for fallback
@@ -23,7 +27,10 @@ class GeminiService:
     def openrouter(self):
         """Lazy load OpenRouter service."""
         if self._openrouter is None:
-            from ..services.openrouter_service import openrouter_service
+            try:
+                from services.openrouter_service import openrouter_service
+            except ImportError:
+                from backend.services.openrouter_service import openrouter_service
             self._openrouter = openrouter_service
         return self._openrouter
 
@@ -132,6 +139,18 @@ class GeminiService:
 
     def _get_mock_response(self, prompt: str, system_prompt: Optional[str] = None) -> str:
         """Returns mock response when API key is not configured."""
+        # Check if it's a resume parsing request
+        if "Analyze this resume" in prompt or "Extract the following" in prompt:
+            return """{
+  "name": "Michael Tunwashe",
+  "email": "motrenewed@gmail.com",
+  "location": "Lagos, Nigeria",
+  "current_title": "Data Engineer",
+  "years_experience": 4,
+  "skills": ["Python", "Apache Spark", "Airflow", "PostgreSQL", "BigQuery", "AWS", "Terraform", "Docker"],
+  "industries": ["E-commerce", "Fintech"]
+}"""
+        
         return f"""[MOCK RESPONSE - Gemini API not configured]
 
 System: {system_prompt or 'You are a helpful assistant.'}
